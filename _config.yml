@@ -1,0 +1,30 @@
+title: "Sai's Blog"
+description: "Documenting my journey - research, thesis work, and technical explorations"
+author: Sai
+email: ""
+
+baseurl: ""
+url: "https://sai21112000.github.io"
+
+theme: minima
+
+# Minima theme settings
+minima:
+  skin: classic
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Plugins supported by GitHub Pages
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Navigation
+header_pages:
+  - about.md
