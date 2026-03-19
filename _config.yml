@@ -1,0 +1,6 @@
+title: Sai's Blog
+description: Personal portfolio and blog of Sai. Projects, thoughts, and writing.
+url: "https://sai21112000.github.io"
+permalink: /posts/:title.html
+markdown: kramdown
+theme: null

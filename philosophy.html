@@ -1,46 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Philosophy · Sai's Blog</title>
-    <meta name="description" content="Quotes, notes, and observations on software and design.">
-    <link rel="stylesheet" href="/assets/style.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⬛</text></svg>">
-</head>
-<body>
-    <main>
-        <nav class="animate-enter">
-            <a href="/">← index</a>
-            <span>sai's philosophy</span>
-        </nav>
+---
+layout: default
+title: Philosophy · Sai's Blog
+description: Quotes, notes, and observations.
+---
+<nav class="animate-enter">
+    <a href="{{ '/' | relative_url }}">← index</a>
+    <span>sai's philosophy</span>
+</nav>
 
-        <article class="animate-enter" style="animation-delay: 0.1s;">
-            <header>
-                <h1>Immersive Thoughts</h1>
-                <p class="meta">Quotes, notes, and observations</p>
-            </header>
+<article class="animate-enter" style="animation-delay: 0.1s;">
+    <header>
+        <h1>Immersive Thoughts</h1>
+        <p class="meta">Quotes, notes, and observations</p>
+    </header>
 
-            <div class="content immersive-quotes">
-                <blockquote class="animate-enter" style="animation-delay: 0.2s;">
-                    "We shape our tools and thereafter our tools shape us."
-                </blockquote>
-                <p class="quote-note animate-enter" style="animation-delay: 0.3s;">
-                    John Culkin. 1967. Observations on how the frameworks we choose constrain the way we solve problems in software engineering. What starts as a convenience slowly shapes our entire methodology.
-                </p>
+    <div class="content immersive-quotes">
+        <blockquote class="animate-enter" style="animation-delay: 0.2s;">
+            "We shape our tools and thereafter our tools shape us."
+        </blockquote>
+        <p class="quote-note animate-enter" style="animation-delay: 0.3s;">
+            John Culkin. 1967. Observations on how the frameworks we choose constrain the way we solve problems in software engineering. What starts as a convenience slowly shapes our entire methodology.
+        </p>
 
-                <blockquote class="animate-enter" style="animation-delay: 0.4s;">
-                    "Simplicity is the ultimate sophistication."
-                </blockquote>
-                <p class="quote-note animate-enter" style="animation-delay: 0.5s;">
-                    Why stripping away JavaScript and focusing purely on typography and whitespace fundamentally improves the web. It is infinitely harder to design an elegant system with heavy constraints than to hide behind a generic UI library.
-                </p>
-            </div>
-        </article>
+        <blockquote class="animate-enter" style="animation-delay: 0.4s;">
+            "Simplicity is the ultimate sophistication."
+        </blockquote>
+        <p class="quote-note animate-enter" style="animation-delay: 0.5s;">
+            Why stripping away JavaScript and focusing purely on typography and whitespace fundamentally improves the web. It is infinitely harder to design an elegant system with heavy constraints than to hide behind a generic UI library.
+        </p>
+    </div>
+</article>
 
-        <footer class="animate-enter" style="animation-delay: 0.6s;">
-            <a href="/">← back to index</a>
-        </footer>
-    </main>
-</body>
-</html>
+<footer class="animate-enter" style="animation-delay: 0.6s;">
+    <a href="{{ '/' | relative_url }}">← back to index</a>
+</footer>

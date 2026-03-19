@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<nav class="animate-enter">
+    <a href="{{ '/' | relative_url }}">← index</a>
+    <span>sai's blog</span>
+</nav>
+
+<article class="animate-enter" style="animation-delay: 0.1s;">
+    <header>
+        <h1>{{ page.title }}</h1>
+        <p class="meta">{{ page.date | date: "%Y-%m-%d" }} &nbsp;·&nbsp; {{ content | number_of_words | divided_by: 200 | at_least: 1 }} min read</p>
+        <div class="tags">
+            {% for tag in page.tags %}
+            <span>#{{ tag }}</span>
+            {% endfor %}
+        </div>
+    </header>
+
+    <div class="content">
+        {{ content }}
+    </div>
+</article>
+
+<footer class="animate-enter" style="animation-delay: 0.3s;">
+    <a href="{{ '/' | relative_url }}">← back to all posts</a>
+</footer>

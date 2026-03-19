@@ -1,68 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+---
+layout: default
+title: Sai's Blog
+---
+<header class="animate-enter">
+    <h1><a href="{{ '/' | relative_url }}">Sai's Blog</a></h1>
+    <p class="meta">Thoughts and Experiments &nbsp;·&nbsp; <a href="{{ '/philosophy.html' | relative_url }}" style="border-bottom:1px solid currentColor;">Philosophy</a></p>
+    <div class="contact">
+        <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="noopener noreferrer" class="social-linkedin">linkedin</a>
+        <a href="https://github.com/Sai21112000" target="_blank" rel="noopener noreferrer" class="social-github">github</a>
+        <a href="https://x.com/vaidyasaiteja" target="_blank" rel="noopener noreferrer" class="social-twitter">twitter</a>
+        <a href="https://www.youtube.com/@saitejavaidya/streams" target="_blank" rel="noopener noreferrer" class="social-youtube">youtube</a>
+    </div>
+</header>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sai's Blog</title>
-    <meta name="description" content="Personal portfolio and blog of Sai. Projects, thoughts, and writing.">
-    <link rel="stylesheet" href="/assets/style.css">
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⬛</text></svg>">
-</head>
+<section class="animate-enter" style="animation-delay: 0.1s;">
+    <h2>Selected Work</h2>
+    <ul class="post-list portfolio-list">
+        <li>
+            <a href="https://github.com/Sai21112000" target="_blank" rel="noopener noreferrer">Interactive Portfolio Design</a>
+            <span class="post-date">Mar 2026</span>
+        </li>
+        <li>
+            <a href="https://github.com/Sai21112000" target="_blank" rel="noopener noreferrer">Minimalist Web Engine</a>
+            <span class="post-date">Jan 2026</span>
+        </li>
+    </ul>
+</section>
 
-<body>
-    <main>
-        <header class="animate-enter">
-            <h1><a href="/">Sai's Blog</a></h1>
-            <p class="meta">Thoughts and Experiments &nbsp;·&nbsp; <a href="/philosophy.html" style="border-bottom:1px solid currentColor;">Philosophy</a></p>
-            <div class="contact">
-                <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="noopener noreferrer" class="social-linkedin">linkedin</a>
-                <a href="https://github.com/Sai21112000" target="_blank" rel="noopener noreferrer" class="social-github">github</a>
-                <a href="https://x.com/vaidyasaiteja" target="_blank" rel="noopener noreferrer" class="social-twitter">twitter</a>
-                <a href="https://www.youtube.com/@saitejavaidya/streams" target="_blank" rel="noopener noreferrer" class="social-youtube">youtube</a>
-            </div>
-        </header>
+<section class="animate-enter" style="animation-delay: 0.2s;">
+    <h2>Writing</h2>
+    <ul class="post-list">
+        {% for post in site.posts %}
+        <li>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            <span class="post-date">{{ post.date | date: "%b %Y" }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
 
-        <section class="animate-enter" style="animation-delay: 0.1s;">
-            <h2>Selected Work</h2>
-            <ul class="post-list portfolio-list">
-                <li>
-                    <a href="https://github.com/Sai21112000" target="_blank" rel="noopener noreferrer">Interactive
-                        Portfolio Design</a>
-                    <span class="post-date">Mar 2026</span>
-                </li>
-                <li>
-                    <a href="https://github.com/Sai21112000" target="_blank" rel="noopener noreferrer">Minimalist Web
-                        Engine</a>
-                    <span class="post-date">Jan 2026</span>
-                </li>
-            </ul>
-        </section>
-
-        <section class="animate-enter" style="animation-delay: 0.2s;">
-            <h2>Writing</h2>
-            <ul class="post-list">
-                <li>
-                    <a href="/posts/first-post.html">The Beauty of Pure HTML and CSS</a>
-                    <span class="post-date">2026-03-19</span>
-                </li>
-                <li>
-                    <a href="/posts/first-post.html">Why I Stopped Using Frameworks</a>
-                    <span class="post-date">2026-03-01</span>
-                </li>
-                <li>
-                    <a href="/posts/first-post.html">Designing without Defaults</a>
-                    <span class="post-date">2026-02-15</span>
-                </li>
-            </ul>
-        </section>
-
-        <footer class="animate-enter" style="animation-delay: 0.3s;">
-            <span>© 2026 Sai</span>
-            <a href="#">RSS (soon)</a>
-        </footer>
-    </main>
-</body>
-
-</html>
+<footer class="animate-enter" style="animation-delay: 0.3s;">
+    <span>© 2026 Sai</span>
+    <a href="#">RSS (soon)</a>
+</footer>
