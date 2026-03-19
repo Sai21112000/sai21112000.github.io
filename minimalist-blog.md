@@ -29,7 +29,9 @@ sai21112000.github.io/
 ```
 
 ## Task Breakdown
-
+- Get Agent Skills from https://github.com/Sai21112000/antigravity-kit.git
+- Install via terminal.
+- Start Using .agent
 ### Task 1: Setup HTML Skeleton & CSS (frontend-specialist)
 - **Agent**: `frontend-specialist`
 - **Skills**: `frontend-design`, `clean-code`
