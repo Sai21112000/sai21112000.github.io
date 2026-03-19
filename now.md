@@ -8,23 +8,30 @@ description: What I'm focused on right now
 
 ---
 
-## Current Focus
+## Job Search
 
-- **Job search** — Actively looking for Remote Sensing / Computer Vision Engineer roles and freelance geospatial gigs. Open to remote work.
-- **HuggingFace Agents Course** — Working through the free course on building and deploying AI agents
-- **Thesis revisions** — Finishing final report edits post-defense (methodology clarifications, committee feedback)
-- Maintaining this blog — writing technical posts about YOLO, SAM, and lessons from my thesis
+Actively looking for **AI Research**, **AI Engineer**, **Computer Vision Engineer**, and **Remote Sensing / Geospatial ML** roles. Open to remote work and relocation.
+
+My expertise spans RSGIS, ML, DL, CV, pipelines, and deployments — from UAV imagery analysis to end-to-end model deployment.
 
 ## Learning
 
-- LLM agents, multi-step reasoning, and tool-use patterns
-- Freelance workflows — Upwork profile setup, portfolio positioning
-- Jekyll & GitHub Pages for static site publishing
+- **Neuroscience** — understanding the brain to build better AI
+- **Deep Reinforcement Learning** — beyond supervised learning
+- **Applied Mathematics** — foundations for research
+- **HuggingFace Agents Course** — building and deploying AI agents
+- **Jekyll & Obsidian** — streamlining my writing-to-publishing workflow
 
 ## Building
 
 - This minimalist blog (pure HTML/CSS/Jekyll, zero frameworks)
-- Cleaning up my [thesis segmentation pipeline](https://github.com/Sai21112000/oil-palm-detection-thesis) for a public portfolio repo
+- [Obsidian Jekyll Publisher](https://github.com/Sai21112000/obsidian-jekyll-publisher) — an Obsidian plugin to auto-convert and publish notes to Jekyll
+- Cleaning up my [thesis segmentation pipeline](https://github.com/Sai21112000) for a public portfolio repo
+- Writing technical blog posts about YOLO, SAM, and lessons from my thesis
+
+## Training
+
+Competitive powerlifting under TAAP/IPF. In 2025: NQ1 (390kg total) and NQ3 (430kg total), placed 3rd in both. Currently training for the next qualifier in the U74kg Men's Raw Open category.
 
 ---
 

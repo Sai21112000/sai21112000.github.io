@@ -84,6 +84,7 @@ Some rough numbers from this session:
 | **Working session** | ~6 hours |
 | **Total features shipped** | 15+ |
 | **Files created/modified** | 20+ |
+| **Working session** | ~6 hours |
 | **Lines of CSS** | ~700 |
 | **Lines of HTML/Liquid** | ~500 |
 | **External dependencies** | 0 (excluding giscus) |
