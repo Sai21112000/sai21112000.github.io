@@ -103,21 +103,24 @@ li {
     margin-left: 1.5rem;
 }
 
-/* Radical Link Interaction */
+/* Link Interaction */
 a {
     color: var(--text);
     text-decoration: none;
     border-bottom: 1px solid var(--accent);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    display: inline-block;
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
 }
 
 a:hover {
-    background-color: var(--accent);
-    color: var(--bg);
-    border-bottom-color: transparent;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(229, 46, 0, 0.2);
+    color: var(--accent);
+}
+
+/* Title link — no underline */
+h1 a {
+    border-bottom: none;
+}
+h1 a:hover {
+    color: var(--accent);
 }
 
 /* Utilities */
@@ -161,21 +164,18 @@ pre {
     margin-bottom: 1.5rem;
 }
 
-/* Portfolio List Brutalism */
+/* Portfolio List */
 .portfolio-list li {
     margin-bottom: 1.8rem;
 }
 .portfolio-list a {
     font-size: 1.4rem;
     font-weight: 600;
-    border-bottom: none;
-    padding: 0.2rem 0;
+    border-bottom: 2px solid transparent;
 }
 .portfolio-list a:hover {
-    color: var(--bg);
-    background-color: var(--text);
-    transform: scale(1.02) translateX(4px);
-    box-shadow: 6px 6px 0px var(--accent);
+    color: var(--accent);
+    border-bottom-color: var(--accent);
 }
 .portfolio-list a::after {
     display: none;
@@ -283,17 +283,12 @@ blockquote {
     margin-bottom: 3rem;
 }
 .contact a {
-    transform: none;
-    box-shadow: none;
+    border-bottom-color: transparent;
 }
-.contact a:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(229, 46, 0, 0.2);
-}
-.contact a.social-linkedin:hover { background-color: #0077b5; border-bottom-color: transparent; color: #FFF; box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3); }
-.contact a.social-github:hover { background-color: var(--text); border-bottom-color: transparent; color: var(--bg); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-.contact a.social-twitter:hover { background-color: #000000; border-bottom-color: transparent; color: #FFF; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
-.contact a.social-youtube:hover { background-color: #FF0000; border-bottom-color: transparent; color: #FFF; box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3); }
+.contact a.social-linkedin:hover { color: #0077b5; border-bottom-color: #0077b5; }
+.contact a.social-github:hover { color: var(--text); border-bottom-color: var(--text); }
+.contact a.social-twitter:hover { color: var(--text); border-bottom-color: var(--text); }
+.contact a.social-youtube:hover { color: #FF0000; border-bottom-color: #FF0000; }
 
 /* Immersive Quotes for Philosophy Page */
 .immersive-quotes blockquote {
@@ -452,9 +447,7 @@ blockquote {
 .content {
     overflow: hidden;
 }
-.content img,
-article img,
-main img {
+.content img {
     max-width: 100%;
     width: 100%;
     height: auto;
@@ -465,9 +458,7 @@ main img {
     transition: opacity 0.3s ease;
     object-fit: contain;
 }
-.content img:hover,
-article img:hover,
-main img:hover {
+.content img:hover {
     opacity: 0.85;
 }
 
