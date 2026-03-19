@@ -447,3 +447,43 @@ blockquote {
     color: var(--text-meta);
     margin-top: 0.2rem;
 }
+
+/* Post Images - Fixed Size & Clickable */
+.content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 2rem auto;
+    border: 1px solid var(--border);
+    cursor: zoom-in;
+    transition: opacity 0.3s ease;
+}
+.content img:hover {
+    opacity: 0.85;
+}
+
+/* Lightbox Overlay */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 99999;
+    cursor: zoom-out;
+    justify-content: center;
+    align-items: center;
+}
+.lightbox-overlay.active {
+    display: flex;
+}
+.lightbox-overlay img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border: none;
+    cursor: zoom-out;
+}
+

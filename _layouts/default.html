@@ -67,6 +67,32 @@
             toggle.textContent = next === 'dark' ? '◑' : '◐';
         });
     })();
+
+    // Image Lightbox
+    (function() {
+        var overlay = document.createElement('div');
+        overlay.className = 'lightbox-overlay';
+        overlay.innerHTML = '<img src="" alt="Zoomed image">';
+        document.body.appendChild(overlay);
+
+        var overlayImg = overlay.querySelector('img');
+
+        document.querySelectorAll('.content img').forEach(function(img) {
+            img.addEventListener('click', function() {
+                overlayImg.src = this.src;
+                overlayImg.alt = this.alt;
+                overlay.classList.add('active');
+            });
+        });
+
+        overlay.addEventListener('click', function() {
+            overlay.classList.remove('active');
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') overlay.classList.remove('active');
+        });
+    })();
     </script>
 </body>
 </html>
