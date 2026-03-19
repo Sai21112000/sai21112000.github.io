@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<nav class="animate-enter">
+    <a href="{{ '/' | relative_url }}">← index</a>
+    <span>sai's {{ page.title | downcase }}</span>
+</nav>
+
+<article class="animate-enter" style="animation-delay: 0.1s;">
+    <header>
+        <h1>{{ page.title }}</h1>
+        <p class="meta">{{ page.description }}</p>
+    </header>
+
+    <div class="content immersive-quotes">
+        {{ content }}
+    </div>
+</article>
+
+<footer class="animate-enter" style="animation-delay: 0.6s;">
+    <a href="{{ '/' | relative_url }}">← back to index</a>
+</footer>

@@ -1,6 +1,5 @@
 ---
 layout: default
-title: Sai's Blog
 ---
 <header class="animate-enter">
     <h1><a href="{{ '/' | relative_url }}">Sai's Blog</a></h1>
@@ -13,17 +12,17 @@ title: Sai's Blog
     </div>
 </header>
 
+{{ content }}
+
 <section class="animate-enter" style="animation-delay: 0.1s;">
     <h2>Selected Work</h2>
     <ul class="post-list portfolio-list">
+        {% for project in page.projects %}
         <li>
-            <a href="https://github.com/Sai21112000" target="_blank" rel="noopener noreferrer">Interactive Portfolio Design</a>
-            <span class="post-date">Mar 2026</span>
+            <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
+            <span class="post-date">{{ project.date }}</span>
         </li>
-        <li>
-            <a href="https://github.com/Sai21112000" target="_blank" rel="noopener noreferrer">Minimalist Web Engine</a>
-            <span class="post-date">Jan 2026</span>
-        </li>
+        {% endfor %}
     </ul>
 </section>
 

@@ -1,24 +1,35 @@
-# sai's blog
+# Sai's Blog
 
-A minimalist, zero-JS blog built with pure HTML5 and CSS3. Inspired by kipp.ly and the `frontend-specialist` deep design guidelines.
+A minimalist, Markdown-driven, zero-JS blog built natively with GitHub Pages (Jekyll) and customized with deep CSS aesthetics. 
 
 ## Features
+- **Obsidian-Ready**: Write entirely in Markdown (`.md`). GitHub handles the heavy lifting of turning it into a beautiful webpage.
 - **Typography-first**: Crimson Pro and IBM Plex Mono.
-- **Ultra-fast**: No JavaScript, no bundlers, raw CSS.
-- **Dark Mode**: Native `prefers-color-scheme` support.
-- **Radical Geometries**: Sharp edges, heavy contrast link interactions, asymmetric typographic emphasis. (No Bento, No Purple).
+- **Ultra-fast**: No JavaScript, raw CSS animations.
 
-## How to add a post
-1. Copy `posts/first-post.html` to a new file like `posts/my-new-post.html`.
-2. Edit the title, `<meta name="description">`, date, and tags.
-3. Write your content using standard HTML (`<h2>`, `<p>`, `<blockquote>`, `<pre><code>`).
-4. Update `index.html` to include a link to your new post in the `chronological` section, and optionally in the `favourites` section.
-5. Push your changes!
+## How to use your blog
 
-## Deployment
-Since this repo is `sai21112000.github.io`, it will deploy automatically via **GitHub Pages**. To enable:
-1. Go to your repository **Settings** on GitHub.
-2. Select **Pages** from the sidebar.
-3. Under Build and deployment, set source to **Deploy from a branch**.
-4. Select the **main** branch and **/(root)** folder.
-5. Click **Save**. Your site will be live in a few minutes!
+### 1. Adding a new Blog Post
+- Open the `_posts/` folder.
+- Create a new file with the date format: `2026-03-20-post-name.md`.
+- Add YAML frontmatter at the top:
+  ```yaml
+  ---
+  layout: post
+  title: "Your Title"
+  tags: [obsidian, design]
+  ---
+  ```
+- Write your content below using standard Markdown!
+
+### 2. Updating your "Selected Work" Projects
+- Open `index.md`.
+- Edit the `projects:` list inside the top YAML block. You can safely add new portfolio items here without ever touching HTML.
+
+### 3. Adding quotes to "Philosophy"
+- Open `philosophy.md`.
+- Use standard Markdown `>` for quotes.
+- The special `{: .animate-enter...}` lines immediately below text blocks instruct the Jekyll system to apply our beautiful aesthetic layout CSS!
+
+### Deployment
+Any time you `git push` to `main`, GitHub Pages automatically compiles your Markdown and updates your live site!
