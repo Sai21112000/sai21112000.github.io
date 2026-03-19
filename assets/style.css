@@ -290,3 +290,29 @@ blockquote {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(229, 46, 0, 0.2);
 }
+.contact a.social-linkedin:hover { background-color: #0077b5; border-bottom-color: transparent; color: #FFF; box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3); }
+.contact a.social-github:hover { background-color: var(--text); border-bottom-color: transparent; color: var(--bg); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+.contact a.social-twitter:hover { background-color: #000000; border-bottom-color: transparent; color: #FFF; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
+.contact a.social-youtube:hover { background-color: #FF0000; border-bottom-color: transparent; color: #FFF; box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3); }
+
+/* Immersive Quotes for Philosophy Page */
+.immersive-quotes blockquote {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    border-left: 6px solid var(--accent);
+    padding-left: 2rem;
+    margin: 3rem 0 1rem 0;
+    font-weight: 300;
+    color: var(--text);
+}
+.immersive-quotes .quote-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    color: var(--text-meta);
+    margin-left: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+}
+.immersive-quotes .quote-note:last-child {
+    border-bottom: none;
+}
