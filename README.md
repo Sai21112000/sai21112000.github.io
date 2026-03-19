@@ -1,35 +1,77 @@
 # Sai's Blog
 
-A minimalist, Markdown-driven, zero-JS blog built natively with GitHub Pages (Jekyll) and customized with deep CSS aesthetics. 
+A minimalist, Markdown-driven blog built on GitHub Pages (Jekyll). Write in Obsidian, push to GitHub, and your site updates automatically.
 
 ## Features
-- **Obsidian-Ready**: Write entirely in Markdown (`.md`). GitHub handles the heavy lifting of turning it into a beautiful webpage.
-- **Typography-first**: Crimson Pro and IBM Plex Mono.
-- **Ultra-fast**: No JavaScript, raw CSS animations.
+- **100% Markdown** — Write posts, philosophy quotes, and SOPs entirely in `.md`
+- **RSS Feed** — Subscribers get updates at `/feed.xml`
+- **Dark/Light Toggle** — Click the ◐ button in the top-right corner
+- **Reading Progress Bar** — A thin red bar at the top tracks your scroll progress
+- **Sticky Table of Contents** — Blog posts auto-generate a TOC sidebar on wide screens
+- **Open Graph Tags** — Links shared on LinkedIn/Twitter/WhatsApp show rich previews
+- **Custom 404 Page** — Broken links show a branded error page
 
-## How to use your blog
+## Site Structure
 
-### 1. Adding a new Blog Post
-- Open the `_posts/` folder.
-- Create a new file with the date format: `2026-03-20-post-name.md`.
-- Add YAML frontmatter at the top:
-  ```yaml
-  ---
-  layout: post
-  title: "Your Title"
-  tags: [obsidian, design]
-  ---
-  ```
-- Write your content below using standard Markdown!
+```
+├── index.md              ← Homepage (edit projects list here)
+├── philosophy.md         ← Quotes & notes page
+├── sops.md               ← Proposals / MVPs / Ideas
+├── 404.md                ← Custom 404 page
+├── feed.xml              ← RSS feed (auto-generated)
+├── _posts/               ← Blog posts (Markdown)
+│   └── 2026-03-19-first-post.md
+├── _layouts/             ← HTML templates (don't touch unless customizing)
+├── assets/
+│   ├── style.css         ← All styling
+│   ├── images/           ← Drop images here
+│   └── pdfs/             ← Drop PDFs here for SOPs
+└── _config.yml           ← Site configuration
+```
 
-### 2. Updating your "Selected Work" Projects
-- Open `index.md`.
-- Edit the `projects:` list inside the top YAML block. You can safely add new portfolio items here without ever touching HTML.
+## How To
 
-### 3. Adding quotes to "Philosophy"
-- Open `philosophy.md`.
-- Use standard Markdown `>` for quotes.
-- The special `{: .animate-enter...}` lines immediately below text blocks instruct the Jekyll system to apply our beautiful aesthetic layout CSS!
+### Add a Blog Post
+1. Create a file in `_posts/` named `YYYY-MM-DD-title.md`
+2. Add frontmatter at the top:
+   ```yaml
+   ---
+   layout: post
+   title: "Your Title"
+   tags: [tag1, tag2]
+   last_modified: 2026-04-01    # optional
+   ---
+   ```
+3. Write your content in Markdown below the `---`
 
-### Deployment
-Any time you `git push` to `main`, GitHub Pages automatically compiles your Markdown and updates your live site!
+### Add a Quote to Philosophy
+Open `philosophy.md` and add:
+```markdown
+> "Your quote here."
+
+Your notes about this quote.
+```
+
+### Add an SOP / Proposal
+Open `sops.md` and add a bullet under the appropriate section:
+```markdown
+- **Project Name** — Description. [Download PDF](/assets/pdfs/file.pdf)
+  *Status: Idea*
+```
+
+### Add Images
+Drop images into `assets/images/` and reference them:
+```markdown
+![Description](/assets/images/photo.jpg)
+```
+
+### Update Selected Work
+Open `index.md` and edit the `projects:` list in the YAML frontmatter.
+
+## Deployment
+Push to `main` and GitHub Pages builds automatically:
+```bash
+git add .
+git commit -m "new post"
+git push origin main
+```

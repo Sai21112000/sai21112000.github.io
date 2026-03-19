@@ -6,22 +6,68 @@ layout: default
     <span>sai's blog</span>
 </nav>
 
-<article class="animate-enter" style="animation-delay: 0.1s;">
-    <header>
-        <h1>{{ page.title }}</h1>
-        <p class="meta">{{ page.date | date: "%Y-%m-%d" }} &nbsp;·&nbsp; {{ content | number_of_words | divided_by: 200 | at_least: 1 }} min read</p>
-        <div class="tags">
-            {% for tag in page.tags %}
-            <span>#{{ tag }}</span>
-            {% endfor %}
-        </div>
-    </header>
+<div class="post-with-toc">
+    <aside class="toc animate-enter" id="toc">
+        <strong>Contents</strong>
+        <div id="toc-links"></div>
+    </aside>
 
-    <div class="content">
-        {{ content }}
-    </div>
-</article>
+    <article class="animate-enter" style="animation-delay: 0.1s;">
+        <header>
+            <h1>{{ page.title }}</h1>
+            <p class="meta">
+                {{ page.date | date: "%Y-%m-%d" }} &nbsp;·&nbsp; {{ content | number_of_words | divided_by: 200 | at_least: 1 }} min read
+                {% if page.last_modified %} &nbsp;·&nbsp; updated {{ page.last_modified }}{% endif %}
+            </p>
+            <div class="tags">
+                {% for tag in page.tags %}
+                <span>#{{ tag }}</span>
+                {% endfor %}
+            </div>
+        </header>
+
+        <div class="content">
+            {{ content }}
+        </div>
+    </article>
+</div>
 
 <footer class="animate-enter" style="animation-delay: 0.3s;">
     <a href="{{ '/' | relative_url }}">← back to all posts</a>
 </footer>
+
+<script>
+// Auto-generate TOC from headings
+(function() {
+    var article = document.querySelector('.content');
+    var tocLinks = document.getElementById('toc-links');
+    var headings = article.querySelectorAll('h2, h3');
+
+    if (headings.length < 2) {
+        document.getElementById('toc').style.display = 'none';
+        return;
+    }
+
+    headings.forEach(function(h, i) {
+        var id = 'section-' + i;
+        h.id = id;
+        var link = document.createElement('a');
+        link.href = '#' + id;
+        link.textContent = h.textContent;
+        link.className = h.tagName === 'H3' ? 'toc-h3' : 'toc-h2';
+        tocLinks.appendChild(link);
+    });
+
+    // Highlight active section on scroll
+    var tocAnchors = tocLinks.querySelectorAll('a');
+    window.addEventListener('scroll', function() {
+        var fromTop = window.scrollY + 100;
+        headings.forEach(function(h, i) {
+            if (h.offsetTop <= fromTop) {
+                tocAnchors.forEach(function(a) { a.classList.remove('active'); });
+                tocAnchors[i].classList.add('active');
+            }
+        });
+    });
+})();
+</script>
