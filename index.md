@@ -1,11 +1,13 @@
 ---
 layout: home
 title: Sai's Blog
-projects:
-  - title: Interactive Portfolio Design
-    url: https://github.com/Sai21112000
-    date: Mar 2026
-  - title: Minimalist Web Engine
-    url: https://github.com/Sai21112000
-    date: Jan 2026
+featured_quote: "The research is the easy part. Protect the brain that does it."
+featured_quote_source: "— On Neuroplasticity & Discipline"
+tasks:
+  - text: "Finish SWG deep-dive post"
+    done: false
+  - text: "Add Obsidian → Jekyll auto-sync script"
+    done: false
+  - text: "Read 'Designing Data-Intensive Applications' Ch.5"
+    done: false
 ---

@@ -3,28 +3,43 @@ layout: default
 ---
 <header class="animate-enter">
     <h1><a href="{{ '/' | relative_url }}">Sai's Blog</a></h1>
-    <p class="meta">Thoughts and Experiments &nbsp;·&nbsp; <a href="{{ '/philosophy.html' | relative_url }}">Philosophy</a> &nbsp;·&nbsp; <a href="{{ '/sops.html' | relative_url }}">SOPs</a></p>
-    <div class="contact">
+    <p class="meta">
+        Thoughts and Experiments &nbsp;·&nbsp; 
+        <a href="{{ '/philosophy.html' | relative_url }}">Philosophy</a> &nbsp;·&nbsp; 
+        <a href="{{ '/sops.html' | relative_url }}">SOPs</a>
+    </p>
+    <p class="social-row">
         <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="noopener noreferrer" class="social-linkedin">linkedin</a>
         <a href="https://github.com/Sai21112000" target="_blank" rel="noopener noreferrer" class="social-github">github</a>
         <a href="https://x.com/vaidyasaiteja" target="_blank" rel="noopener noreferrer" class="social-twitter">twitter</a>
         <a href="https://www.youtube.com/@saitejavaidya/streams" target="_blank" rel="noopener noreferrer" class="social-youtube">youtube</a>
-    </div>
+    </p>
 </header>
 
 {{ content }}
 
-<section class="animate-enter" style="animation-delay: 0.1s;">
-    <h2>Selected Work</h2>
-    <ul class="post-list portfolio-list">
-        {% for project in page.projects %}
-        <li>
-            <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
-            <span class="post-date">{{ project.date }}</span>
-        </li>
-        {% endfor %}
-    </ul>
-</section>
+<div class="home-blocks animate-enter" style="animation-delay: 0.1s;">
+    <!-- Block 1: Featured Quote -->
+    <div class="home-card quote-card">
+        <span class="card-label">From Philosophy</span>
+        <blockquote>{{ page.featured_quote }}</blockquote>
+        <cite>{{ page.featured_quote_source }}</cite>
+        <a href="{{ '/philosophy.html' | relative_url }}" class="card-link">Read all quotes →</a>
+    </div>
+
+    <!-- Block 2: Quick Notes / Checklist -->
+    <div class="home-card checklist-card">
+        <span class="card-label">Quick Notes</span>
+        <ul class="checklist">
+            {% for task in page.tasks %}
+            <li class="{% if task.done %}checked{% endif %}">
+                <span class="check-box">{% if task.done %}✓{% else %}○{% endif %}</span>
+                {{ task.text }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 
 <section class="animate-enter" style="animation-delay: 0.2s;">
     <h2>Writing</h2>

@@ -68,7 +68,7 @@
         });
     })();
 
-    // Image Lightbox with Zoom Toggle + Close Button
+    // Image Lightbox with Zoom + Drag-to-Pan + Close Button
     (function() {
         var overlay = document.createElement('div');
         overlay.className = 'lightbox-overlay';
@@ -77,45 +77,88 @@
 
         var overlayImg = overlay.querySelector('img');
         var closeBtn = overlay.querySelector('.lightbox-close');
+        var isZoomed = false;
+        var isDragging = false;
+        var startX, startY, panX = 0, panY = 0;
 
-        // Attach click to ALL images in content, article, or main
+        function closeLightbox() {
+            overlay.classList.remove('active');
+            overlayImg.classList.remove('zoomed');
+            overlayImg.style.transform = '';
+            isZoomed = false;
+            panX = 0; panY = 0;
+        }
+
+        // Open lightbox on image click
         document.querySelectorAll('.content img, article img').forEach(function(img) {
             img.addEventListener('click', function(e) {
                 e.stopPropagation();
                 overlayImg.src = this.src;
                 overlayImg.alt = this.alt;
                 overlayImg.classList.remove('zoomed');
+                overlayImg.style.transform = '';
+                isZoomed = false;
+                panX = 0; panY = 0;
                 overlay.classList.add('active');
             });
         });
 
-        // Click image to toggle zoom in/out
+        // Toggle zoom on click
         overlayImg.addEventListener('click', function(e) {
+            if (isDragging) return;
             e.stopPropagation();
-            this.classList.toggle('zoomed');
+            if (isZoomed) {
+                isZoomed = false;
+                overlayImg.classList.remove('zoomed');
+                overlayImg.style.transform = '';
+                panX = 0; panY = 0;
+            } else {
+                isZoomed = true;
+                overlayImg.classList.add('zoomed');
+                overlayImg.style.transform = 'scale(1.8)';
+            }
         });
 
-        // Click overlay background to close
-        overlay.addEventListener('click', function(e) {
-            if (e.target === overlay) {
-                overlay.classList.remove('active');
-                overlayImg.classList.remove('zoomed');
+        // Drag to pan when zoomed
+        overlayImg.addEventListener('mousedown', function(e) {
+            if (!isZoomed) return;
+            e.preventDefault();
+            isDragging = true;
+            startX = e.clientX - panX;
+            startY = e.clientY - panY;
+            overlayImg.style.cursor = 'grabbing';
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (!isDragging) return;
+            panX = e.clientX - startX;
+            panY = e.clientY - startY;
+            overlayImg.style.transform = 'scale(1.8) translate(' + (panX / 1.8) + 'px, ' + (panY / 1.8) + 'px)';
+        });
+
+        document.addEventListener('mouseup', function() {
+            if (isDragging) {
+                isDragging = false;
+                overlayImg.style.cursor = 'grab';
+                // Prevent the click from firing after drag
+                setTimeout(function() { isDragging = false; }, 100);
             }
+        });
+
+        // Close on background click
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) closeLightbox();
         });
 
         // Close button
         closeBtn.addEventListener('click', function(e) {
             e.stopPropagation();
-            overlay.classList.remove('active');
-            overlayImg.classList.remove('zoomed');
+            closeLightbox();
         });
 
-        // Escape key to close
+        // Escape to close
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                overlay.classList.remove('active');
-                overlayImg.classList.remove('zoomed');
-            }
+            if (e.key === 'Escape') closeLightbox();
         });
     })();
     </script>

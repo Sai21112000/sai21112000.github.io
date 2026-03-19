@@ -276,19 +276,107 @@ blockquote {
     color: var(--text-meta);
 }
 
-.contact {
-    display: flex;
-    gap: 1.5rem;
+/* Social Links Row - Compact */
+.social-row {
     font-family: 'IBM Plex Mono', monospace;
-    margin-bottom: 3rem;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
-.contact a {
+.social-row a {
+    color: var(--text-meta);
     border-bottom-color: transparent;
 }
-.contact a.social-linkedin:hover { color: #0077b5; border-bottom-color: #0077b5; }
-.contact a.social-github:hover { color: var(--text); border-bottom-color: var(--text); }
-.contact a.social-twitter:hover { color: var(--text); border-bottom-color: var(--text); }
-.contact a.social-youtube:hover { color: #FF0000; border-bottom-color: #FF0000; }
+.social-row a:hover {
+    border-bottom-color: currentColor;
+}
+.social-row a.social-linkedin:hover { color: #0077b5; }
+.social-row a.social-github:hover { color: var(--text); }
+.social-row a.social-twitter:hover { color: var(--text); }
+.social-row a.social-youtube:hover { color: #FF0000; }
+
+/* Home Blocks Grid */
+.home-blocks {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+@media (min-width: 600px) {
+    .home-blocks {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Home Card */
+.home-card {
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    position: relative;
+}
+.card-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-meta);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* Quote Card */
+.quote-card blockquote {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    margin: 0 0 0.8rem 0;
+    font-style: italic;
+    color: var(--text);
+}
+.quote-card cite {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-meta);
+    display: block;
+    margin-bottom: 1rem;
+}
+.card-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    border-bottom: none;
+}
+.card-link:hover {
+    border-bottom: 1px solid var(--accent);
+}
+
+/* Checklist Card */
+.checklist {
+    list-style: none;
+    margin: 0;
+}
+.checklist li {
+    margin: 0 0 0.8rem 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    line-height: 1.4;
+}
+.checklist li.checked {
+    color: var(--text-meta);
+    text-decoration: line-through;
+}
+.check-box {
+    flex-shrink: 0;
+    color: var(--accent);
+    font-size: 0.9rem;
+}
+
 
 /* Immersive Quotes for Philosophy Page */
 .immersive-quotes blockquote {
