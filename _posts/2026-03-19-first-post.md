@@ -26,5 +26,6 @@ Here is an example of the minimal markup required to style this block:
 </html>
 ```
 
+![[]]
 By enforcing constraints like avoiding safe default SaaS gradients, avoiding the *Bento Trap*, and committing to pure geometric forms, the design achieves a brutalist, yet refined aesthetic that commands attention.
 
