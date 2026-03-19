@@ -91,7 +91,8 @@ Some rough numbers from this session:
 
 Without AI assistance, this would have taken me a full weekend of documentation-reading and trial-and-error. With AI, it took one focused session.
 
-That's not cheating. That's productivity.
+That's not cheating. That's productivity. 
+Here is my tutorial: [Watch on YouTube](https://www.youtube.com/watch?v=RyhJJnfNMDI)
 
 ## What's Next
 
