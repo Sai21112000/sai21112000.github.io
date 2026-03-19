@@ -86,7 +86,7 @@ h1 {
 h2 {
     font-size: 1.75rem;
     border-bottom: 2px solid var(--text);
-    padding-bottom: 0.3rem;
+    padding-bottom: 0.5rem;
     display: inline-block; 
 }
 
@@ -188,7 +188,7 @@ pre {
 }
 
 .post-list li {
-    margin-bottom: 1.25rem;
+    margin-bottom: 2rem;
     margin-left: 0;
     display: flex;
     flex-direction: column;
@@ -217,7 +217,7 @@ pre {
 .post-list:not(.portfolio-list) a::after {
     content: '';
     position: absolute;
-    bottom: -1px;
+    bottom: -4px;
     left: 0;
     width: 0%;
     height: 2px;
