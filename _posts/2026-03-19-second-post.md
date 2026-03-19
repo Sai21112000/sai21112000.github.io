@@ -12,7 +12,7 @@ tags: [networking, security, university]
 > But on university Wi‑Fi, my YouTube comment section is disabled with this message:
 > `Restricted Mode "On"`
 
-![Restricted Mode Screenshot](/assets/images/yt-restricted-mode.png)
+![Restricted Mode Screenshot](/assets/images/Scree22.png)
 
 ## How I found the cause
 
@@ -20,7 +20,7 @@ tags: [networking, security, university]
 - That strongly suggests the restriction is coming from the **network**, not from my YouTube account or browser settings.
 - After a bit of investigation, I concluded that the university is using a **Secure Web Gateway (SWG) / content filter appliance** that forces YouTube into Restricted Mode for all users on that network.
 
-![Network Settings Screenshot](/assets/images/yt-network-settings.png)
+![Network Settings Screenshot](/assets/images/Scree26.png)
 
 ## What a Secure Web Gateway is (quickly)
 
@@ -35,7 +35,7 @@ In other words, instead of each user deciding what's allowed, the **network** en
 I watched this to get a quick overview:
 [What is Secure Web Gateway? | SWG Explained](https://www.youtube.com/watch?v=mVxpSVMMMAY)
 
-![SWG Diagram](/assets/images/swg-diagram.png)
+![SWG Diagram](/assets/images/inside_the_campus.png)
 
 ## Architecture (high‑level view)
 
@@ -45,7 +45,7 @@ I watched this to get a quick overview:
 
 Because all my YouTube traffic is passing through that gateway, YouTube treats my connection as if Restricted Mode must be on, even if I try to turn it off in my account.
 
-![Architecture Diagram](/assets/images/yt-architecture.png)
+![Architecture Diagram](/assets/images/Scree49.png)
 
 ## Why a VPN Fixes It
 
@@ -58,7 +58,7 @@ Because all my YouTube traffic is passing through that gateway, YouTube treats m
 
 Once VPN is "Connected" — the problem is solved.
 
-![VPN Connected Screenshot](/assets/images/vpn-connected.png)
+![VPN Connected Screenshot](/assets/images/Screen17.png)
 
 > **Please use this ethically.**
 > University content filters are usually there to comply with policies, laws, or institutional rules.
