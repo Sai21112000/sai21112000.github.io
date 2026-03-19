@@ -1,77 +1,124 @@
 # Sai's Blog
 
-A minimalist, Markdown-driven blog built on GitHub Pages (Jekyll). Write in Obsidian, push to GitHub, and your site updates automatically.
+A minimalist, zero-framework blog built on **Jekyll + GitHub Pages**. Pure HTML, CSS, and Markdown — no React, no Tailwind, no build step.
+
+> **Live at:** [sai21112000.github.io](https://sai21112000.github.io)
 
 ## Features
-- **100% Markdown** — Write posts, philosophy quotes, and SOPs entirely in `.md`
-- **RSS Feed** — Subscribers get updates at `/feed.xml`
-- **Dark/Light Toggle** — Click the ◐ button in the top-right corner
-- **Reading Progress Bar** — A thin red bar at the top tracks your scroll progress
-- **Sticky Table of Contents** — Blog posts auto-generate a TOC sidebar on wide screens
-- **Open Graph Tags** — Links shared on LinkedIn/Twitter/WhatsApp show rich previews
-- **Custom 404 Page** — Broken links show a branded error page
 
-## Site Structure
+| Feature | Details |
+|---------|---------|
+| **100% Markdown** | Posts, philosophy quotes, SOPs, and the Now page — all `.md` files |
+| **Image Lightbox** | Click any image to zoom. Drag to pan. ESC or ✕ to close |
+| **Giscus Comments** | GitHub Discussions-powered comments (no backend needed) |
+| **Dark / Light Toggle** | Click ◑ in the top-right. Respects system preference |
+| **Sticky TOC** | Blog posts auto-generate a table of contents sidebar |
+| **Reading Time** | Each post shows estimated reading time on the homepage |
+| **Keyboard Navigation** | Press `j`/`k` to browse posts, `Enter` to open |
+| **RSS Feed** | Subscribe at `/feed.xml` |
+| **Open Graph Tags** | Rich previews when shared on social media |
+| **Reading Progress Bar** | Scroll progress indicator at the top |
+| **Custom 404** | Branded error page at `/404.html` |
+
+## Pages
+
+| Page | File | Description |
+|------|------|-------------|
+| Homepage | `index.md` | Featured quote, task checklist, post list, comments |
+| Writing | `writing.md` | Full post archive with tags and descriptions |
+| Philosophy | `philosophy.md` | Quotes and reflections |
+| SOPs | `sops.md` | Proposals, MVPs, and future ideas |
+| Now | `now.md` | What I'm currently focused on |
+
+## Project Structure
 
 ```
-├── index.md              ← Homepage (edit projects list here)
-├── philosophy.md         ← Quotes & notes page
-├── sops.md               ← Proposals / MVPs / Ideas
-├── 404.md                ← Custom 404 page
-├── feed.xml              ← RSS feed (auto-generated)
-├── _posts/               ← Blog posts (Markdown)
-│   └── 2026-03-19-first-post.md
-├── _layouts/             ← HTML templates (don't touch unless customizing)
+├── index.md                 ← Homepage (edit quote + tasks in YAML)
+├── writing.md               ← All posts archive
+├── philosophy.md            ← Quotes & notes
+├── sops.md                  ← Proposals / Ideas
+├── now.md                   ← /now page
+├── 404.md                   ← Custom 404
+├── feed.xml                 ← RSS feed
+├── _config.yml              ← Jekyll config
+├── _posts/                  ← Blog posts (YYYY-MM-DD-slug.md)
+├── _layouts/
+│   ├── default.html         ← Base layout (theme toggle, lightbox, progress bar)
+│   ├── home.html            ← Homepage layout (header, cards, comments)
+│   ├── post.html            ← Blog post layout (TOC, reading time, tags)
+│   ├── page.html            ← Generic page layout
+│   └── sops.html            ← SOPs page layout
 ├── assets/
-│   ├── style.css         ← All styling
-│   ├── images/           ← Drop images here
-│   └── pdfs/             ← Drop PDFs here for SOPs
-└── _config.yml           ← Site configuration
+│   ├── style.css            ← All styling (CSS variables, dark mode)
+│   ├── images/              ← Post images
+│   └── pdfs/                ← PDF attachments for SOPs
+├── OBSIDIAN-GUIDE.md        ← Cheat sheet for Obsidian → Jekyll workflow
+├── LICENSE                  ← MIT License
+└── README.md                ← This file
 ```
 
-## How To
+## Quick Start
 
-### Add a Blog Post
-1. Create a file in `_posts/` named `YYYY-MM-DD-title.md`
-2. Add frontmatter at the top:
-   ```yaml
-   ---
-   layout: post
-   title: "Your Title"
-   tags: [tag1, tag2]
-   last_modified: 2026-04-01    # optional
-   ---
-   ```
-3. Write your content in Markdown below the `---`
+### Fork & Deploy
 
-### Add a Quote to Philosophy
-Open `philosophy.md` and add:
-```markdown
-> "Your quote here."
+1. **Fork** this repo
+2. Go to **Settings → Pages → Source → Deploy from branch `main`**
+3. Your site is live at `https://<username>.github.io`
 
-Your notes about this quote.
+### Customize
+
+Edit `_config.yml`:
+```yaml
+title: Your Blog Name
+description: Your description
+url: "https://<username>.github.io"
 ```
 
-### Add an SOP / Proposal
-Open `sops.md` and add a bullet under the appropriate section:
-```markdown
-- **Project Name** — Description. [Download PDF](/assets/pdfs/file.pdf)
-  *Status: Idea*
+Edit `_layouts/home.html` to update:
+- Your name and social links
+- Giscus repo ID and category ID (get yours at [giscus.app](https://giscus.app))
+
+### Write a Post
+
+Create `_posts/YYYY-MM-DD-your-title.md`:
+```yaml
+---
+layout: post
+title: "Your Post Title"
+description: "A one-line summary."
+tags: [tag1, tag2]
+---
+
+Your Markdown content here.
 ```
 
-### Add Images
-Drop images into `assets/images/` and reference them:
-```markdown
-![Description](/assets/images/photo.jpg)
+### Update the Homepage
+
+Edit `index.md` YAML frontmatter:
+```yaml
+featured_quote: "Your quote"
+featured_quote_source: "— Source"
+tasks:
+  - text: "Your task"
+    done: false
 ```
 
-### Update Selected Work
-Open `index.md` and edit the `projects:` list in the YAML frontmatter.
+## Obsidian Workflow
 
-## Deployment
-Push to `main` and GitHub Pages builds automatically:
-```bash
-git add .
-git commit -m "new post"
-git push origin main
-```
+See [OBSIDIAN-GUIDE.md](OBSIDIAN-GUIDE.md) for the full cheat sheet on copying notes from Obsidian to this blog, including:
+- Post templates and frontmatter
+- Image path conversion (`![[]]` → `![]()`)
+- Callout and footnote syntax
+- Common mistakes to avoid
+
+## Tech Stack
+
+- **Jekyll** — Static site generator (runs on GitHub Pages)
+- **Kramdown** — Markdown engine with footnotes support
+- **Vanilla CSS** — No framework, CSS variables for theming
+- **Giscus** — Comments via GitHub Discussions
+- **Zero JavaScript frameworks** — Only minimal vanilla JS for lightbox, theme toggle, and keyboard nav
+
+## License
+
+[MIT](LICENSE) — Fork it, customize it, make it yours.
