@@ -3,6 +3,7 @@ layout: post
 title: "How I Built This Blog in One Session — With AI as My Co-Pilot"
 description: "From zero to a fully-featured minimalist blog using Jekyll, GitHub Pages, and AI pair programming. A transparent look at ethical AI-assisted development."
 tags: [ai, webdev, productivity, open-source]
+date: 2026-03-19 12:00:00 +0700
 last_modified: 2026-03-19
 ---
 

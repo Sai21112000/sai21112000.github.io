@@ -3,6 +3,7 @@ layout: post
 title: "The Beauty of Pure HTML and CSS"
 description: "An exploration into minimalist, zero-JS web design."
 tags: [minimalism, webdev, design]
+date: 2026-03-19 08:00:00 +0700
 ---
 
 There's an undeniable elegance to a website that ships zero JavaScript. In an era where even the simplest landing page requires a massive bundler and hydration steps, going back to basics is a breath of fresh air.
