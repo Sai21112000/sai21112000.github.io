@@ -11,7 +11,7 @@ Everyone starts from "Zero" > Make as many errors as possible and as Quick as po
 
 > "Simplicity is the ultimate sophistication."
 {: .animate-enter style="animation-delay: 0.4s;"}
-Focusing on Second Principles are important than First Principles.
+Second-order thinking is more important than First Principles.
 {: .animate-enter style="animation-delay: 0.4s;"}
 
 > "Commitments are Self made"

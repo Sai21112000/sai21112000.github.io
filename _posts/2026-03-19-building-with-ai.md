@@ -81,6 +81,7 @@ Some rough numbers from this session:
 
 | Metric | Estimate |
 |--------|----------|
+| **Working session** | ~6 hours |
 | **Total features shipped** | 15+ |
 | **Files created/modified** | 20+ |
 | **Lines of CSS** | ~700 |

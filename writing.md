@@ -9,7 +9,7 @@ description: All blog posts
     <a href="{{ post.url | relative_url }}" class="writing-title">{{ post.title }}</a>
     <div class="writing-meta">
         <span>{{ post.content | number_of_words | divided_by: 200 | at_least: 1 }} min read</span>
-        <span>{{ post.date | date: "%B %d, %Y" }}</span>
+        <span>{{ post.date | date: "%b %d, %Y" }}</span>
     </div>
     {% if post.description %}
     <p class="writing-desc">{{ post.description }}</p>

@@ -12,6 +12,7 @@ layout: default
         </p>
     </div>
     <nav class="header-nav">
+        <a href="{{ '/about.html' | relative_url }}">About</a>
         <a href="{{ '/philosophy.html' | relative_url }}">Philosophy</a>
         <a href="{{ '/sops.html' | relative_url }}">SOPs</a>
         <a href="{{ '/now.html' | relative_url }}">Now</a>
@@ -31,7 +32,7 @@ layout: default
 
     <!-- Block 2: Quick Notes / Checklist -->
     <div class="home-card checklist-card">
-        <span class="card-label">Quick Notes / Tasks</span>
+        <span class="card-label">Currently Working On</span>
         <ul class="checklist">
             {% for task in page.tasks %}
             <li class="{% if task.done %}checked{% endif %}">
@@ -52,7 +53,7 @@ layout: default
         {% for post in site.posts %}
         <li data-url="{{ post.url | relative_url }}">
             <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            <span class="post-date">{{ post.content | number_of_words | divided_by: 200 | at_least: 1 }} min &nbsp;·&nbsp; {{ post.date | date: "%b %Y" }}</span>
+            <span class="post-date">{{ post.content | number_of_words | divided_by: 200 | at_least: 1 }} min &nbsp;·&nbsp; {{ post.date | date: "%b %d, %Y" }}</span>
         </li>
         {% endfor %}
     </ul>

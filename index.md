@@ -4,10 +4,10 @@ title: Sai's Blog
 featured_quote: "The research is the easy part. Protect the brain that does it."
 featured_quote_source: "— On Neuroplasticity & Discipline"
 tasks:
-  - text: "Finish SWG deep-dive post"
+  - text: "Job hunting — Remote Sensing & CV Engineer roles"
     done: false
-  - text: "Add Obsidian → Jekyll auto-sync script"
+  - text: "HuggingFace Agents Course"
     done: false
-  - text: "Read 'Designing Data-Intensive Applications' Ch.5"
+  - text: "Writing technical blog posts on YOLO + SAM"
     done: false
 ---

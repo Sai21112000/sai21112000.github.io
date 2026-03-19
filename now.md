@@ -4,26 +4,27 @@ title: Now
 description: What I'm focused on right now
 ---
 
-*Last updated: March 19, 2026*
+*Last updated: March 20, 2026*
 
 ---
 
-## 🎯 Current Focus
+## Current Focus
 
-- Building a **Geospatial Intelligence** project using AI for satellite imagery analysis
-- Maintaining this blog — writing about networking, security, and software design
-- Reading **"Designing Data-Intensive Applications"** by Martin Kleppmann
+- **Job search** — Actively looking for Remote Sensing / Computer Vision Engineer roles and freelance geospatial gigs. Open to remote work.
+- **HuggingFace Agents Course** — Working through the free course on building and deploying AI agents
+- **Thesis revisions** — Finishing final report edits post-defense (methodology clarifications, committee feedback)
+- Maintaining this blog — writing technical posts about YOLO, SAM, and lessons from my thesis
 
-## 📚 Learning
+## Learning
 
-- Secure Web Gateways and enterprise network security
-- Jekyll & GitHub Pages for static site workflows
-- Obsidian as a knowledge management system
+- LLM agents, multi-step reasoning, and tool-use patterns
+- Freelance workflows — Upwork profile setup, portfolio positioning
+- Jekyll & GitHub Pages for static site publishing
 
-## 🛠️ Building
+## Building
 
 - This minimalist blog (pure HTML/CSS/Jekyll, zero frameworks)
-- An Obsidian → Jekyll auto-sync script
+- Cleaning up my [thesis segmentation pipeline](https://github.com/Sai21112000/oil-palm-detection-thesis) for a public portfolio repo
 
 ---
 
