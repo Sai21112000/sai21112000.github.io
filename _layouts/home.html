@@ -1,24 +1,21 @@
 ---
 layout: default
 ---
-<header class="animate-enter">
-    <h1><a href="{{ '/' | relative_url }}">Sai's Blog</a></h1>
-    <p class="meta">
-        Thoughts and Experiments &nbsp;·&nbsp;
-        <a href="{{ '/philosophy.html' | relative_url }}">Philosophy</a> &nbsp;·&nbsp;
-        <a href="{{ '/sops.html' | relative_url }}">SOPs</a> &nbsp;·&nbsp;
+<header class="site-header animate-enter">
+    <div class="header-left">
+        <h1><a href="{{ '/' | relative_url }}">Sai's Blog</a></h1>
+        <p class="social-row">
+            <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="noopener noreferrer" class="social-linkedin">linkedin</a>
+            <a href="https://github.com/Sai21112000" target="_blank" rel="noopener noreferrer" class="social-github">github</a>
+            <a href="https://x.com/vaidyasaiteja" target="_blank" rel="noopener noreferrer" class="social-twitter">twitter</a>
+            <a href="https://www.youtube.com/@saitejavaidya/streams" target="_blank" rel="noopener noreferrer" class="social-youtube">youtube</a>
+        </p>
+    </div>
+    <nav class="header-nav">
+        <a href="{{ '/philosophy.html' | relative_url }}">Philosophy</a>
+        <a href="{{ '/sops.html' | relative_url }}">SOPs</a>
         <a href="{{ '/now.html' | relative_url }}">Now</a>
-    </p>
-    <p class="social-row">
-        <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="noopener noreferrer"
-            class="social-linkedin">linkedin</a>
-        <a href="https://github.com/Sai21112000" target="_blank" rel="noopener noreferrer"
-            class="social-github">github</a>
-        <a href="https://x.com/vaidyasaiteja" target="_blank" rel="noopener noreferrer"
-            class="social-twitter">twitter</a>
-        <a href="https://www.youtube.com/@saitejavaidya/streams" target="_blank" rel="noopener noreferrer"
-            class="social-youtube">youtube</a>
-    </p>
+    </nav>
 </header>
 
 {{ content }}
@@ -34,7 +31,7 @@ layout: default
 
     <!-- Block 2: Quick Notes / Checklist -->
     <div class="home-card checklist-card">
-        <span class="card-label">Quick Notes / Tasks </span>
+        <span class="card-label">Quick Notes / Tasks</span>
         <ul class="checklist">
             {% for task in page.tasks %}
             <li class="{% if task.done %}checked{% endif %}">
@@ -46,8 +43,23 @@ layout: default
     </div>
 </div>
 
-<!-- Comments via GitHub Discussions -->
 <section class="animate-enter" style="animation-delay: 0.15s;">
+    <div class="section-header">
+        <h2>Writing</h2>
+        <a href="{{ '/writing.html' | relative_url }}" class="card-link">See all →</a>
+    </div>
+    <ul class="post-list" id="post-list">
+        {% for post in site.posts %}
+        <li data-url="{{ post.url | relative_url }}">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            <span class="post-date">{{ post.content | number_of_words | divided_by: 200 | at_least: 1 }} min &nbsp;·&nbsp; {{ post.date | date: "%b %Y" }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+<!-- Comments via GitHub Discussions -->
+<section class="animate-enter" style="animation-delay: 0.2s;">
     <h2>Discuss</h2>
     <p class="meta" style="margin-top: -0.5rem; margin-bottom: 1.5rem;">Ask questions, share updates, or leave a note</p>
     <script src="https://giscus.app/client.js"
@@ -65,18 +77,6 @@ layout: default
         crossorigin="anonymous"
         async>
     </script>
-</section>
-
-<section class="animate-enter" style="animation-delay: 0.2s;">
-    <h2>Writing</h2>
-    <ul class="post-list" id="post-list">
-        {% for post in site.posts %}
-        <li data-url="{{ post.url | relative_url }}">
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            <span class="post-date">{{ post.content | number_of_words | divided_by: 200 | at_least: 1 }} min &nbsp;·&nbsp; {{ post.date | date: "%b %Y" }}</span>
-        </li>
-        {% endfor %}
-    </ul>
 </section>
 
 <footer class="animate-enter" style="animation-delay: 0.3s;">
