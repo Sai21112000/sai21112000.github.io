@@ -68,29 +68,54 @@
         });
     })();
 
-    // Image Lightbox
+    // Image Lightbox with Zoom Toggle + Close Button
     (function() {
         var overlay = document.createElement('div');
         overlay.className = 'lightbox-overlay';
-        overlay.innerHTML = '<img src="" alt="Zoomed image">';
+        overlay.innerHTML = '<button class="lightbox-close" aria-label="Close">✕</button><img src="" alt="Zoomed image">';
         document.body.appendChild(overlay);
 
         var overlayImg = overlay.querySelector('img');
+        var closeBtn = overlay.querySelector('.lightbox-close');
 
-        document.querySelectorAll('.content img').forEach(function(img) {
-            img.addEventListener('click', function() {
+        // Attach click to ALL images in content, article, or main
+        document.querySelectorAll('.content img, article img').forEach(function(img) {
+            img.addEventListener('click', function(e) {
+                e.stopPropagation();
                 overlayImg.src = this.src;
                 overlayImg.alt = this.alt;
+                overlayImg.classList.remove('zoomed');
                 overlay.classList.add('active');
             });
         });
 
-        overlay.addEventListener('click', function() {
-            overlay.classList.remove('active');
+        // Click image to toggle zoom in/out
+        overlayImg.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('zoomed');
         });
 
+        // Click overlay background to close
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+                overlayImg.classList.remove('zoomed');
+            }
+        });
+
+        // Close button
+        closeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            overlay.classList.remove('active');
+            overlayImg.classList.remove('zoomed');
+        });
+
+        // Escape key to close
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') overlay.classList.remove('active');
+            if (e.key === 'Escape') {
+                overlay.classList.remove('active');
+                overlayImg.classList.remove('zoomed');
+            }
         });
     })();
     </script>

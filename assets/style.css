@@ -449,16 +449,25 @@ blockquote {
 }
 
 /* Post Images - Fixed Size & Clickable */
-.content img {
+.content {
+    overflow: hidden;
+}
+.content img,
+article img,
+main img {
     max-width: 100%;
+    width: 100%;
     height: auto;
     display: block;
-    margin: 2rem auto;
+    margin: 2rem 0;
     border: 1px solid var(--border);
     cursor: zoom-in;
     transition: opacity 0.3s ease;
+    object-fit: contain;
 }
-.content img:hover {
+.content img:hover,
+article img:hover,
+main img:hover {
     opacity: 0.85;
 }
 
@@ -470,20 +479,52 @@ blockquote {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.92);
     z-index: 99999;
-    cursor: zoom-out;
     justify-content: center;
     align-items: center;
+    cursor: zoom-out;
+    opacity: 0;
+    transition: opacity 0.25s ease;
 }
 .lightbox-overlay.active {
     display: flex;
+    opacity: 1;
 }
 .lightbox-overlay img {
-    max-width: 90vw;
-    max-height: 90vh;
+    max-width: 85vw;
+    max-height: 85vh;
     object-fit: contain;
     border: none;
+    cursor: grab;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(1);
+}
+.lightbox-overlay img.zoomed {
+    transform: scale(1.8);
     cursor: zoom-out;
+}
+.lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: 2px solid rgba(255,255,255,0.4);
+    color: #fff;
+    font-size: 1.6rem;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-family: 'IBM Plex Mono', monospace;
+    z-index: 100000;
+}
+.lightbox-close:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
 }
 
