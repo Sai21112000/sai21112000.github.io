@@ -249,6 +249,15 @@ pre {
     }
 }
 
+/* Keyboard Navigation Highlight */
+.post-list li.kb-active {
+    background-color: var(--code-bg);
+    border-left: 3px solid var(--accent);
+    padding-left: 0.8rem;
+    transition: all 0.15s ease;
+}
+
+
 /* Nav & Footer */
 nav, footer {
     font-family: 'IBM Plex Mono', monospace;

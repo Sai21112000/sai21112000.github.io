@@ -6,7 +6,8 @@ layout: default
     <p class="meta">
         Thoughts and Experiments &nbsp;·&nbsp;
         <a href="{{ '/philosophy.html' | relative_url }}">Philosophy</a> &nbsp;·&nbsp;
-        <a href="{{ '/sops.html' | relative_url }}">SOPs</a>
+        <a href="{{ '/sops.html' | relative_url }}">SOPs</a> &nbsp;·&nbsp;
+        <a href="{{ '/now.html' | relative_url }}">Now</a>
     </p>
     <p class="social-row">
         <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="noopener noreferrer"
@@ -47,11 +48,11 @@ layout: default
 
 <section class="animate-enter" style="animation-delay: 0.2s;">
     <h2>Writing</h2>
-    <ul class="post-list">
+    <ul class="post-list" id="post-list">
         {% for post in site.posts %}
-        <li>
+        <li data-url="{{ post.url | relative_url }}">
             <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            <span class="post-date">{{ post.date | date: "%b %Y" }}</span>
+            <span class="post-date">{{ post.content | number_of_words | divided_by: 200 | at_least: 1 }} min &nbsp;·&nbsp; {{ post.date | date: "%b %Y" }}</span>
         </li>
         {% endfor %}
     </ul>
@@ -61,3 +62,33 @@ layout: default
     <span>© 2026 Sai</span>
     <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
 </footer>
+
+<script>
+// Keyboard navigation: j/k to move, Enter to open
+(function() {
+    var items = document.querySelectorAll('#post-list li');
+    if (!items.length) return;
+    var current = -1;
+
+    document.addEventListener('keydown', function(e) {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+        if (e.key === 'j') {
+            e.preventDefault();
+            if (current < items.length - 1) current++;
+            items.forEach(function(li) { li.classList.remove('kb-active'); });
+            items[current].classList.add('kb-active');
+            items[current].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        } else if (e.key === 'k') {
+            e.preventDefault();
+            if (current > 0) current--;
+            items.forEach(function(li) { li.classList.remove('kb-active'); });
+            items[current].classList.add('kb-active');
+            items[current].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        } else if (e.key === 'Enter' && current >= 0) {
+            var url = items[current].getAttribute('data-url');
+            if (url) window.location.href = url;
+        }
+    });
+})();
+</script>
