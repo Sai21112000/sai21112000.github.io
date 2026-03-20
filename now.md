@@ -22,6 +22,14 @@ My expertise spans RSGIS, ML, DL, CV, pipelines, and deployments — from UAV im
 - **HuggingFace Agents Course** — building and deploying AI agents
 - **Jekyll & Obsidian** — streamlining my writing-to-publishing workflow
 
+## Github Repos i admire and learning
+
+| ruflo       | https://github.com/ruvnet/ruflo                                         |
+| ----------- | ----------------------------------------------------------------------- |
+| **BaiFu**   | https://github.com/666ghj?tab=overview&from=2026-03-01&to=2026-03-20    |
+| **Doo Lee** | https://github.com/fritzprix?tab=overview&from=2026-03-01&to=2026-03-20 |
+|             |                                                                         |
+
 ## Building
 
 - This minimalist blog (pure HTML/CSS/Jekyll, zero frameworks)

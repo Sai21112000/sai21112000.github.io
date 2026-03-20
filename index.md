@@ -1,13 +1,13 @@
 ---
 layout: home
 title: Sai's Blog
-featured_quote: "The research is the easy part. Protect the brain that does it."
-featured_quote_source: "— On Neuroplasticity & Discipline"
+featured_quote: " The tension you feel is not a problem to solve. It is the process."
+featured_quote_source: — On Neuroplasticity & Discipline
 tasks:
-  - text: "Job hunting — Remote Sensing & CV Engineer roles"
+  - text: Job hunting — Remote Sensing & CV Engineer roles
     done: false
-  - text: "HuggingFace Agents Course"
+  - text: HuggingFace Agents Course
     done: false
-  - text: "Writing technical blog posts on YOLO + SAM"
+  - text: Writing technical blog posts on YOLO + SAM
     done: false
 ---
