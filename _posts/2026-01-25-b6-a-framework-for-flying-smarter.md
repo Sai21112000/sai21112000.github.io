@@ -3,7 +3,7 @@ layout: post
 title: "A Framework for Flying Smarter: The Practical Deployment Guide"
 description: "After 8 GSD levels, 6 models, and 3,368 tile-label pairs, here's the condensed operational guide for deploying AI-based oil palm monitoring with a drone."
 tags: [deployment, precision-agriculture, uav, operational-guide, deep-learning, research]
-date: 2026-04-25 08:00:00 +0700
+date: 2026-01-25 08:00:00 +0700
 ---
 
 Five posts in, you know what GSD is, how the dataset was built, which models performed best, why the SAM hybrid paradox occurs, and how pixels convert to physical measurements. This final post synthesises everything into a practical decision framework for anyone deploying AI-based monitoring on oil palm plantations — or any dense agricultural canopy with UAV imagery.

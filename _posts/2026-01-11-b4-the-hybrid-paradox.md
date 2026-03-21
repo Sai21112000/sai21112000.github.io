@@ -3,8 +3,7 @@ layout: post
 title: "The Hybrid Paradox: Why SAM + YOLO Sounds Better Than It Is"
 description: "SAM 2.1 was trained on 1 billion masks. My 56MB YOLO model still outperformed the hybrid pipeline in most conditions. Here's the detailed explanation."
 tags: [sam, yolo, segment-anything, hybrid-pipeline, deep-learning, research]
-date: 2026-04-11 08:00:00 +0700
-last_modified: 2026-04-11
+date: 2026-01-11 08:00:00 +0700
 ---
 
 On paper, the logic is sound: take a fast lightweight detector (YOLO) and a world-class segmenter (SAM 2.1, trained on 1 billion masks). Feed the detector's bounding boxes as prompts to the segmenter. Get the best of both: speed from YOLO, boundary quality from SAM.
