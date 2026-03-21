@@ -1,6 +1,6 @@
 ---
 layout: sops
-title: SOPs
+title: SOPs / Papers
 description: Statement of Proposals · MVPs · Future Ideas
 ---
 
@@ -14,7 +14,9 @@ description: Statement of Proposals · MVPs · Future Ideas
 
 ---
 
-## Archived / Completed
+## Completed
+
+- **How I Used GIS to Map a Pandemic: Lessons from Spatial Epidemiology** — A walkthrough of my Master's special study on using GIS to understand COVID-19 spread. [Download PDF](/assets/pdfs/Special Study.pdf)
 
 - **GitHub Pages Portfolio** — Personal portfolio and blog hosted on GitHub Pages.  
   *Status: ✅ Complete*
