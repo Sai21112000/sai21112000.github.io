@@ -1,7 +1,9 @@
-title: Sai's Blog
-description: Personal portfolio and blog of Sai. Projects, thoughts, and writing.
+title: "Sai Teja Vaidya — Computer Vision & AI Engineer"
+description: "Research and engineering notes on computer vision, deep learning, UAV imagery, and AI. M.Eng. graduate from AIT Thailand."
+author: Sai Teja Vaidya
 url: "https://sai21112000.github.io"
 permalink: /posts/:title.html
 markdown: kramdown
 theme: null
 future: true
+past: true
