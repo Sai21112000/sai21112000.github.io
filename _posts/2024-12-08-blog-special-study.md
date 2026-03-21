@@ -62,6 +62,8 @@ But the underlying logic is identical:
 
 The tools differ. The thinking is the same.
 
+Full Paper: [Special Study](/assets/pdfs/Special Study.pdf) 
+or [Paper](https://sai21112000.github.io/sops.html)
 ---
 
 *Special Study submitted December 2024 | M.Eng in Remote Sensing and GIS | Asian Institute of Technology*  
