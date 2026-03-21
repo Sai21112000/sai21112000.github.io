@@ -54,7 +54,7 @@ That instinct showed up again in my Master's thesis — just with UAVs, YOLO mod
 
 Every product I build from here carries a little College Buddy in it.
 
-Full Paper: [College Buddy](/assets/pdfs/College Buddy.pdf) or [Paper](https://sai21112000.github.io/sops.html)
+Full Paper: [College Buddy](/assets/pdfs/COLLEGE BUDDY FINAL DOC.pdf)
 ---
 
 *Built at JNTUH University College of Engineering, Hyderabad | B.Tech, Computer Science and Engineering | 2022*  

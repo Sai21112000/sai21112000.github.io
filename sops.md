@@ -15,7 +15,7 @@ description: Statement of Proposals · MVPs · Future Ideas
 
 - **How I Used GIS to Map a Pandemic: Lessons from Spatial Epidemiology** — A walkthrough of my Master's special study on using GIS to understand COVID-19 spread. [Download PDF](/assets/pdfs/Special Study.pdf)
 
-- **College Buddy** — A web application that helps college students find study partners and share notes. [Download PDF](/assets/pdfs/College Buddy.pdf)
+- **College Buddy** — A web application that helps college students find study partners and share notes. [Download PDF](/assets/pdfs/COLLEGE BUDDY FINAL DOC.pdf)
 
 ---
 
