@@ -3,7 +3,7 @@ layout: post
 title: "The Drone That Couldn't See: Why Altitude Breaks Your AI Model"
 description: "A model trained at 3cm resolution failed at 6cm. Same drone. Same plantation. Different altitude. Here's the physics and math behind why — and what to do about it."
 tags: [computer-vision, uav, deep-learning, precision-agriculture, research]
-date: 2026-03-21 08:00:00 +0700
+date: 2025-11-21 08:00:00 +0700
 ---
 
 I trained an instance segmentation model on drone imagery of oil palm trees. At 0.03m resolution it worked beautifully — clean masks, accurate counts, solid F1 scores. Then I simulated flying the same drone 20 metres higher. The model's mean F1 collapsed from 0.87 to 0.33.

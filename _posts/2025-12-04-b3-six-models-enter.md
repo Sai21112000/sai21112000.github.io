@@ -3,8 +3,7 @@ layout: post
 title: "Six Models Enter, One Problem Wins: A Head-to-Head Segmentation Showdown"
 description: "I trained YOLOv8, YOLOv11, Mask R-CNN, and two SAM hybrid pipelines on oil palm drone data. Here's what the numbers actually showed — including the result that surprised me most."
 tags: [yolo, mask-rcnn, instance-segmentation, deep-learning, model-comparison, research]
-date: 2026-04-04 08:00:00 +0700
-last_modified: 2026-04-04
+date: 2025-12-04 08:00:00 +0700
 ---
 
 When I started this research, the question seemed straightforward: which model is best for detecting oil palm trees from drone imagery? After training six models across eight resolution levels and generating hundreds of evaluation metrics, the answer turned out to be: *it depends — but in a very specific, operationally useful way.*

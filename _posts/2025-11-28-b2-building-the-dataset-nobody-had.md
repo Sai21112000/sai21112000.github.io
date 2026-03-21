@@ -3,8 +3,7 @@ layout: post
 title: "Building the Dataset Nobody Had: Annotation, Corruption, and the Split That Kept Everything Honest"
 description: "How I built a multi-resolution oil palm segmentation dataset from scratch — including the 301 corrupted label files I had to fix before anything could run."
 tags: [dataset, annotation, computer-vision, deep-learning, precision-agriculture, research]
-date: 2026-03-28 08:00:00 +0700
-last_modified: 2026-03-28
+date: 2025-11-28 08:00:00 +0700
 ---
 
 Before any model gets trained, someone has to build the dataset. In most research papers, this gets a single paragraph. In practice, it consumed the majority of my project time — and included a crisis I didn't see coming.

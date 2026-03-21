@@ -3,7 +3,7 @@ layout: post
 title: "From Pixels to Meters: The Math Behind Canopy Size Estimation"
 description: "A segmentation mask is a collection of pixels. Here's how we convert that into a physical canopy area in square metres and an equivalent diameter — with the full derivation and error analysis."
 tags: [canopy-estimation, applied-mathematics, computer-vision, precision-agriculture, shoelace-algorithm, research]
-date: 2026-04-18 08:00:00 +0700
+date: 2026-01-18 08:00:00 +0700
 last_modified: 2026-04-18
 ---
 
