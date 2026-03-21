@@ -4,3 +4,4 @@ url: "https://sai21112000.github.io"
 permalink: /posts/:title.html
 markdown: kramdown
 theme: null
+future: true
