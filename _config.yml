@@ -6,4 +6,3 @@ permalink: /posts/:title.html
 markdown: kramdown
 theme: null
 future: true
-past: true
