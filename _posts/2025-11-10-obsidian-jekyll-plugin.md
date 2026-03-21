@@ -3,7 +3,7 @@ layout: post
 title: "I Built an Obsidian Plugin to Publish to Jekyll"
 description: "An open-source Obsidian plugin that converts wiki-links, image embeds, and callouts to Jekyll-compatible Markdown — then copies everything to your _posts/ folder."
 tags: [obsidian, jekyll, open-source, productivity]
-date: 2026-03-20 00:30:00 +0700
+date: 2025-11-10 00:30:00 +0700
 ---
 
 I write everything in Obsidian. My blog runs on Jekyll. The two speak different dialects of Markdown.

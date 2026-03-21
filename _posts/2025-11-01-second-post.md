@@ -3,7 +3,7 @@ layout: post
 title: "Why YouTube Comments Are Disabled on University Wi‑Fi"
 description: "How content filters cause it and why a VPN fixes it."
 tags: [networking, security, university]
-date: 2026-03-19 10:00:00 +0700
+date: 2025-11-01 10:00:00 +0700
 ---
 
 ## How content filters cause it.
