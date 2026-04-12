@@ -3,20 +3,15 @@ layout: default
 ---
 <header class="site-header animate-enter">
     <div class="header-left">
-        <h1><a href="{{ '/' | relative_url }}">Sai's Blog</a></h1>
-        <p class="social-row">
-            <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="noopener noreferrer" class="social-linkedin">linkedin</a>
-            <a href="https://github.com/Sai21112000" target="_blank" rel="noopener noreferrer" class="social-github">github</a>
-            <a href="https://x.com/vaidyasaiteja" target="_blank" rel="noopener noreferrer" class="social-twitter">twitter</a>
-            <a href="https://www.youtube.com/@saitejavaidya/streams" target="_blank" rel="noopener noreferrer" class="social-youtube">youtube</a>
-        </p>
+        <h1><a href="{{ '/' | relative_url }}">Sai</a></h1>
+        <p class="header-tagline">CV Engineer · Powerlifter · Building things that see</p>
     </div>
     <nav class="header-nav">
         <a href="{{ '/about.html' | relative_url }}">About</a>
-        <a href="{{ '/philosophy.html' | relative_url }}">Philosophy</a>
-        <a href="{{ '/sops.html' | relative_url }}">SOPs</a>
+        <a href="{{ '/writing.html' | relative_url }}">Writing</a>
         <a href="{{ '/powerlifting.html' | relative_url }}">Powerlifting</a>
         <a href="{{ '/now.html' | relative_url }}">Now</a>
+        <a href="{{ '/philosophy.html' | relative_url }}" class="nav-philosophy">Philosophy</a>
     </nav>
 </header>
 
@@ -45,23 +40,58 @@ layout: default
     </div>
 </div>
 
+<!-- Featured Post (latest) -->
+{% assign featured = site.posts.first %}
+{% if featured %}
+<section class="home-featured animate-enter" style="animation-delay: 0.12s;">
+    <span class="card-label">Latest</span>
+    <a href="{{ featured.url | relative_url }}" class="featured-title">{{ featured.title }}</a>
+    {% if featured.description %}
+    <p class="featured-desc">{{ featured.description }}</p>
+    {% endif %}
+    <div class="featured-meta">
+        <span>{{ featured.content | number_of_words | divided_by: 200 | at_least: 1 }} min read</span>
+        <span>{{ featured.date | date: "%b %d, %Y" }}</span>
+        {% if featured.tags.size > 0 %}
+        <span class="featured-tags">
+            {% for tag in featured.tags limit:3 %}
+            <span class="tag-pill">{{ tag }}</span>
+            {% endfor %}
+        </span>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
 <section class="animate-enter" style="animation-delay: 0.15s;">
     <div class="section-header">
         <h2>Writing</h2>
         <a href="{{ '/writing.html' | relative_url }}" class="card-link">See all →</a>
     </div>
     <ul class="post-list" id="post-list">
-        {% for post in site.posts %}
+        {% for post in site.posts offset:1 %}
         <li data-url="{{ post.url | relative_url }}">
             <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            <span class="post-date">{{ post.content | number_of_words | divided_by: 200 | at_least: 1 }} min &nbsp;·&nbsp; {{ post.date | date: "%b %d, %Y" }}</span>
+            <span class="post-date">{{ post.date | date: "%b %d, %Y" }}</span>
         </li>
         {% endfor %}
     </ul>
 </section>
 
+<!-- Social Links -->
+<section class="home-social animate-enter" style="animation-delay: 0.2s;">
+    <span class="card-label">Find Me</span>
+    <div class="social-row">
+        <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="noopener noreferrer" class="social-linkedin">linkedin</a>
+        <a href="https://github.com/Sai21112000" target="_blank" rel="noopener noreferrer" class="social-github">github</a>
+        <a href="https://x.com/vaidyasaiteja" target="_blank" rel="noopener noreferrer" class="social-twitter">twitter</a>
+        <a href="https://www.youtube.com/@saitejavaidya/streams" target="_blank" rel="noopener noreferrer" class="social-youtube">youtube</a>
+        <a href="https://www.instagram.com/tejalifts_/" target="_blank" rel="noopener noreferrer" class="social-instagram">instagram</a>
+    </div>
+</section>
+
 <!-- Comments via GitHub Discussions -->
-<section class="animate-enter" style="animation-delay: 0.2s;">
+<section class="animate-enter" style="animation-delay: 0.25s;">
     <h2>Discuss</h2>
     <p class="meta" style="margin-top: -0.5rem; margin-bottom: 1.5rem;">Ask questions, share updates, or leave a note</p>
     <script src="https://giscus.app/client.js"
@@ -83,7 +113,10 @@ layout: default
 
 <footer class="animate-enter" style="animation-delay: 0.3s;">
     <span>© 2026 Sai</span>
-    <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+    <div class="footer-links">
+        <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+        <a href="{{ '/sops.html' | relative_url }}">SOPs</a>
+    </div>
 </footer>
 
 <script>

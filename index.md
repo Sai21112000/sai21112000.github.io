@@ -1,6 +1,6 @@
 ---
 layout: home
-title: Sai's Blog
+title: Sai — CV Engineer & Powerlifter
 featured_quote: "The tension you feel is not a problem to solve. It is the process"
 featured_quote_source: "— Nietzsche"
 tasks:
