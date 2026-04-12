@@ -383,6 +383,25 @@
         }
         .pl-coach-handle:hover { text-decoration: underline; }
 
+        /* Gallery */
+        .pl-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 0.8rem;
+            margin-bottom: 3rem;
+        }
+        .pl-gallery img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .pl-gallery img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
             .pl-stats { grid-template-columns: repeat(2, 1fr); }
@@ -400,7 +419,7 @@
         <div class="pl-hero">
             <h1>Powerlifting</h1>
             <p class="pl-tagline">IPF Raw · 74kg Class · 430kg Total · 9/9 Whites</p>
-            <a href="https://instagram.com/tejalifts_" target="_blank" rel="noopener" class="pl-instagram">@tejalifts_</a>
+            <a href="https://www.instagram.com/tejalifts_/" target="_blank" rel="noopener" class="pl-instagram">@tejalifts_</a>
         </div>
 
         <!-- Key Stats -->
@@ -588,12 +607,22 @@
             </div>
         </div>
 
+        <!-- Photo Gallery -->
+        <h2 class="pl-section-title">NQ3 Photos</h2>
+        <div class="pl-gallery">
+            <img src="{{ '/assets/images/powerlifting/IMG_0871.jpg' | relative_url }}" alt="NQ3 Competition" loading="lazy">
+            <img src="{{ '/assets/images/powerlifting/IMG_0909.jpg' | relative_url }}" alt="NQ3 Competition" loading="lazy">
+            <img src="{{ '/assets/images/powerlifting/IMG_0931.jpg' | relative_url }}" alt="NQ3 Competition" loading="lazy">
+            <img src="{{ '/assets/images/powerlifting/IMG_0959.jpg' | relative_url }}" alt="NQ3 Competition" loading="lazy">
+            <img src="{{ '/assets/images/powerlifting/IMG_0979.jpg' | relative_url }}" alt="NQ3 Competition" loading="lazy">
+        </div>
+
         <!-- Coach -->
         <div class="pl-coach">
             <div>
                 <div class="pl-coach-label">Coach</div>
                 <div class="pl-coach-name">Adesh Powerlifts</div>
-                <a href="https://instagram.com/adesh.powerlifts" target="_blank" rel="noopener" class="pl-coach-handle">@adesh.powerlifts</a>
+                <a href="https://www.instagram.com/adesh.powerlifts/" target="_blank" rel="noopener" class="pl-coach-handle">@adesh.powerlifts</a>
             </div>
         </div>
 
