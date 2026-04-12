@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <meta name="description" content="{{ page.description }}">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:description" content="{{ page.description }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+    <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
+    <style>
+        /* Powerlifting-specific styles */
+        :root {
+            --pl-red: #E52E00;
+            --pl-red-light: rgba(229, 46, 0, 0.1);
+            --pl-gold: #D4A017;
+            --pl-gold-light: rgba(212, 160, 23, 0.1);
+            --pl-green: #2E8B57;
+            --pl-green-light: rgba(46, 139, 87, 0.1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --pl-red: #FF451A;
+                --pl-red-light: rgba(255, 69, 26, 0.12);
+                --pl-gold: #F0C040;
+                --pl-gold-light: rgba(240, 192, 64, 0.1);
+                --pl-green: #4ADE80;
+                --pl-green-light: rgba(74, 222, 128, 0.1);
+            }
+        }
+
+        [data-theme="dark"] {
+            --pl-red: #FF451A;
+            --pl-red-light: rgba(255, 69, 26, 0.12);
+            --pl-gold: #F0C040;
+            --pl-gold-light: rgba(240, 192, 64, 0.1);
+            --pl-green: #4ADE80;
+            --pl-green-light: rgba(74, 222, 128, 0.1);
+        }
+
+        [data-theme="light"] {
+            --pl-red: #E52E00;
+            --pl-red-light: rgba(229, 46, 0, 0.1);
+            --pl-gold: #D4A017;
+            --pl-gold-light: rgba(212, 160, 23, 0.1);
+            --pl-green: #2E8B57;
+            --pl-green-light: rgba(46, 139, 87, 0.1);
+        }
+
+        /* Back link */
+        .pl-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-meta);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s;
+        }
+        .pl-back:hover { color: var(--accent); }
+
+        /* Hero */
+        .pl-hero {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2.5rem;
+        }
+        .pl-hero h1 {
+            font-size: 2.8rem;
+            letter-spacing: -0.03em;
+            margin: 0 0 0.3rem;
+        }
+        .pl-hero .pl-tagline {
+            color: var(--text-meta);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        .pl-hero .pl-instagram {
+            color: var(--pl-red);
+            text-decoration: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+        }
+        .pl-hero .pl-instagram:hover { text-decoration: underline; }
+
+        /* Stats row */
+        .pl-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        .pl-stat {
+            background: var(--pl-red-light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.2rem 1rem;
+            text-align: center;
+        }
+        .pl-stat .pl-stat-value {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--pl-red);
+            line-height: 1.1;
+        }
+        .pl-stat .pl-stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-meta);
+            margin-top: 0.3rem;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* Competition Card */
+        .pl-comp-card {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.8rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .pl-comp-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--pl-red), var(--pl-gold));
+        }
+        .pl-comp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        .pl-comp-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .pl-comp-date {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-meta);
+        }
+        .pl-comp-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .pl-badge {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            letter-spacing: 0.03em;
+        }
+        .pl-badge-ipf {
+            background: var(--pl-gold-light);
+            color: var(--pl-gold);
+            border: 1px solid var(--pl-gold);
+        }
+        .pl-badge-whites {
+            background: var(--pl-green-light);
+            color: var(--pl-green);
+            border: 1px solid var(--pl-green);
+        }
+        .pl-badge-raw {
+            background: var(--pl-red-light);
+            color: var(--pl-red);
+            border: 1px solid var(--pl-red);
+        }
+
+        /* Attempt table */
+        .pl-attempts {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .pl-attempts th {
+            text-align: left;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-meta);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .pl-attempts td {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .pl-attempts tr:last-child td { border-bottom: none; }
+        .pl-attempts .pl-lift-name {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .pl-attempts .pl-pr {
+            color: var(--pl-gold);
+            font-weight: 600;
+        }
+        .pl-attempts .pl-attempt-good::after {
+            content: ' ✓';
+            color: var(--pl-green);
+        }
+
+        /* Score row */
+        .pl-scores {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            margin-top: 0.5rem;
+        }
+        .pl-score-item {
+            text-align: center;
+        }
+        .pl-score-val {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .pl-score-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-meta);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* Lift Progression Chart */
+        .pl-section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        .pl-chart-container {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .pl-chart {
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+        .pl-chart canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Journey Timeline */
+        .pl-timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 3rem;
+        }
+        .pl-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.45rem;
+            top: 0.3rem;
+            bottom: 0.3rem;
+            width: 2px;
+            background: var(--border);
+        }
+        .pl-phase {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+        }
+        .pl-phase::before {
+            content: '';
+            position: absolute;
+            left: -1.55rem;
+            top: 0.35rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--pl-red);
+            border: 2px solid var(--bg);
+        }
+        .pl-phase-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+        .pl-phase-time {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-meta);
+            margin-bottom: 0.5rem;
+        }
+        .pl-phase-body {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-meta);
+        }
+        .pl-phase-body strong {
+            color: var(--text);
+        }
+        .pl-phase.highlight::before {
+            background: var(--pl-gold);
+            box-shadow: 0 0 0 3px var(--pl-gold-light);
+        }
+
+        /* Injury section */
+        .pl-injuries {
+            margin-bottom: 3rem;
+        }
+        .pl-injury-grid {
+            display: grid;
+            gap: 0.8rem;
+        }
+        .pl-injury-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        .pl-injury-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .pl-injury-dot.resolved { background: var(--pl-green); }
+        .pl-injury-dot.managed { background: var(--pl-gold); }
+        .pl-injury-dot.resolving { background: var(--pl-red); }
+        .pl-injury-name {
+            font-weight: 600;
+            flex: 1;
+        }
+        .pl-injury-status {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-meta);
+        }
+
+        /* Coach */
+        .pl-coach {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .pl-coach-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-meta);
+        }
+        .pl-coach-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .pl-coach-handle {
+            color: var(--pl-red);
+            text-decoration: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+        }
+        .pl-coach-handle:hover { text-decoration: underline; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .pl-stats { grid-template-columns: repeat(2, 1fr); }
+            .pl-scores { grid-template-columns: repeat(2, 1fr); }
+            .pl-hero h1 { font-size: 2rem; }
+            .pl-comp-header { flex-direction: column; gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <a href="{{ '/' | relative_url }}" class="pl-back">← Back to blog</a>
+
+        <!-- Hero -->
+        <div class="pl-hero">
+            <h1>Powerlifting</h1>
+            <p class="pl-tagline">IPF Raw · 74kg Class · 430kg Total · 9/9 Whites</p>
+            <a href="https://instagram.com/tejalifts_" target="_blank" rel="noopener" class="pl-instagram">@tejalifts_</a>
+        </div>
+
+        <!-- Key Stats -->
+        <div class="pl-stats">
+            <div class="pl-stat">
+                <div class="pl-stat-value">145</div>
+                <div class="pl-stat-label">Squat kg</div>
+            </div>
+            <div class="pl-stat">
+                <div class="pl-stat-value">90</div>
+                <div class="pl-stat-label">Bench kg</div>
+            </div>
+            <div class="pl-stat">
+                <div class="pl-stat-value">195</div>
+                <div class="pl-stat-label">Deadlift kg</div>
+            </div>
+            <div class="pl-stat">
+                <div class="pl-stat-value">430</div>
+                <div class="pl-stat-label">Total kg</div>
+            </div>
+        </div>
+
+        <!-- Competition Card -->
+        <div class="pl-comp-card">
+            <div class="pl-comp-header">
+                <div>
+                    <h3 class="pl-comp-name">Qualifier 3 — TAAP / IPF</h3>
+                    <span class="pl-comp-date">Nov 8, 2025 · Bangkok, Thailand</span>
+                </div>
+                <div class="pl-comp-badges">
+                    <span class="pl-badge pl-badge-ipf">IPF Sanctioned</span>
+                    <span class="pl-badge pl-badge-raw">Raw</span>
+                    <span class="pl-badge pl-badge-whites">9/9 Whites</span>
+                </div>
+            </div>
+
+            <table class="pl-attempts">
+                <thead>
+                    <tr>
+                        <th>Lift</th>
+                        <th>1st</th>
+                        <th>2nd</th>
+                        <th>3rd</th>
+                        <th>Best</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="pl-lift-name">Squat</td>
+                        <td>122.5<span class="pl-attempt-good"></span></td>
+                        <td>135<span class="pl-attempt-good"></span></td>
+                        <td class="pl-pr">145<span class="pl-attempt-good"></span></td>
+                        <td class="pl-pr">145</td>
+                    </tr>
+                    <tr>
+                        <td class="pl-lift-name">Bench</td>
+                        <td>75<span class="pl-attempt-good"></span></td>
+                        <td>82.5<span class="pl-attempt-good"></span></td>
+                        <td class="pl-pr">90<span class="pl-attempt-good"></span></td>
+                        <td class="pl-pr">90</td>
+                    </tr>
+                    <tr>
+                        <td class="pl-lift-name">Deadlift</td>
+                        <td>165<span class="pl-attempt-good"></span></td>
+                        <td>185<span class="pl-attempt-good"></span></td>
+                        <td class="pl-pr">195<span class="pl-attempt-good"></span></td>
+                        <td class="pl-pr">195</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="pl-scores">
+                <div class="pl-score-item">
+                    <div class="pl-score-val">312.55</div>
+                    <div class="pl-score-label">Dots</div>
+                </div>
+                <div class="pl-score-item">
+                    <div class="pl-score-val">310.80</div>
+                    <div class="pl-score-label">Wilks</div>
+                </div>
+                <div class="pl-score-item">
+                    <div class="pl-score-val">300.57</div>
+                    <div class="pl-score-label">Glossbrenner</div>
+                </div>
+                <div class="pl-score-item">
+                    <div class="pl-score-val">63.35</div>
+                    <div class="pl-score-label">Goodlift</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lift Progression Chart -->
+        <h2 class="pl-section-title">Lift Progression</h2>
+        <div class="pl-chart-container">
+            <div class="pl-chart">
+                <canvas id="liftChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Journey Timeline -->
+        <h2 class="pl-section-title">The Journey</h2>
+        <div class="pl-timeline">
+            <div class="pl-phase">
+                <div class="pl-phase-title">Foundation & Learning</div>
+                <div class="pl-phase-time">Jun — Aug 2024</div>
+                <div class="pl-phase-body">
+                    Starting out at 75-76kg bodyweight. <strong>Squat 85→100kg, Bench 65→75kg, Deadlift 120→125kg.</strong> 
+                    Hip flexor injury early on. Learning hook grip, bracing, mobility. Got first lever belt + SBD sleeves.
+                </div>
+            </div>
+            <div class="pl-phase">
+                <div class="pl-phase-title">Volume Block</div>
+                <div class="pl-phase-time">Aug — Sep 2024</div>
+                <div class="pl-phase-body">
+                    Full Block 1 implementation. <strong>Squat hit 115kg top set, Deadlift 135kg.</strong> 
+                    Brain fog, over-caffeination, form adjustments. Lever belt + SBD sleeves = immediate comfort boost.
+                </div>
+            </div>
+            <div class="pl-phase">
+                <div class="pl-phase-title">First Competition — NQ1</div>
+                <div class="pl-phase-time">Sep 2024 — May 2025</div>
+                <div class="pl-phase-body">
+                    Long prep block targeting TAAP NQ1 (May 26, 2025). Managed QL soreness, rotator cuff, wrist nerve flare.
+                    Almost didn't compete — weight category stress 12hrs out. Coach said "go as guest lifter" → mental reset.
+                    <strong>9/9 whites, PR on every lift.</strong>
+                </div>
+            </div>
+            <div class="pl-phase highlight">
+                <div class="pl-phase-title">🏆 Qualifier 3 — 430kg Total</div>
+                <div class="pl-phase-time">Aug — Nov 8, 2025</div>
+                <div class="pl-phase-body">
+                    11-week competition block. Injuries, sickness ×3, QL flares, -45 day break from PL, mental exhaustion.
+                    Still showed up. <strong>Squat 145, Bench 90, Deadlift 195 — all PRs. 9/9 whites. +40kg total in 6 months.</strong>
+                </div>
+            </div>
+            <div class="pl-phase">
+                <div class="pl-phase-title">Recovery & Return</div>
+                <div class="pl-phase-time">Nov 2025 — Apr 2026</div>
+                <div class="pl-phase-body">
+                    45-day break post-comp ("I miss powerlifting, it kills me every single day"). Gradual return Jan→Feb with hypertrophy splits.
+                    Back to structured training Feb 2025. <strong>Ready for 2026 cycle.</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Injury Catalog -->
+        <h2 class="pl-section-title">Injury Map</h2>
+        <div class="pl-injuries">
+            <div class="pl-injury-grid">
+                <div class="pl-injury-item">
+                    <span class="pl-injury-dot resolving"></span>
+                    <span class="pl-injury-name">Hip Flexor Tendon</span>
+                    <span class="pl-injury-status">Resolving</span>
+                </div>
+                <div class="pl-injury-item">
+                    <span class="pl-injury-dot managed"></span>
+                    <span class="pl-injury-name">Ankle Mobility</span>
+                    <span class="pl-injury-status">Managed</span>
+                </div>
+                <div class="pl-injury-item">
+                    <span class="pl-injury-dot resolved"></span>
+                    <span class="pl-injury-name">Knee Pain (L)</span>
+                    <span class="pl-injury-status">Resolved</span>
+                </div>
+                <div class="pl-injury-item">
+                    <span class="pl-injury-dot resolved"></span>
+                    <span class="pl-injury-name">Rotator Cuff</span>
+                    <span class="pl-injury-status">Resolved</span>
+                </div>
+                <div class="pl-injury-item">
+                    <span class="pl-injury-dot managed"></span>
+                    <span class="pl-injury-name">QL Flares (R)</span>
+                    <span class="pl-injury-status">Managed</span>
+                </div>
+                <div class="pl-injury-item">
+                    <span class="pl-injury-dot resolved"></span>
+                    <span class="pl-injury-name">Wrist Nerve (Median)</span>
+                    <span class="pl-injury-status">Resolved</span>
+                </div>
+                <div class="pl-injury-item">
+                    <span class="pl-injury-dot managed"></span>
+                    <span class="pl-injury-name">Piriformis Syndrome</span>
+                    <span class="pl-injury-status">Managed</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coach -->
+        <div class="pl-coach">
+            <div>
+                <div class="pl-coach-label">Coach</div>
+                <div class="pl-coach-name">Adesh Powerlifts</div>
+                <a href="https://instagram.com/adesh.powerlifts" target="_blank" rel="noopener" class="pl-coach-handle">@adesh.powerlifts</a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Chart.js for lift progression -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script>
+        const ctx = document.getElementById('liftChart').getContext('2d');
+
+        const labels = ['Jun 24', 'Aug 24', 'Oct 24', 'Dec 24', 'Feb 25', 'May 25\n(NQ1)', 'Aug 25', 'Oct 25', 'Nov 25\n(NQ3)'];
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Squat',
+                        data: [85, 100, 115, 120, 112.5, 132.5, 137.5, 135, 145],
+                        borderColor: getComputedStyle(document.documentElement).getPropertyValue('--pl-red').trim() || '#E52E00',
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Bench',
+                        data: [65, 75, 77.5, 75, 77.5, 82.5, 85, 80, 90],
+                        borderColor: getComputedStyle(document.documentElement).getPropertyValue('--pl-gold').trim() || '#D4A017',
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Deadlift',
+                        data: [120, 125, 140, 150, 145, 175, 180, 170, 195],
+                        borderColor: getComputedStyle(document.documentElement).getPropertyValue('--pl-green').trim() || '#2E8B57',
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20,
+                            font: { family: "'IBM Plex Mono', monospace", size: 11 }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0,0,0,0.8)',
+                        titleFont: { family: "'IBM Plex Mono', monospace" },
+                        bodyFont: { family: "'IBM Plex Mono', monospace" },
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.y + 'kg';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 50,
+                        grid: {
+                            color: 'rgba(128,128,128,0.1)'
+                        },
+                        ticks: {
+                            font: { family: "'IBM Plex Mono', monospace", size: 10 },
+                            callback: function(value) { return value + 'kg'; }
+                        }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            font: { family: "'IBM Plex Mono', monospace", size: 10 },
+                            maxRotation: 0
+                        }
+                    }
+                }
+            }
+        });
+
+        // Theme toggle support
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function() {
+                setTimeout(function() { 
+                    window.location.reload(); 
+                }, 200);
+            });
+        }
+    </script>
+
+    <!-- Theme toggle (reuse from main blog) -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">◐</button>
+    <script>
+    (function() {
+        var toggle = document.getElementById('theme-toggle');
+        var savedTheme = localStorage.getItem('theme');
+
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            toggle.textContent = savedTheme === 'dark' ? '◑' : '◐';
+        }
+
+        toggle.addEventListener('click', function() {
+            var current = document.documentElement.getAttribute('data-theme');
+            var next;
+
+            if (current === 'dark') {
+                next = 'light';
+            } else if (current === 'light') {
+                next = 'dark';
+            } else {
+                next = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'dark';
+            }
+
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            toggle.textContent = next === 'dark' ? '◑' : '◐';
+        });
+    })();
+    </script>
+</body>
+</html>
