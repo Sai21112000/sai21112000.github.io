@@ -51,6 +51,29 @@
             --pl-green-light: rgba(46, 139, 87, 0.1);
         }
 
+        /* Reset global style conflicts */
+        .pl-back,
+        .pl-instagram,
+        .pl-coach-handle,
+        .pl-badge,
+        .card-link,
+        .pl-gallery img,
+        .pl-attempts,
+        .pl-attempts *,
+        .pl-stat,
+        .pl-injury-item,
+        .pl-comp-card,
+        .pl-phase,
+        .pl-phase-body,
+        .pl-coach {
+            border-bottom: none;
+        }
+        .pl-back:hover,
+        .pl-instagram:hover,
+        .pl-coach-handle:hover {
+            border-bottom: none;
+        }
+
         /* Back link */
         .pl-back {
             display: inline-flex;
@@ -145,6 +168,7 @@
             font-size: 1.3rem;
             font-weight: 600;
             margin: 0;
+            margin-top: 0;
         }
         .pl-comp-date {
             font-family: 'IBM Plex Mono', monospace;
@@ -239,11 +263,15 @@
             font-family: 'IBM Plex Mono', monospace;
         }
 
-        /* Lift Progression Chart */
+        /* Section titles — override global h2 border */
         .pl-section-title {
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
+            margin-top: 0;
             letter-spacing: -0.02em;
+            border-bottom: none;
+            display: block;
+            padding-bottom: 0;
         }
         .pl-chart-container {
             border: 1px solid var(--border);
@@ -332,6 +360,8 @@
             border: 1px solid var(--border);
             border-radius: 6px;
             font-size: 0.9rem;
+            margin-left: 0;
+            margin-bottom: 0;
         }
         .pl-injury-dot {
             width: 8px;
@@ -394,12 +424,16 @@
             width: 100%;
             border-radius: 8px;
             border: 1px solid var(--border);
-            cursor: pointer;
+            cursor: zoom-in;
             transition: transform 0.2s, box-shadow 0.2s;
+            display: block;
+            height: auto;
+            object-fit: cover;
+            aspect-ratio: 4/3;
         }
         .pl-gallery img:hover {
             transform: scale(1.02);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
 
         /* Responsive */
@@ -626,115 +660,125 @@
             </div>
         </div>
 
+        <footer style="margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1.5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; display: flex; justify-content: space-between; color: var(--text-meta);">
+            <span>© 2026 Sai</span>
+            <a href="{{ '/' | relative_url }}" style="color: var(--text-meta); border-bottom: none;">← Back to blog</a>
+        </footer>
+
     </main>
 
     <!-- Chart.js for lift progression -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
     <script>
-        const ctx = document.getElementById('liftChart').getContext('2d');
+        var liftChartInstance = null;
 
-        const labels = ['Jun 24', 'Aug 24', 'Oct 24', 'Dec 24', 'Feb 25', 'May 25\n(NQ1)', 'Aug 25', 'Oct 25', 'Nov 25\n(NQ3)'];
+        function createChart() {
+            var ctx = document.getElementById('liftChart').getContext('2d');
 
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Squat',
-                        data: [85, 100, 115, 120, 112.5, 132.5, 137.5, 135, 145],
-                        borderColor: getComputedStyle(document.documentElement).getPropertyValue('--pl-red').trim() || '#E52E00',
-                        backgroundColor: 'transparent',
-                        borderWidth: 2,
-                        pointRadius: 4,
-                        pointHoverRadius: 6,
-                        tension: 0.3
-                    },
-                    {
-                        label: 'Bench',
-                        data: [65, 75, 77.5, 75, 77.5, 82.5, 85, 80, 90],
-                        borderColor: getComputedStyle(document.documentElement).getPropertyValue('--pl-gold').trim() || '#D4A017',
-                        backgroundColor: 'transparent',
-                        borderWidth: 2,
-                        pointRadius: 4,
-                        pointHoverRadius: 6,
-                        tension: 0.3
-                    },
-                    {
-                        label: 'Deadlift',
-                        data: [120, 125, 140, 150, 145, 175, 180, 170, 195],
-                        borderColor: getComputedStyle(document.documentElement).getPropertyValue('--pl-green').trim() || '#2E8B57',
-                        backgroundColor: 'transparent',
-                        borderWidth: 2,
-                        pointRadius: 4,
-                        pointHoverRadius: 6,
-                        tension: 0.3
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                interaction: {
-                    mode: 'index',
-                    intersect: false
+            var labels = ['Jun 24', 'Aug 24', 'Oct 24', 'Dec 24', 'Feb 25', 'May 25\n(NQ1)', 'Aug 25', 'Oct 25', 'Nov 25\n(NQ3)'];
+
+            var cs = getComputedStyle(document.documentElement);
+            var red = cs.getPropertyValue('--pl-red').trim() || '#E52E00';
+            var gold = cs.getPropertyValue('--pl-gold').trim() || '#D4A017';
+            var green = cs.getPropertyValue('--pl-green').trim() || '#2E8B57';
+            var metaColor = cs.getPropertyValue('--text-meta').trim() || '#777';
+
+            if (liftChartInstance) liftChartInstance.destroy();
+
+            liftChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Squat',
+                            data: [85, 100, 115, 120, 112.5, 132.5, 137.5, 135, 145],
+                            borderColor: red,
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            pointRadius: 4,
+                            pointHoverRadius: 6,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Bench',
+                            data: [65, 75, 77.5, 75, 77.5, 82.5, 85, 80, 90],
+                            borderColor: gold,
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            pointRadius: 4,
+                            pointHoverRadius: 6,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Deadlift',
+                            data: [120, 125, 140, 150, 145, 175, 180, 170, 195],
+                            borderColor: green,
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            pointRadius: 4,
+                            pointHoverRadius: 6,
+                            tension: 0.3
+                        }
+                    ]
                 },
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: {
-                            usePointStyle: true,
-                            padding: 20,
-                            font: { family: "'IBM Plex Mono', monospace", size: 11 }
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 20,
+                                color: metaColor,
+                                font: { family: "'IBM Plex Mono', monospace", size: 11 }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0,0,0,0.85)',
+                            titleFont: { family: "'IBM Plex Mono', monospace" },
+                            bodyFont: { family: "'IBM Plex Mono', monospace" },
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y + 'kg';
+                                }
+                            }
                         }
                     },
-                    tooltip: {
-                        backgroundColor: 'rgba(0,0,0,0.8)',
-                        titleFont: { family: "'IBM Plex Mono', monospace" },
-                        bodyFont: { family: "'IBM Plex Mono', monospace" },
-                        callbacks: {
-                            label: function(context) {
-                                return context.dataset.label + ': ' + context.parsed.y + 'kg';
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 50,
+                            grid: { color: 'rgba(128,128,128,0.1)' },
+                            ticks: {
+                                color: metaColor,
+                                font: { family: "'IBM Plex Mono', monospace", size: 10 },
+                                callback: function(value) { return value + 'kg'; }
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: {
+                                color: metaColor,
+                                font: { family: "'IBM Plex Mono', monospace", size: 10 },
+                                maxRotation: 0
                             }
                         }
                     }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        min: 50,
-                        grid: {
-                            color: 'rgba(128,128,128,0.1)'
-                        },
-                        ticks: {
-                            font: { family: "'IBM Plex Mono', monospace", size: 10 },
-                            callback: function(value) { return value + 'kg'; }
-                        }
-                    },
-                    x: {
-                        grid: { display: false },
-                        ticks: {
-                            font: { family: "'IBM Plex Mono', monospace", size: 10 },
-                            maxRotation: 0
-                        }
-                    }
                 }
-            }
-        });
-
-        // Theme toggle support
-        const themeToggle = document.getElementById('theme-toggle');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', function() {
-                setTimeout(function() { 
-                    window.location.reload(); 
-                }, 200);
             });
         }
+
+        createChart();
     </script>
 
-    <!-- Theme toggle (reuse from main blog) -->
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">◐</button>
+
     <script>
     (function() {
         var toggle = document.getElementById('theme-toggle');
@@ -760,6 +804,42 @@
             document.documentElement.setAttribute('data-theme', next);
             localStorage.setItem('theme', next);
             toggle.textContent = next === 'dark' ? '◑' : '◐';
+
+            // Recreate chart with new theme colors
+            if (typeof createChart === 'function') createChart();
+        });
+
+        // Lightbox for gallery images
+        var overlay = document.createElement('div');
+        overlay.className = 'lightbox-overlay';
+        overlay.innerHTML = '<button class="lightbox-close" aria-label="Close">✕</button><img src="" alt="Zoomed image">';
+        document.body.appendChild(overlay);
+
+        var overlayImg = overlay.querySelector('img');
+        var closeBtn = overlay.querySelector('.lightbox-close');
+
+        function closeLightbox() {
+            overlay.classList.remove('active');
+        }
+
+        document.querySelectorAll('.pl-gallery img').forEach(function(img) {
+            img.addEventListener('click', function(e) {
+                e.stopPropagation();
+                overlayImg.src = this.src;
+                overlayImg.alt = this.alt;
+                overlay.classList.add('active');
+            });
+        });
+
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) closeLightbox();
+        });
+        closeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeLightbox();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
         });
     })();
     </script>
