@@ -14,6 +14,12 @@ Actively looking for **AI Research**, **AI Engineer**, **Computer Vision Enginee
 
 My expertise spans RSGIS, ML, DL, CV, pipelines, and deployments — from UAV imagery analysis to end-to-end model deployment.
 
+## Currently Working On
+
+- [ ] Apply to Sertis / KBTG
+- [ ] HuggingFace Agents Course
+- [ ] Read 'Designing Data-Intensive Applications' Ch.5
+
 ## Learning
 
 - **Neuroscience** — understanding the brain to build better AI
