@@ -2,66 +2,139 @@
 layout: default
 ---
 
-<nav class="post-nav animate-enter">
-    <a href="{{ '/' | relative_url }}" class="nav-back">← All posts</a>
-</nav>
+<aside class="toc-sidebar" id="toc-sidebar">
+    <div class="toc-header">Contents</div>
+    <nav class="toc-nav" id="toc-nav"></nav>
+</aside>
 
-<article class="post-article animate-enter" style="animation-delay: 0.05s;">
-    <header class="post-header">
-        <h1 class="post-header-title">{{ page.title }}</h1>
+<div class="post-wrapper">
+    <nav class="post-nav animate-enter">
+        <a href="{{ '/' | relative_url }}" class="nav-back">← All posts</a>
+    </nav>
+
+    <article class="post-article animate-enter" style="animation-delay: 0.05s;">
+        <header class="post-header">
+            <h1 class="post-header-title">{{ page.title }}</h1>
+            
+            <div class="post-header-meta">
+                <span class="post-author">Sai Teja Vaidya</span>
+                <span class="post-separator">·</span>
+                <time class="post-date-full">{{ page.date | date: "%B %d, %Y" }}</time>
+                <span class="post-separator">·</span>
+                <span class="post-readtime">{{ content | number_of_words | divided_by: 200 | at_least: 1 }} min read</span>
+            </div>
+            
+            {% if page.tags.size > 0 %}
+            <div class="post-header-tags">
+                {% for tag in page.tags %}
+                <span class="post-tag">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </header>
+
+        <div class="post-content" id="post-content">
+            {{ content }}
+        </div>
+    </article>
+
+    <footer class="post-footer animate-enter" style="animation-delay: 0.15s;">
+        <div class="post-footer-divider"></div>
         
-        <div class="post-header-meta">
-            <span class="post-author">Sai Teja Vaidya</span>
-            <span class="post-separator">·</span>
-            <time class="post-date-full">{{ page.date | date: "%B %d, %Y" }}</time>
-            <span class="post-separator">·</span>
-            <span class="post-readtime">{{ content | number_of_words | divided_by: 200 | at_least: 1 }} min read</span>
+        <div class="post-footer-content">
+            <p class="post-footer-note">Thanks for reading. <a href="{{ '/' | relative_url }}">Read more posts →</a></p>
+            
+            <div class="post-footer-links">
+                <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/Sai21112000" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://x.com/vaidyasaiteja" target="_blank" rel="noopener">Twitter</a>
+            </div>
         </div>
         
-        {% if page.tags.size > 0 %}
-        <div class="post-header-tags">
-            {% for tag in page.tags %}
-            <span class="post-tag">{{ tag }}</span>
-            {% endfor %}
+        <!-- Comments via GitHub Discussions -->
+        <div class="post-comments">
+            <h3>Discussion</h3>
+            <script src="https://giscus.app/client.js"
+                data-repo="Sai21112000/sai21112000.github.io"
+                data-repo-id="R_kgDORdVO1A"
+                data-category="Announcements"
+                data-category-id="DIC_kwDORdVO1M4C4v9t"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="bottom"
+                data-theme="preferred_color_scheme"
+                data-lang="en"
+                crossorigin="anonymous"
+                async>
+            </script>
         </div>
-        {% endif %}
-    </header>
+    </footer>
+</div>
 
-    <div class="post-content">
-        {{ content }}
-    </div>
-</article>
+<script>
+// Auto-generate TOC from headings
+(function() {
+    var content = document.getElementById('post-content');
+    var tocNav = document.getElementById('toc-nav');
+    var tocSidebar = document.getElementById('toc-sidebar');
+    var headings = content.querySelectorAll('h2, h3');
 
-<footer class="post-footer animate-enter" style="animation-delay: 0.15s;">
-    <div class="post-footer-divider"></div>
+    if (headings.length < 3) {
+        tocSidebar.style.display = 'none';
+        return;
+    }
+
+    headings.forEach(function(h, i) {
+        var id = 'section-' + i;
+        h.id = id;
+        var link = document.createElement('a');
+        link.href = '#' + id;
+        link.textContent = h.textContent;
+        link.className = h.tagName === 'H3' ? 'toc-h3' : 'toc-h2';
+        link.dataset.target = id;
+        tocNav.appendChild(link);
+    });
+
+    // Smooth scroll and highlight active section
+    var tocLinks = tocNav.querySelectorAll('a');
     
-    <div class="post-footer-content">
-        <p class="post-footer-note">Thanks for reading. <a href="{{ '/' | relative_url }}">Read more posts →</a></p>
+    // Click handler for smooth scroll
+    tocLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            var targetId = this.getAttribute('href').slice(1);
+            var targetEl = document.getElementById(targetId);
+            if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                history.pushState(null, null, '#' + targetId);
+            }
+        });
+    });
+
+    // Highlight active section on scroll
+    function updateActiveToc() {
+        var scrollPos = window.scrollY + 100;
+        var activeFound = false;
         
-        <div class="post-footer-links">
-            <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://github.com/Sai21112000" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://x.com/vaidyasaiteja" target="_blank" rel="noopener">Twitter</a>
-        </div>
-    </div>
-    
-    <!-- Comments via GitHub Discussions -->
-    <div class="post-comments">
-        <h3>Discussion</h3>
-        <script src="https://giscus.app/client.js"
-            data-repo="Sai21112000/sai21112000.github.io"
-            data-repo-id="R_kgDORdVO1A"
-            data-category="Announcements"
-            data-category-id="DIC_kwDORdVO1M4C4v9t"
-            data-mapping="pathname"
-            data-strict="0"
-            data-reactions-enabled="1"
-            data-emit-metadata="0"
-            data-input-position="bottom"
-            data-theme="preferred_color_scheme"
-            data-lang="en"
-            crossorigin="anonymous"
-            async>
-        </script>
-    </div>
-</footer>
+        for (var i = headings.length - 1; i >= 0; i--) {
+            if (headings[i].offsetTop <= scrollPos) {
+                tocLinks.forEach(function(l) { l.classList.remove('active'); });
+                if (tocLinks[i]) {
+                    tocLinks[i].classList.add('active');
+                }
+                activeFound = true;
+                break;
+            }
+        }
+        
+        if (!activeFound && tocLinks[0]) {
+            tocLinks[0].classList.add('active');
+        }
+    }
+
+    window.addEventListener('scroll', updateActiveToc, { passive: true });
+    updateActiveToc();
+})();
+</script>
