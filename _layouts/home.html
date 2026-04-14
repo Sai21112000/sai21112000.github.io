@@ -1,119 +1,96 @@
 ---
 layout: default
 ---
-<header class="site-header animate-enter">
-    <div class="header-left">
-        <h1><a href="{{ '/' | relative_url }}">Sai</a></h1>
-        <p class="header-tagline">CV Engineer · Powerlifter · Building things that see</p>
-    </div>
-    <nav class="header-nav">
+
+<!-- Hero Section -->
+<section class="hero animate-enter">
+    <h1 class="site-title">Sai Teja Vaidya</h1>
+    <p class="site-tagline">Computer Vision Engineer · AI Researcher · Building systems that see</p>
+    <nav class="site-nav">
         <a href="{{ '/about.html' | relative_url }}">About</a>
         <a href="{{ '/writing.html' | relative_url }}">Writing</a>
-        <a href="{{ '/powerlifting.html' | relative_url }}">Powerlifting</a>
         <a href="{{ '/now.html' | relative_url }}">Now</a>
-        <a href="{{ '/philosophy.html' | relative_url }}" class="nav-philosophy">Philosophy</a>
+        <a href="{{ '/philosophy.html' | relative_url }}">Philosophy</a>
+        <a href="{{ '/powerlifting.html' | relative_url }}">Powerlifting</a>
     </nav>
-</header>
+</section>
 
-{{ content }}
-
-<div class="home-blocks animate-enter" style="animation-delay: 0.1s;">
-    <!-- Block 1: Featured Quote -->
-    <div class="home-card quote-card">
-        <span class="card-label">From Philosophy</span>
-        <blockquote>{{ page.featured_quote }}</blockquote>
-        <cite>{{ page.featured_quote_source }}</cite>
-        <a href="{{ '/philosophy.html' | relative_url }}" class="card-link">Read all quotes →</a>
-    </div>
-
-    <!-- Block 2: Quick Notes / Checklist -->
-    <div class="home-card checklist-card">
-        <span class="card-label">Currently Working On</span>
-        <ul class="checklist">
-            {% for task in page.tasks %}
-            <li class="{% if task.done %}checked{% endif %}">
-                <span class="check-box">{% if task.done %}✓{% else %}○{% endif %}</span>
-                {{ task.text }}
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-</div>
-
-<!-- Featured Post (latest) -->
+<!-- Latest Post (Featured) -->
 {% assign featured = site.posts.first %}
 {% if featured %}
-<section class="home-featured animate-enter" style="animation-delay: 0.12s;">
-    <span class="card-label">Latest</span>
-    <a href="{{ featured.url | relative_url }}" class="featured-title">{{ featured.title }}</a>
-    {% if featured.description %}
-    <p class="featured-desc">{{ featured.description }}</p>
-    {% endif %}
-    <div class="featured-meta">
-        <span>{{ featured.content | number_of_words | divided_by: 200 | at_least: 1 }} min read</span>
-        <span>{{ featured.date | date: "%b %d, %Y" }}</span>
-        {% if featured.tags.size > 0 %}
-        <span class="featured-tags">
-            {% for tag in featured.tags limit:3 %}
-            <span class="tag-pill">{{ tag }}</span>
-            {% endfor %}
-        </span>
+<section class="featured-post animate-enter" style="animation-delay: 0.05s;">
+    <span class="section-label">Latest</span>
+    <article class="post-card featured">
+        <h2 class="post-title">
+            <a href="{{ featured.url | relative_url }}">{{ featured.title }}</a>
+        </h2>
+        {% if featured.description %}
+        <p class="post-description">{{ featured.description }}</p>
         {% endif %}
-    </div>
+        <div class="post-meta">
+            <span class="post-date">{{ featured.date | date: "%b %d, %Y" }}</span>
+            <span class="post-readtime">{{ featured.content | number_of_words | divided_by: 200 | at_least: 1 }} min read</span>
+            {% if featured.tags.size > 0 %}
+            <span class="post-tags">
+                {% for tag in featured.tags limit: 4 %}
+                <span class="tag">{{ tag }}</span>
+                {% endfor %}
+            </span>
+            {% endif %}
+        </div>
+    </article>
 </section>
 {% endif %}
 
-<section class="animate-enter" style="animation-delay: 0.15s;">
+<!-- Quote Card -->
+{% if page.featured_quote %}
+<section class="quote-section animate-enter" style="animation-delay: 0.1s;">
+    <blockquote>{{ page.featured_quote }}</blockquote>
+    <cite>{{ page.featured_quote_source }}</cite>
+</section>
+{% endif %}
+
+<!-- All Posts -->
+{% if site.posts.size > 1 %}
+<section class="all-posts animate-enter" style="animation-delay: 0.15s;">
     <div class="section-header">
-        <h2>Writing</h2>
-        <a href="{{ '/writing.html' | relative_url }}" class="card-link">See all →</a>
+        <span class="section-label">All Posts</span>
+        <span class="post-count">{{ site.posts.size }} total</span>
     </div>
     <ul class="post-list" id="post-list">
         {% for post in site.posts offset:1 %}
-        <li data-url="{{ post.url | relative_url }}">
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            <span class="post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+        <li class="post-item" data-url="{{ post.url | relative_url }}">
+            <div class="post-item-main">
+                <a href="{{ post.url | relative_url }}" class="post-item-title">{{ post.title }}</a>
+                {% if post.description %}
+                <p class="post-item-description">{{ post.description }}</p>
+                {% endif %}
+            </div>
+            <div class="post-item-meta">
+                <span class="post-item-date">{{ post.date | date: "%b %d" }}</span>
+                {% if post.tags.size > 0 %}
+                <span class="post-item-tags">
+                    {% for tag in post.tags limit: 2 %}
+                    <span class="tag-small">{{ tag }}</span>
+                    {% endfor %}
+                </span>
+                {% endif %}
+            </div>
         </li>
         {% endfor %}
     </ul>
 </section>
+{% endif %}
 
-<!-- Social Links -->
-<section class="home-social animate-enter" style="animation-delay: 0.2s;">
-    <span class="card-label">Find Me</span>
-    <div class="social-row">
-        <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="noopener noreferrer" class="social-linkedin">linkedin</a>
-        <a href="https://github.com/Sai21112000" target="_blank" rel="noopener noreferrer" class="social-github">github</a>
-        <a href="https://x.com/vaidyasaiteja" target="_blank" rel="noopener noreferrer" class="social-twitter">twitter</a>
-        <a href="https://www.youtube.com/@saitejavaidya/streams" target="_blank" rel="noopener noreferrer" class="social-youtube">youtube</a>
-        <a href="https://www.instagram.com/tejalifts_/" target="_blank" rel="noopener noreferrer" class="social-instagram">instagram</a>
-    </div>
-</section>
-
-<!-- Comments via GitHub Discussions -->
-<section class="animate-enter" style="animation-delay: 0.25s;">
-    <h2>Discuss</h2>
-    <p class="meta" style="margin-top: -0.5rem; margin-bottom: 1.5rem;">Ask questions, share updates, or leave a note</p>
-    <script src="https://giscus.app/client.js"
-        data-repo="Sai21112000/sai21112000.github.io"
-        data-repo-id="R_kgDORdVO1A"
-        data-category="Announcements"
-        data-category-id="DIC_kwDORdVO1M4C4v9t"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-    </script>
-</section>
-
-<footer class="animate-enter" style="animation-delay: 0.3s;">
-    <span>© 2026 Sai</span>
+<!-- Footer -->
+<footer class="site-footer animate-enter" style="animation-delay: 0.2s;">
     <div class="footer-links">
+        <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Sai21112000" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://x.com/vaidyasaiteja" target="_blank" rel="noopener">Twitter</a>
+        <a href="https://www.youtube.com/@saitejavaidya/streams" target="_blank" rel="noopener">YouTube</a>
+    </div>
+    <div class="footer-secondary">
         <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
         <a href="{{ '/sops.html' | relative_url }}">SOPs</a>
     </div>
@@ -122,7 +99,7 @@ layout: default
 <script>
 // Keyboard navigation: j/k to move, Enter to open
 (function() {
-    var items = document.querySelectorAll('#post-list li');
+    var items = document.querySelectorAll('.post-item');
     if (!items.length) return;
     var current = -1;
 
@@ -132,12 +109,14 @@ layout: default
         if (e.key === 'j') {
             e.preventDefault();
             if (current < items.length - 1) current++;
+            else current = 0;
             items.forEach(function(li) { li.classList.remove('kb-active'); });
             items[current].classList.add('kb-active');
             items[current].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
         } else if (e.key === 'k') {
             e.preventDefault();
             if (current > 0) current--;
+            else current = items.length - 1;
             items.forEach(function(li) { li.classList.remove('kb-active'); });
             items[current].classList.add('kb-active');
             items[current].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
