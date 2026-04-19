@@ -30,6 +30,17 @@ A minimalist, zero-framework blog built on **Jekyll + GitHub Pages**. Pure HTML,
 | SOPs | `sops.md` | Proposals, MVPs, and future ideas |
 | Now | `now.md` | What I'm currently focused on |
 
+## Latest Projects
+
+- [Thesis Agent Kit](https://github.com/Sai21112000/Thesis-Agent-Kit) — agent system for structured thesis writing workflows
+- [Oil Palm Instance Segmentation](https://github.com/Sai21112000/oil-palm-instance-segmentation) — thesis source code and model experiments
+- [Hybrid YOLO + SAM Pipeline](https://github.com/Sai21112000/hybrid-yolo-sam-pipeline) — bounding-box + promptable segmentation workflow
+- [Oil Palm Dataset Pipeline](https://github.com/Sai21112000/oil-palm-dataset-pipeline) — annotation, format conversion, and dataset prep utilities
+- [UAV GSD Scale Invariance](https://github.com/Sai21112000/uav-gsd-scale-invariance) — multi-GSD detection baseline code
+- [Canopy Biometry Calculator](https://github.com/Sai21112000/canopy-biometry-calculator) — canopy diameter/area estimation and evaluation tooling
+- [UAV Deployment Guide](https://github.com/Sai21112000/uav-deployment-guide) — operational framework and configs for field deployment
+- [Obsidian Jekyll Publisher](https://github.com/Sai21112000/obsidian-jekyll-publisher) — Obsidian plugin for publishing notes to Jekyll
+
 ## Project Structure
 
 ```
