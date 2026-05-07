@@ -78,6 +78,10 @@
             border-bottom: none;
         }
 
+        main {
+            max-width: 1040px;
+        }
+
         /* Back link */
         .pl-back {
             display: inline-flex;
@@ -93,10 +97,18 @@
 
         /* Hero */
         .pl-hero {
-            text-align: center;
-            padding: 3rem 0 2rem;
+            padding: 2.5rem 0 2rem;
             border-bottom: 1px solid var(--border);
             margin-bottom: 2.5rem;
+        }
+        .pl-hero-inner {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+            gap: 2rem;
+            align-items: center;
+        }
+        .pl-hero-copy {
+            min-width: 0;
         }
         .pl-hero h1 {
             font-size: 2.8rem;
@@ -115,6 +127,55 @@
             font-size: 0.85rem;
         }
         .pl-hero .pl-instagram:hover { text-decoration: underline; }
+        .pl-hero-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.4rem;
+        }
+        .pl-site-link,
+        .pl-secondary-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 2.4rem;
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.78rem;
+            text-decoration: none;
+            border-bottom: none;
+            transition: transform 0.2s, border-color 0.2s, background 0.2s;
+        }
+        .pl-site-link {
+            background: var(--text);
+            color: var(--bg);
+            border: 1px solid var(--text);
+        }
+        .pl-secondary-link {
+            color: var(--pl-red);
+            border: 1px solid var(--pl-red);
+            background: var(--pl-red-light);
+        }
+        .pl-site-link:hover,
+        .pl-secondary-link:hover {
+            transform: translateY(-1px);
+            border-bottom: none;
+        }
+        .pl-hero-media {
+            overflow: hidden;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            box-shadow: 0 16px 44px rgba(0, 0, 0, 0.14);
+        }
+        .pl-hero-media img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            object-position: center;
+        }
 
         /* Stats row */
         .pl-stats {
@@ -208,8 +269,14 @@
         }
 
         /* Attempt table */
+        .pl-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
         .pl-attempts {
             width: 100%;
+            min-width: 520px;
             border-collapse: collapse;
             font-family: 'IBM Plex Mono', monospace;
             font-size: 0.9rem;
@@ -420,32 +487,83 @@
         /* Gallery */
         .pl-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(12, 1fr);
             gap: 0.8rem;
             margin-bottom: 3rem;
         }
+        .pl-gallery figure {
+            margin: 0;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+        .pl-gallery figure:nth-child(1),
+        .pl-gallery figure:nth-child(4) {
+            grid-column: span 6;
+        }
+        .pl-gallery figure:nth-child(2),
+        .pl-gallery figure:nth-child(3),
+        .pl-gallery figure:nth-child(5),
+        .pl-gallery figure:nth-child(6) {
+            grid-column: span 3;
+        }
         .pl-gallery img {
             width: 100%;
-            border-radius: 8px;
-            border: 1px solid var(--border);
             cursor: zoom-in;
             transition: transform 0.2s, box-shadow 0.2s;
             display: block;
-            height: auto;
+            height: 100%;
             object-fit: cover;
-            aspect-ratio: 4/3;
+            aspect-ratio: 4 / 3;
         }
         .pl-gallery img:hover {
             transform: scale(1.02);
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
+        .pl-gallery figcaption {
+            padding: 0.75rem 0.9rem;
+            color: var(--text-meta);
+            font-size: 0.82rem;
+            line-height: 1.45;
+        }
 
         /* Responsive */
+        @media (max-width: 820px) {
+            .pl-hero-inner {
+                grid-template-columns: 1fr;
+            }
+            .pl-hero h1 {
+                font-size: 2.35rem;
+            }
+            .pl-gallery figure,
+            .pl-gallery figure:nth-child(1),
+            .pl-gallery figure:nth-child(2),
+            .pl-gallery figure:nth-child(3),
+            .pl-gallery figure:nth-child(4),
+            .pl-gallery figure:nth-child(5),
+            .pl-gallery figure:nth-child(6) {
+                grid-column: span 6;
+            }
+        }
         @media (max-width: 600px) {
             .pl-stats { grid-template-columns: repeat(2, 1fr); }
             .pl-scores { grid-template-columns: repeat(2, 1fr); }
             .pl-hero h1 { font-size: 2rem; }
             .pl-comp-header { flex-direction: column; gap: 0.5rem; }
+            .pl-comp-card { padding: 1.2rem; }
+            .pl-gallery {
+                grid-template-columns: 1fr;
+            }
+            .pl-gallery figure,
+            .pl-gallery figure:nth-child(1),
+            .pl-gallery figure:nth-child(2),
+            .pl-gallery figure:nth-child(3),
+            .pl-gallery figure:nth-child(4),
+            .pl-gallery figure:nth-child(5),
+            .pl-gallery figure:nth-child(6) {
+                grid-column: span 1;
+            }
         }
     </style>
 </head>
@@ -455,9 +573,22 @@
 
         <!-- Hero -->
         <div class="pl-hero">
-            <h1>Powerlifting</h1>
-            <p class="pl-tagline">IPF Raw · 74kg Class · 430kg Total · 9/9 Whites</p>
-            <a href="https://www.instagram.com/tejalifts_/" target="_blank" rel="noopener" class="pl-instagram">@tejalifts_</a>
+            <div class="pl-hero-inner">
+                <div class="pl-hero-copy">
+                    <h1>Powerlifting</h1>
+                    <p class="pl-tagline">IPF Raw · 74kg Class · 430kg Total · 9/9 Whites</p>
+                    <p>
+                        A record of rebuilding strength through injuries, missed weeks, meet-day pressure, and the slow confidence that comes from showing up again.
+                    </p>
+                    <div class="pl-hero-links">
+                        <a href="https://sai21112000.github.io/tejalifts/#home" target="_blank" rel="noopener" class="pl-site-link">Visit Tejalifts Coaching →</a>
+                        <a href="https://www.instagram.com/tejalifts_/" target="_blank" rel="noopener" class="pl-secondary-link">@tejalifts_</a>
+                    </div>
+                </div>
+                <figure class="pl-hero-media">
+                    <img src="{{ '/assets/images/powerlifting/teja-strength-portrait.jpg' | relative_url }}" alt="Sai Teja Vaidya setting up for a competition deadlift" loading="eager">
+                </figure>
+            </div>
         </div>
 
         <!-- Key Stats -->
@@ -494,40 +625,42 @@
                 </div>
             </div>
 
-            <table class="pl-attempts">
-                <thead>
-                    <tr>
-                        <th>Lift</th>
-                        <th>1st</th>
-                        <th>2nd</th>
-                        <th>3rd</th>
-                        <th>Best</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="pl-lift-name">Squat</td>
-                        <td>122.5<span class="pl-attempt-good"></span></td>
-                        <td>135<span class="pl-attempt-good"></span></td>
-                        <td class="pl-pr">145<span class="pl-attempt-good"></span></td>
-                        <td class="pl-pr">145</td>
-                    </tr>
-                    <tr>
-                        <td class="pl-lift-name">Bench</td>
-                        <td>75<span class="pl-attempt-good"></span></td>
-                        <td>82.5<span class="pl-attempt-good"></span></td>
-                        <td class="pl-pr">90<span class="pl-attempt-good"></span></td>
-                        <td class="pl-pr">90</td>
-                    </tr>
-                    <tr>
-                        <td class="pl-lift-name">Deadlift</td>
-                        <td>165<span class="pl-attempt-good"></span></td>
-                        <td>185<span class="pl-attempt-good"></span></td>
-                        <td class="pl-pr">195<span class="pl-attempt-good"></span></td>
-                        <td class="pl-pr">195</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="pl-table-wrap">
+                <table class="pl-attempts">
+                    <thead>
+                        <tr>
+                            <th>Lift</th>
+                            <th>1st</th>
+                            <th>2nd</th>
+                            <th>3rd</th>
+                            <th>Best</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pl-lift-name">Squat</td>
+                            <td>122.5<span class="pl-attempt-good"></span></td>
+                            <td>135<span class="pl-attempt-good"></span></td>
+                            <td class="pl-pr">145<span class="pl-attempt-good"></span></td>
+                            <td class="pl-pr">145</td>
+                        </tr>
+                        <tr>
+                            <td class="pl-lift-name">Bench</td>
+                            <td>75<span class="pl-attempt-good"></span></td>
+                            <td>82.5<span class="pl-attempt-good"></span></td>
+                            <td class="pl-pr">90<span class="pl-attempt-good"></span></td>
+                            <td class="pl-pr">90</td>
+                        </tr>
+                        <tr>
+                            <td class="pl-lift-name">Deadlift</td>
+                            <td>165<span class="pl-attempt-good"></span></td>
+                            <td>185<span class="pl-attempt-good"></span></td>
+                            <td class="pl-pr">195<span class="pl-attempt-good"></span></td>
+                            <td class="pl-pr">195</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <div class="pl-scores">
                 <div class="pl-score-item">
@@ -648,11 +781,30 @@
         <!-- Photo Gallery -->
         <h2 class="pl-section-title">NQ3 Photos</h2>
         <div class="pl-gallery">
-            <img src="{{ '/assets/images/powerlifting/IMG_0871.jpg' | relative_url }}" alt="NQ3 Competition" loading="lazy">
-            <img src="{{ '/assets/images/powerlifting/IMG_0909.jpg' | relative_url }}" alt="NQ3 Competition" loading="lazy">
-            <img src="{{ '/assets/images/powerlifting/IMG_0931.jpg' | relative_url }}" alt="NQ3 Competition" loading="lazy">
-            <img src="{{ '/assets/images/powerlifting/IMG_0959.jpg' | relative_url }}" alt="NQ3 Competition" loading="lazy">
-            <img src="{{ '/assets/images/powerlifting/IMG_0979.jpg' | relative_url }}" alt="NQ3 Competition" loading="lazy">
+            <figure>
+                <img src="{{ '/assets/images/powerlifting/teja-deadlift-platform.jpg' | relative_url }}" alt="Sai Teja setting up for a competition squat" loading="lazy">
+                <figcaption>Squat attempt: the part nobody sees is the setup before the lift.</figcaption>
+            </figure>
+            <figure>
+                <img src="{{ '/assets/images/powerlifting/teja-lift-setup.jpg' | relative_url }}" alt="Sai Teja under the bar before a competition attempt" loading="lazy">
+                <figcaption>Under the bar, choosing patience over panic.</figcaption>
+            </figure>
+            <figure>
+                <img src="{{ '/assets/images/powerlifting/teja-podium.jpg' | relative_url }}" alt="Sai Teja standing on the podium after a powerlifting meet" loading="lazy">
+                <figcaption>Third place after rebuilding through setbacks.</figcaption>
+            </figure>
+            <figure>
+                <img src="{{ '/assets/images/powerlifting/meet-day-team.jpg' | relative_url }}" alt="Powerlifting meet day group photo" loading="lazy">
+                <figcaption>Meet day is personal, but the environment matters.</figcaption>
+            </figure>
+            <figure>
+                <img src="{{ '/assets/images/powerlifting/meet-day-coach.jpg' | relative_url }}" alt="Sai Teja after a powerlifting meet with another athlete" loading="lazy">
+                <figcaption>Community, feedback, and the people who keep you grounded.</figcaption>
+            </figure>
+            <figure>
+                <img src="{{ '/assets/images/powerlifting/teja-strength-portrait.jpg' | relative_url }}" alt="Sai Teja gripping the bar before a deadlift" loading="lazy">
+                <figcaption>Strength built slowly, rep by rep.</figcaption>
+            </figure>
         </div>
 
         <!-- Coach -->
@@ -664,9 +816,12 @@
             </div>
         </div>
 
-        <footer style="margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1.5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; display: flex; justify-content: space-between; color: var(--text-meta);">
+        <footer style="margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 1.5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; color: var(--text-meta);">
             <span>© 2026 Sai</span>
-            <a href="{{ '/' | relative_url }}" style="color: var(--text-meta); border-bottom: none;">← Back to blog</a>
+            <span>
+                <a href="https://sai21112000.github.io/tejalifts/#home" target="_blank" rel="noopener" style="color: var(--text-meta); border-bottom: none; margin-right: 1rem;">Tejalifts Coaching →</a>
+                <a href="{{ '/' | relative_url }}" style="color: var(--text-meta); border-bottom: none;">← Back to blog</a>
+            </span>
         </footer>
 
     </main>
