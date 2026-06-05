@@ -21,54 +21,40 @@
     <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
 </head>
 <body>
-    <!-- Reading Progress Bar -->
     <div class="progress-bar" id="progress-bar"></div>
 
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">◐</button>
+    <header class="site-header">
+        <div class="site-header-inner">
+            <a class="brand-mark" href="{{ '/' | relative_url }}">Saiteja Vaidya</a>
+            <nav class="primary-nav" aria-label="Primary navigation">
+                <a href="{{ '/#research' | relative_url }}">Research</a>
+                <a href="{{ '/writing.html' | relative_url }}">Essays</a>
+                <a href="{{ '/#projects' | relative_url }}">Projects</a>
+                <a href="{{ '/about.html' | relative_url }}">About</a>
+            </nav>
+        </div>
+    </header>
 
     <main>
         {{ content }}
     </main>
 
     <script>
-    // Reading Progress Bar
-    window.addEventListener('scroll', function() {
-        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        var progress = (scrollTop / scrollHeight) * 100;
-        document.getElementById('progress-bar').style.width = progress + '%';
-    });
-
-    // Dark/Light Toggle
     (function() {
-        var toggle = document.getElementById('theme-toggle');
-        var savedTheme = localStorage.getItem('theme');
+        var progressBar = document.getElementById('progress-bar');
+        if (!progressBar) return;
 
-        if (savedTheme) {
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            toggle.textContent = savedTheme === 'dark' ? '◑' : '◐';
+        function updateProgress() {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            progressBar.style.width = progress + '%';
         }
 
-        toggle.addEventListener('click', function() {
-            var current = document.documentElement.getAttribute('data-theme');
-            var next;
-
-            if (current === 'dark') {
-                next = 'light';
-            } else if (current === 'light') {
-                next = 'dark';
-            } else {
-                next = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'dark';
-            }
-
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-            toggle.textContent = next === 'dark' ? '◑' : '◐';
-        });
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
     })();
 
-    // Image Lightbox with Zoom + Drag-to-Pan + Close Button
     (function() {
         var overlay = document.createElement('div');
         overlay.className = 'lightbox-overlay';
@@ -89,7 +75,6 @@
             panX = 0; panY = 0;
         }
 
-        // Open lightbox on image click
         document.querySelectorAll('.content img, article img').forEach(function(img) {
             img.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -103,7 +88,6 @@
             });
         });
 
-        // Toggle zoom on click
         overlayImg.addEventListener('click', function(e) {
             if (isDragging) return;
             e.stopPropagation();
@@ -119,7 +103,6 @@
             }
         });
 
-        // Drag to pan when zoomed
         overlayImg.addEventListener('mousedown', function(e) {
             if (!isZoomed) return;
             e.preventDefault();
@@ -140,23 +123,19 @@
             if (isDragging) {
                 isDragging = false;
                 overlayImg.style.cursor = 'grab';
-                // Prevent the click from firing after drag
                 setTimeout(function() { isDragging = false; }, 100);
             }
         });
 
-        // Close on background click
         overlay.addEventListener('click', function(e) {
             if (e.target === overlay) closeLightbox();
         });
 
-        // Close button
         closeBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             closeLightbox();
         });
 
-        // Escape to close
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeLightbox();
         });

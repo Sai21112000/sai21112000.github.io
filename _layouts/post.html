@@ -2,14 +2,14 @@
 layout: default
 ---
 
-<aside class="toc-sidebar" id="toc-sidebar">
+<aside class="toc-sidebar" id="toc-sidebar" aria-label="Table of contents">
     <div class="toc-header">Contents</div>
     <nav class="toc-nav" id="toc-nav"></nav>
 </aside>
 
 <div class="post-wrapper">
     <nav class="post-nav animate-enter">
-        <a href="{{ '/' | relative_url }}" class="nav-back">← All posts</a>
+        <a href="{{ '/writing.html' | relative_url }}" class="nav-back">← Essays</a>
     </nav>
 
     <article class="post-article animate-enter" style="animation-delay: 0.05s;">
@@ -51,7 +51,6 @@ layout: default
             </div>
         </div>
         
-        <!-- Comments via GitHub Discussions -->
         <div class="post-comments">
             <h3>Discussion</h3>
             <script src="https://giscus.app/client.js"

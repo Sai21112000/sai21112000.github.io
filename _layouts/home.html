@@ -4,87 +4,110 @@ layout: default
 
 <div class="home-wrapper">
 
-<!-- Hero Section -->
-<section class="hero animate-enter">
-    <h1 class="site-title">Sai Teja Vaidya</h1>
-    <p class="site-tagline">Computer Vision Engineer · AI Researcher · Building systems that see</p>
-    <nav class="site-nav">
-        <a href="{{ '/about.html' | relative_url }}">About</a>
-        <a href="{{ '/writing.html' | relative_url }}">Writing</a>
-
-        <a href="{{ '/philosophy.html' | relative_url }}">Philosophy</a>
-        <a href="{{ '/powerlifting.html' | relative_url }}">Powerlifting</a>
-    </nav>
+<section class="home-hero animate-enter">
+    <p class="eyebrow">AI/ML Engineer · Computer Vision Researcher · Competitive Powerlifter</p>
+    <h1>Systems that see, measure, and ship.</h1>
+    <p class="hero-deck">
+        Long-form engineering notes on YOLO architectures, instance segmentation, SAM, UAV remote sensing, agriculture analytics, and the workflows that keep research moving.
+    </p>
 </section>
 
-<!-- Latest Post (Featured) -->
 {% assign featured = site.posts.first %}
 {% if featured %}
-<section class="featured-post animate-enter" style="animation-delay: 0.05s;">
-    <span class="section-label">Latest</span>
-    <article class="post-card featured">
-        <h2 class="post-title">
-            <a href="{{ featured.url | relative_url }}">{{ featured.title }}</a>
-        </h2>
+<section class="feature-grid animate-enter" id="research" style="animation-delay: 0.05s;" aria-label="Featured research and essays">
+    <article class="feature-primary">
+        <p class="section-kicker">Latest Feature</p>
+        <h2><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h2>
         {% if featured.description %}
-        <p class="post-description">{{ featured.description }}</p>
+        <p>{{ featured.description }}</p>
         {% endif %}
-        <div class="post-meta">
-            <span class="post-date">{{ featured.date | date: "%b %d, %Y" }}</span>
-            <span class="post-readtime">{{ featured.content | number_of_words | divided_by: 200 | at_least: 1 }} min read</span>
-            {% if featured.tags.size > 0 %}
-            <span class="post-tags">
-                {% for tag in featured.tags limit: 4 %}
-                <span class="tag">{{ tag }}</span>
-                {% endfor %}
-            </span>
-            {% endif %}
+        <div class="meta-row">
+            <time datetime="{{ featured.date | date_to_xmlschema }}">{{ featured.date | date: "%B %d, %Y" }}</time>
+            <span>{{ featured.content | number_of_words | divided_by: 200 | at_least: 1 }} min read</span>
         </div>
+        {% if featured.tags.size > 0 %}
+        <div class="tag-row" aria-label="Featured post tags">
+            {% for tag in featured.tags limit: 4 %}
+            <span>{{ tag }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
     </article>
+
+    <aside class="feature-aside" aria-label="Core metrics and directives">
+        <p class="section-kicker">Core Metrics & Directives</p>
+        <ol class="numbered-list">
+            <li>
+                <span>01</span>
+                <div>
+                    <strong>Vision Systems</strong>
+                    <p>YOLOv8, YOLOv11, SAM, segmentation, and deployment notes.</p>
+                </div>
+            </li>
+            <li>
+                <span>02</span>
+                <div>
+                    <strong>Remote Sensing</strong>
+                    <p>UAV imagery, multi-GSD evaluation, and canopy analytics.</p>
+                </div>
+            </li>
+            <li>
+                <span>03</span>
+                <div>
+                    <strong>Strength Practice</strong>
+                    <p>Powerlifting as a repeatable system for pressure and recovery.</p>
+                </div>
+            </li>
+        </ol>
+    </aside>
 </section>
 {% endif %}
 
-<!-- Quote Card -->
-{% if page.featured_quote %}
-<section class="quote-section animate-enter" style="animation-delay: 0.1s;">
-    <blockquote>{{ page.featured_quote }}</blockquote>
-    <cite>{{ page.featured_quote_source }}</cite>
+<section class="project-band animate-enter" id="projects" style="animation-delay: 0.1s;" aria-label="Selected projects">
+    <p class="section-kicker">Selected Projects</p>
+    <div class="project-list">
+        <a href="{{ '/posts/b6-a-framework-for-flying-smarter.html' | relative_url }}">
+            <span>UAV Agriculture Analytics</span>
+            <small>Detection and canopy estimation across multi-GSD drone imagery.</small>
+        </a>
+        <a href="{{ '/posts/parameter-golf-baseline.html' | relative_url }}">
+            <span>Parameter Golf Baseline</span>
+            <small>Cloud GPU reproducibility notes for compact language model training.</small>
+        </a>
+        <a href="{{ '/powerlifting.html' | relative_url }}">
+            <span>Powerlifting Log</span>
+            <small>IPF raw 74kg meet data, lift progression, and training history.</small>
+        </a>
+    </div>
 </section>
-{% endif %}
 
-<!-- All Posts -->
-{% if site.posts.size > 1 %}
-<section class="all-posts animate-enter" style="animation-delay: 0.15s;">
-    <div class="section-header">
-        <span class="section-label">All Posts</span>
-        <span class="post-count">{{ site.posts.size }} total</span>
+{% if site.posts.size > 0 %}
+<section class="chronological-feed animate-enter" style="animation-delay: 0.15s;" aria-label="Chronological essay feed">
+    <div class="feed-header">
+        <p class="section-kicker">Essays</p>
+        <a href="{{ '/writing.html' | relative_url }}">View all</a>
     </div>
     <ul class="post-list" id="post-list">
-        {% for post in site.posts offset:1 %}
+        {% for post in site.posts %}
         <li class="post-item" data-url="{{ post.url | relative_url }}">
             <div class="post-item-main">
+                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
                 <a href="{{ post.url | relative_url }}" class="post-item-title">{{ post.title }}</a>
                 {% if post.description %}
                 <p class="post-item-description">{{ post.description }}</p>
                 {% endif %}
             </div>
-            <div class="post-item-meta">
-                <span class="post-item-date">{{ post.date | date: "%b %d" }}</span>
-                {% if post.tags.size > 0 %}
-                <span class="post-item-tags">
-                    {% for tag in post.tags limit: 2 %}
-                    <span class="tag-small">{{ tag }}</span>
-                    {% endfor %}
-                </span>
-                {% endif %}
-            </div>
+            <figure class="feed-thumb" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </figure>
         </li>
         {% endfor %}
     </ul>
 </section>
 {% endif %}
 
-<!-- Footer -->
 <footer class="site-footer animate-enter" style="animation-delay: 0.2s;">
     <div class="footer-links">
         <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="noopener">LinkedIn</a>
@@ -94,7 +117,7 @@ layout: default
     </div>
     <div class="footer-secondary">
         <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
-
+        <a href="{{ '/philosophy.html' | relative_url }}">Philosophy</a>
     </div>
 </footer>
 
