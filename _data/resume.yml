@@ -1,35 +1,131 @@
 name: Sai Teja Vaidya
-title: Computer Vision & Remote Sensing Engineer
+title: Applied AI & GenAI Engineer | Forward Deployed Engineer
+location: Bangkok, Thailand
 email: vaidyasaiteja143@gmail.com
-linkedin: https://www.linkedin.com/in/vaidyasai/
-github: https://github.com/Sai21112000
-summary: Computer vision and remote sensing engineer based in Thailand, focused on deep learning for UAV imagery, precision agriculture, and practical research systems.
+phone: "+66-0825674212"
+summary: Applied AI and GenAI Engineer with a Forward Deployed Engineer (FDE) mindset and a track record of turning ambiguous problems into working AI systems. Ships LLM- and agent-powered workflows, computer vision pipelines, and edge-optimized models end-to-end under real latency, cost, and accuracy constraints. Thesis work delivered an AI Teacher Agent that cut annotation time by over 80%, demonstrating direct problem ownership from stakeholder need and experimentation through deployment and measurable impact.
+pdf: /assets/pdfs/SaiTeja_Vaidya_Resume.pdf
 
-research:
-  - title: Oil-palm detection and canopy estimation
-    context: Master's thesis
-    description: Built an end-to-end research pipeline using YOLOv8, YOLOv11, SAM, and multi-GSD UAV imagery for instance segmentation and physical canopy measurement.
-  - title: Pixel-level and generative AI research interests
-    description: Interested in angular-temporal interaction, real-time object detection, federated learning for generative AI, adversarial defense, and multimodal alignment.
-
-education:
-  - degree: Master of Engineering, Information and Communications Technologies
-    institution: Asian Institute of Technology — RSGIS
-    gpa: GPA 3.0/4.0
-  - degree: Bachelor of Engineering, Computer Science
-    institution: Jawaharlal Nehru Technological University, Hyderabad
-    gpa: GPA 3.2/4.0
+links:
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/vaidyasai/
+  - label: Blog
+    url: https://sai21112000.github.io/
+  - label: GitHub
+    url: https://github.com/Sai21112000
+  - label: X
+    url: https://x.com/vaidyasaiteja
 
 skills:
-  - name: Computer vision
-    items: [YOLO, SAM, Mask R-CNN, instance segmentation, object detection]
-  - name: ML engineering
-    items: [Python, PyTorch, Ultralytics, OpenCV, Roboflow]
-  - name: Geospatial
-    items: [UAV imagery, GDAL, QGIS, ArcGIS, SNAP, multi-GSD analysis]
-  - name: AI systems
-    items: [LLM agents, prompt engineering, text-to-image, text-to-video]
-  - name: Web and publishing
-    items: [Jekyll, GitHub Pages, Obsidian, WordPress]
+  - name: AI/GenAI & Agents
+    items: [LangChain, LangGraph, RAG, AI Agent Orchestration, Prompt Engineering, LLMOps, Multi-Agent Systems]
+  - name: Computer Vision
+    items: [YOLOv8/v11, Mask R-CNN, SAM, Instance/Semantic Segmentation, OpenCV, Object Detection]
+  - name: ML/DL Frameworks
+    items: [PyTorch, HuggingFace, ONNX, Scikit-learn]
+  - name: Cloud & MLOps
+    items: [AWS (SageMaker, Bedrock), Model Deployment, Quantization, Edge Inference]
+  - name: Geospatial AI
+    items: [UAV Imagery, Spatial Intelligence, Geospatial Data Pipelines, Multi-GSD Analysis]
+  - name: Languages/Tools
+    items: [Python, TypeScript/JavaScript, LaTeX, Git/GitHub, Jupyter, Docker]
 
-community: IPF-registered competitive powerlifter under TAAP/IPF and Head of Events for powerlifting at the Asian Institute of Technology.
+experience:
+  - role: AI/ML Trainee — Computer Vision & GenAI Platforms
+    company: AI Brain Lab (Contract)
+    location: Bangkok, Thailand (Hybrid)
+    dates: Apr 2025 — Jan 2026
+    bullets:
+      - Collaborated with AI research and engineering teams on computer vision tasks and applied machine learning algorithms for production platforms.
+      - Designed intelligent platforms transforming complex operational workflows into data-driven insights, improving customer service outcomes.
+      - Contributed to AI-driven workflow automation solutions, enhancing operational efficiency and end-user experience.
+  - role: AI Computer Vision Researcher
+    company: Asian Institute of Technology (AIT)
+    location: Khlong Luang, Thailand
+    dates: Aug 2023 — Jan 2026
+    bullets:
+      - "Led “AI Agent-Orchestrated Instance Segmentation”: detection and canopy size estimation of oil palm trees using UAV imagery across 8 resolution levels (0.03–0.20m GSD)."
+      - Deployed best-performing model weights as an AI Teacher Agent for automatic annotation, reducing manual labelling time by over 80%.
+      - Benchmarked 6 models (YOLOv8, YOLOv11, Mask R-CNN, Hybrid-SAM) achieving mean IoU of 0.77 and F1 of 0.789 at optimal 0.04m GSD.
+      - Supervised by Dr. Sarawut Ninsawat, Prof. Nitin Tripathi, and Dr. Sanit Arunplod; published Q1 journal paper and successfully defended thesis.
+  - role: Staff Project Assistant
+    company: Asian Institute of Technology (Contract)
+    location: Bangkok, Thailand
+    dates: Aug 2025 — Dec 2025
+    bullets:
+      - Planned and executed internal/external events for an international graduate community, managing hybrid Zoom setups for technical operations.
+      - Produced multimedia content and website updates, aligning messaging with program objectives and stakeholder needs.
+  - role: Student Project Assistant
+    company: Asian Institute of Technology (Part-time)
+    location: Pathum Thani, Thailand
+    dates: Aug 2024 — Jun 2025
+    bullets:
+      - Coordinated academic programs and multicultural seminars/technical talks, boosting student engagement across the AIT_SDP program.
+      - Designed information-flow systems that improved communication with a diverse international student body.
+  - role: Geospatial AI Analyst
+    company: Asian Institute of Technology
+    location: Pathum Thani, Thailand
+    dates: Aug 2024 — Dec 2024
+    bullets:
+      - Conducted a literature review of AI-assisted COVID-19 trend analysis and spatial hotspot mapping methods (2019–2022).
+      - Synthesized four forecasting and four spatial hotspot-detection methodologies into a decision-intelligence comparison of predictive performance.
+
+projects:
+  - title: AI Sales Enablement Speech Coach
+    dates: Apr 2026 — Present
+    stack: Tauri, React, Whisper (local inference)
+    bullets:
+      - Built a real-time teleprompter and rehearsal coach ingesting scripts/slides via OCR with local speech transcription for instant pacing and filler-word feedback.
+      - "Designed a latency-budgeted feedback engine: fast local pass for immediate flags, slower deep pass for structural/tone analysis."
+  - title: Compounding Institutional Memory AI Agent
+    dates: Mar 2026 — Present
+    stack: NetworkX, Vector Store
+    bullets:
+      - Built a self-organizing memory graph (episodes + abstractions as nodes) that reduces agent run cost over time instead of scaling context tokens.
+      - Implemented a reflection agent merging recurring patterns into reusable abstractions; benchmarked cost-per-task, retrieval hit rate, and accuracy delta across a 100–200 task stream.
+  - title: Cost-Governed Ops Triage Agent
+    dates: Jan 2026 — Present
+    stack: LangGraph, Qwen2.5-3B, API Fronting
+    bullets:
+      - Built a LangGraph-based agentic router that sends each support ticket to the cheapest capable model tier while holding accuracy steady.
+      - Added early-exit and guardrails with a “return-to-control” path, benchmarking cost-per-ticket reduction and p95 latency vs. an always-expensive baseline.
+  - title: AI Thesis Agent Kit (Open Source)
+    dates: Jun 2025 — Apr 2026
+    stack: Multi-Agent Orchestration, LLM Guardrails
+    bullets:
+      - Designed a 9-agent research writing system (interrogator, writer, reviewer, citation checker, and more) enforcing 6 immutable writing laws to eliminate hallucination.
+      - Built a 3-layer architecture and 90% confidence gate blocking drafting until research foundations are solid; used to support Q1 paper acceptance and thesis defense.
+  - title: Qualcomm AI Hub LPCVC 2026 — Track 1
+    dates: Mar 2026 — Apr 2026
+    stack: ONNX, Edge Inference, XR2 Gen 2
+    bullets:
+      - "Reproduced the LPCVC 2026 image-to-text retrieval baseline for XR2 Gen 2 (proxy edge device): ONNX export, model compilation/profiling, dataset upload."
+      - Achieved a validated baseline of Recall@10 = 0.7299 with 29.3ms image encoder and 5.4ms text encoder latency; resolved key Python/SSL/dataset reproducibility blockers.
+  - title: Oil Palm Instance Segmentation (Master's Thesis)
+    dates: Jan 2025 — Jan 2026
+    stack: YOLOv8/v11, Mask R-CNN, SAM
+    bullets:
+      - Delivered accurate oil palm crown delineation and canopy size estimation from UAV RGB imagery across 8 GSD levels (0.03–0.20m) for the $67B global oil palm industry.
+      - Compared 6 segmentation models on precision, recall, F1, IoU, and crown geometry error; agent-in-the-loop annotation cut labelling time by 80%.
+
+education:
+  - degree: Master's Degree, Information and Communications Technology
+    institution: Asian Institute of Technology
+    location: Thailand
+    dates: Jan 2023 — Jan 2026
+    gpa: GPA 3.0/4
+    bullets:
+      - "Thesis: “Detection and Canopy Size Estimation of Oil Palm Trees Using YOLOv8, YOLOv11, and SAM on Multi-GSD UAV Imagery”"
+  - degree: Bachelor of Technology, Computer Science
+    institution: JNTUH College of Engineering, Hyderabad
+    dates: Apr 2019 — Nov 2022
+    gpa: GPA 8.8/10
+    bullets:
+      - Built “College Buddy App” — a peer-to-peer campus marketplace for sustainable textbook exchange; Student Volunteer & Coordinator, QUEST Technical Fest.
+
+certifications:
+  - AWS AI Practitioner (AIF-C01) — Micro-Credentials Track, Amazon Web Services (Oct 2025)
+  - "LangChain Academy — Quickstart: LangChain Essentials (Python), LangChain (Jan 2026)"
+  - "Kaggle x Google — 5-Day AI Agents: Intensive Vibe Coding Course, Kaggle (Jun 2026)"
+  - Generative AI Mastermind, Outskill (Nov 2025); Generative AI Essentials & Introduction and Applications, IBM (Jul 2025)
+  - Foundational Mathematics for AI, Johns Hopkins University (Jul 2025); NVIDIA Prompt Engineering and Data Analysis, Whizlabs (Jul 2025)

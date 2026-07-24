@@ -108,4 +108,4 @@ Full operational guide with Mermaid decision diagrams and configuration files: [
 
 *If this series was useful, the full thesis is available on request. The source code for all experiments is linked across each post's companion repository.*
 
-*— Sai Teja Vaidya, M.Eng. Remote Sensing & GIS, Asian Institute of Technology, Thailand*
+*— Sai Teja Vaidya, Applied AI & GenAI Engineer, Asian Institute of Technology, Thailand*

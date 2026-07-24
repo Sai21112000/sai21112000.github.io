@@ -1,14 +1,34 @@
-- title: UAV Agriculture Analytics
+- title: Oil Palm Instance Segmentation
   type: research
-  description: A multi-GSD computer vision pipeline for oil-palm detection, instance segmentation, and canopy measurement from drone imagery.
+  description: A Geospatial AI and computer vision pipeline for oil-palm detection, instance segmentation, and canopy measurement across eight UAV image resolutions.
   url: /sequences/uav-thesis.html
-  tags: [computer vision, UAV, remote sensing]
+  tags: [computer vision, Geospatial AI, agent-in-the-loop]
 
-- title: Thesis Agent Kit
+- title: AI Thesis Agent Kit
   type: open-source
-  description: An open-source system of nine AI agents for planning, drafting, auditing, and defending thesis research.
+  description: A nine-agent research writing system with immutable writing laws, layered orchestration, and a confidence gate designed to prevent unsupported drafting.
   url: /posts/thesis-agent-kit.html
-  tags: [AI agents, research, open source]
+  tags: [GenAI, multi-agent systems, LLM guardrails]
+
+- title: AI Sales Enablement Speech Coach
+  type: research
+  description: A local-first teleprompter and rehearsal coach using OCR and speech transcription for immediate pacing, filler-word, structure, and tone feedback.
+  tags: [Applied AI, local inference, human feedback]
+
+- title: Compounding Institutional Memory AI Agent
+  type: research
+  description: A self-organizing memory graph and reflection agent that converts recurring episodes into reusable abstractions while measuring cost and retrieval quality.
+  tags: [agentic systems, knowledge graphs, vector search]
+
+- title: Cost-Governed Ops Triage Agent
+  type: research
+  description: A LangGraph router that selects the cheapest capable model tier for each support ticket, with early exits, guardrails, and a return-to-control path.
+  tags: [FDE, LangGraph, cost governance]
+
+- title: Qualcomm AI Hub LPCVC 2026 — Track 1
+  type: research
+  description: A reproduced image-to-text retrieval baseline compiled and profiled for XR2 Gen 2, reaching Recall@10 of 0.7299 with measured encoder latency.
+  tags: [edge AI, ONNX, model profiling]
 
 - title: Obsidian Jekyll Publisher
   type: open-source

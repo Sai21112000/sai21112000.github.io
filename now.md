@@ -10,7 +10,7 @@ permalink: /now.html
 
 ## Working on
 
-Deepening my work in computer vision, remote sensing, and reproducible AI research. I am also improving the systems I use to turn experiments and thesis work into useful technical writing.
+Building Applied AI and GenAI systems with an FDE mindset: agentic workflows, computer vision, edge AI, and Geospatial AI that move from ambiguous requirements to measurable outcomes. I am also improving the systems I use to turn experiments and thesis work into useful technical writing.
 
 ## Learning
 
