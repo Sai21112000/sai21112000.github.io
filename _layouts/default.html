@@ -1,145 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title | default: site.title }}</title>
-    <meta name="description" content="{{ page.description | default: site.description }}">
-
-    <!-- Open Graph / Social Sharing -->
-    <meta property="og:title" content="{{ page.title | default: site.title }}">
-    <meta property="og:description" content="{{ page.description | default: site.description }}">
-    <meta property="og:url" content="{{ page.url | absolute_url }}">
-    <meta property="og:site_name" content="{{ site.title }}">
-    <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="{{ page.title | default: site.title }}">
-    <meta name="twitter:description" content="{{ page.description | default: site.description }}">
-
-    <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
-    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
-    <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
+    {% include head.html %}
 </head>
 <body>
     <div class="progress-bar" id="progress-bar"></div>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    {% include header.html %}
 
-    <header class="site-header">
-        <div class="site-header-inner">
-            <a class="brand-mark" href="{{ '/' | relative_url }}">Saiteja Vaidya</a>
-            <nav class="primary-nav" aria-label="Primary navigation">
-                <a href="{{ '/#research' | relative_url }}">Research</a>
-                <a href="{{ '/writing.html' | relative_url }}">Essays</a>
-                <a href="{{ '/#projects' | relative_url }}">Projects</a>
-                <a href="{{ '/about.html' | relative_url }}">About</a>
-            </nav>
-        </div>
-    </header>
-
-    <main>
+    <main id="main-content">
         {{ content }}
     </main>
-
-    <script>
-    (function() {
-        var progressBar = document.getElementById('progress-bar');
-        if (!progressBar) return;
-
-        function updateProgress() {
-            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-            progressBar.style.width = progress + '%';
-        }
-
-        window.addEventListener('scroll', updateProgress, { passive: true });
-        updateProgress();
-    })();
-
-    (function() {
-        var overlay = document.createElement('div');
-        overlay.className = 'lightbox-overlay';
-        overlay.innerHTML = '<button class="lightbox-close" aria-label="Close">✕</button><img src="" alt="Zoomed image">';
-        document.body.appendChild(overlay);
-
-        var overlayImg = overlay.querySelector('img');
-        var closeBtn = overlay.querySelector('.lightbox-close');
-        var isZoomed = false;
-        var isDragging = false;
-        var startX, startY, panX = 0, panY = 0;
-
-        function closeLightbox() {
-            overlay.classList.remove('active');
-            overlayImg.classList.remove('zoomed');
-            overlayImg.style.transform = '';
-            isZoomed = false;
-            panX = 0; panY = 0;
-        }
-
-        document.querySelectorAll('.content img, article img').forEach(function(img) {
-            img.addEventListener('click', function(e) {
-                e.stopPropagation();
-                overlayImg.src = this.src;
-                overlayImg.alt = this.alt;
-                overlayImg.classList.remove('zoomed');
-                overlayImg.style.transform = '';
-                isZoomed = false;
-                panX = 0; panY = 0;
-                overlay.classList.add('active');
-            });
-        });
-
-        overlayImg.addEventListener('click', function(e) {
-            if (isDragging) return;
-            e.stopPropagation();
-            if (isZoomed) {
-                isZoomed = false;
-                overlayImg.classList.remove('zoomed');
-                overlayImg.style.transform = '';
-                panX = 0; panY = 0;
-            } else {
-                isZoomed = true;
-                overlayImg.classList.add('zoomed');
-                overlayImg.style.transform = 'scale(1.8)';
-            }
-        });
-
-        overlayImg.addEventListener('mousedown', function(e) {
-            if (!isZoomed) return;
-            e.preventDefault();
-            isDragging = true;
-            startX = e.clientX - panX;
-            startY = e.clientY - panY;
-            overlayImg.style.cursor = 'grabbing';
-        });
-
-        document.addEventListener('mousemove', function(e) {
-            if (!isDragging) return;
-            panX = e.clientX - startX;
-            panY = e.clientY - startY;
-            overlayImg.style.transform = 'scale(1.8) translate(' + (panX / 1.8) + 'px, ' + (panY / 1.8) + 'px)';
-        });
-
-        document.addEventListener('mouseup', function() {
-            if (isDragging) {
-                isDragging = false;
-                overlayImg.style.cursor = 'grab';
-                setTimeout(function() { isDragging = false; }, 100);
-            }
-        });
-
-        overlay.addEventListener('click', function(e) {
-            if (e.target === overlay) closeLightbox();
-        });
-
-        closeBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            closeLightbox();
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeLightbox();
-        });
-    })();
-    </script>
+    {% include footer.html %}
+    {% include scripts.html %}
+    {{ page.after_scripts }}
 </body>
 </html>

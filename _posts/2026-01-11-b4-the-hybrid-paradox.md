@@ -3,6 +3,8 @@ layout: post
 title: "The Hybrid Paradox: Why SAM + YOLO Sounds Better Than It Is"
 description: "SAM 2.1 was trained on 1 billion masks. My 56MB YOLO model still outperformed the hybrid pipeline in most conditions. Here's the detailed explanation."
 tags: [sam, yolo, segment-anything, hybrid-pipeline, deep-learning, research]
+series: uav-thesis
+series_order: 4
 date: 2026-01-11 08:00:00 +0700
 ---
 

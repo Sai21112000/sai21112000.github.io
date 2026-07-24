@@ -3,6 +3,8 @@ layout: post
 title: "Six Models Enter, One Problem Wins: A Head-to-Head Segmentation Showdown"
 description: "I trained YOLOv8, YOLOv11, Mask R-CNN, and two SAM hybrid pipelines on oil palm drone data. Here's what the numbers actually showed — including the result that surprised me most."
 tags: [yolo, mask-rcnn, instance-segmentation, deep-learning, model-comparison, research]
+series: uav-thesis
+series_order: 3
 date: 2025-12-04 08:00:00 +0700
 ---
 

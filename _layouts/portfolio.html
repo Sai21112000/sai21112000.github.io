@@ -1,0 +1,31 @@
+---
+layout: default
+---
+<div class="portfolio-shell">
+  <header class="portfolio-header">
+    <p class="section-kicker">Selected work and experiments</p>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description }}</p>
+  </header>
+  {% assign types = "research,open-source,passion" | split: "," %}
+  {% for type in types %}
+  <section class="project-section">
+    <h2>{{ type | replace: "-", " " | capitalize }}</h2>
+    <div class="project-grid">
+      {% for project in site.data.projects %}
+        {% if project.type == type %}
+        <article class="project-card">
+          {% if project.image %}<img src="{{ project.image | relative_url }}" alt="" loading="lazy">{% endif %}
+          <div class="project-card-body">
+            <p class="project-type">{{ project.type | replace: "-", " " }}</p>
+            <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+            <p>{{ project.description }}</p>
+            <div class="tag-row">{% for tag in project.tags %}<span>{{ tag }}</span>{% endfor %}</div>
+          </div>
+        </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+</div>

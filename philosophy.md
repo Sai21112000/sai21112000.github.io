@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: philosophy
 title: Philosophy
 description: Quotes, notes, and observations
 ---

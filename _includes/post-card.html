@@ -1,0 +1,24 @@
+{% assign card_post = include.post %}
+<article class="post-card post-item" data-url="{{ card_post.url | relative_url }}" tabindex="-1">
+  <div class="post-card-copy">
+    <div class="post-card-meta">
+      <time datetime="{{ card_post.date | date_to_xmlschema }}">{{ card_post.date | date: "%b %d, %Y" }}</time>
+      <span>{{ card_post.content | number_of_words | divided_by: 200 | at_least: 1 }} min read</span>
+      {% if card_post.series %}<span>UAV thesis sequence</span>{% endif %}
+    </div>
+    <h2><a href="{{ card_post.url | relative_url }}">{{ card_post.title }}</a></h2>
+    {% if card_post.description %}<p>{{ card_post.description }}</p>{% endif %}
+    {% if card_post.tags.size > 0 %}
+    <div class="tag-row" aria-label="Tags">
+      {% for tag in card_post.tags limit: 3 %}<span>{{ tag }}</span>{% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  <a class="post-card-media fallback-{{ card_post.tags.first | default: 'essay' | slugify }}" href="{{ card_post.url | relative_url }}" tabindex="-1" aria-hidden="true">
+    {% if card_post.image %}
+      <img src="{{ card_post.image | relative_url }}" alt="" loading="lazy">
+    {% else %}
+      <span>{{ card_post.tags.first | default: "Essay" }}</span>
+    {% endif %}
+  </a>
+</article>

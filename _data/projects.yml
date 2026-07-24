@@ -1,0 +1,30 @@
+- title: UAV Agriculture Analytics
+  type: research
+  description: A multi-GSD computer vision pipeline for oil-palm detection, instance segmentation, and canopy measurement from drone imagery.
+  url: /sequences/uav-thesis.html
+  tags: [computer vision, UAV, remote sensing]
+
+- title: Thesis Agent Kit
+  type: open-source
+  description: An open-source system of nine AI agents for planning, drafting, auditing, and defending thesis research.
+  url: /posts/thesis-agent-kit.html
+  tags: [AI agents, research, open source]
+
+- title: Obsidian Jekyll Publisher
+  type: open-source
+  description: A publishing workflow that converts Obsidian wiki-links, embeds, and callouts into Jekyll-compatible Markdown.
+  url: /posts/obsidian-jekyll-plugin.html
+  tags: [Obsidian, Jekyll, publishing]
+
+- title: Parameter Golf Baseline
+  type: research
+  description: Reproducibility notes for running a compact language-model training baseline on a cloud H100.
+  url: /posts/parameter-golf-baseline.html
+  tags: [language models, reproducibility, cloud GPU]
+
+- title: Powerlifting Log
+  type: passion
+  description: Competition results, lift progression, meet photography, and the training history behind a 430 kg raw total.
+  url: /powerlifting.html
+  image: /assets/images/powerlifting/teja-strength-portrait.jpg
+  tags: [powerlifting, data, training]

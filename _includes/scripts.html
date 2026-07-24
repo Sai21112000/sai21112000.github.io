@@ -1,0 +1,83 @@
+<script>
+(function () {
+  var root = document.documentElement;
+  var themeToggle = document.getElementById('theme-toggle');
+  var navToggle = document.querySelector('.nav-toggle');
+  var nav = document.getElementById('primary-nav');
+  var progressBar = document.getElementById('progress-bar');
+
+  function syncGiscusTheme(theme) {
+    var frame = document.querySelector('.giscus-frame');
+    if (frame) frame.contentWindow.postMessage({ giscus: { setConfig: { theme: theme } } }, 'https://giscus.app');
+  }
+
+  function setTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    try { localStorage.setItem('theme', theme); } catch (e) {}
+    if (themeToggle) themeToggle.textContent = theme === 'dark' ? '☀' : '◐';
+    syncGiscusTheme(theme);
+    document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: theme } }));
+  }
+
+  if (themeToggle) {
+    themeToggle.textContent = root.getAttribute('data-theme') === 'dark' ? '☀' : '◐';
+    themeToggle.addEventListener('click', function () {
+      setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  if (navToggle && nav) {
+    navToggle.addEventListener('click', function () {
+      var open = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!open));
+      nav.classList.toggle('is-open', !open);
+    });
+    nav.addEventListener('click', function (event) {
+      if (event.target.tagName === 'A') {
+        navToggle.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+      }
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        navToggle.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+      }
+    });
+  }
+
+  if (document.querySelector('.post-comments')) {
+    var giscusObserver = new MutationObserver(function () {
+      if (document.querySelector('.giscus-frame')) {
+        syncGiscusTheme(root.getAttribute('data-theme') || 'light');
+        giscusObserver.disconnect();
+      }
+    });
+    giscusObserver.observe(document.body, { childList: true, subtree: true });
+  }
+
+  function updateProgress() {
+    if (!progressBar) return;
+    var max = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    progressBar.style.width = (max > 0 ? (document.documentElement.scrollTop / max) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  var overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.innerHTML = '<button class="lightbox-close" aria-label="Close image">✕</button><img src="" alt="">';
+  document.body.appendChild(overlay);
+  var overlayImg = overlay.querySelector('img');
+  function closeLightbox() { overlay.classList.remove('active'); }
+  document.querySelectorAll('.post-content img, .page-content img, .pl-gallery img').forEach(function (img) {
+    img.addEventListener('click', function () {
+      overlayImg.src = img.src;
+      overlayImg.alt = img.alt;
+      overlay.classList.add('active');
+    });
+  });
+  overlay.addEventListener('click', function (event) { if (event.target !== overlayImg) closeLightbox(); });
+  document.addEventListener('keydown', function (event) { if (event.key === 'Escape') closeLightbox(); });
+})();
+</script>

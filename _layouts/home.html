@@ -1,151 +1,82 @@
 ---
 layout: default
 ---
-
 <div class="home-wrapper">
-
-<section class="home-hero animate-enter">
-    <p class="eyebrow">AI/ML Engineer · Computer Vision Researcher · Competitive Powerlifter</p>
-    <h1>Systems that see, measure, and ship.</h1>
-    <p class="hero-deck">
-        Long-form engineering notes on YOLO architectures, instance segmentation, SAM, UAV remote sensing, agriculture analytics, and the workflows that keep research moving.
-    </p>
-</section>
-
-{% assign featured = site.posts.first %}
-{% if featured %}
-<section class="feature-grid animate-enter" id="research" style="animation-delay: 0.05s;" aria-label="Featured research and essays">
-    <article class="feature-primary">
-        <p class="section-kicker">Latest Feature</p>
-        <h2><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h2>
-        {% if featured.description %}
-        <p>{{ featured.description }}</p>
-        {% endif %}
-        <div class="meta-row">
-            <time datetime="{{ featured.date | date_to_xmlschema }}">{{ featured.date | date: "%B %d, %Y" }}</time>
-            <span>{{ featured.content | number_of_words | divided_by: 200 | at_least: 1 }} min read</span>
-        </div>
-        {% if featured.tags.size > 0 %}
-        <div class="tag-row" aria-label="Featured post tags">
-            {% for tag in featured.tags limit: 4 %}
-            <span>{{ tag }}</span>
-            {% endfor %}
-        </div>
-        {% endif %}
-    </article>
-
-    <aside class="feature-aside" aria-label="Core metrics and directives">
-        <p class="section-kicker">Core Metrics & Directives</p>
-        <ol class="numbered-list">
-            <li>
-                <span>01</span>
-                <div>
-                    <strong>Vision Systems</strong>
-                    <p>YOLOv8, YOLOv11, SAM, segmentation, and deployment notes.</p>
-                </div>
-            </li>
-            <li>
-                <span>02</span>
-                <div>
-                    <strong>Remote Sensing</strong>
-                    <p>UAV imagery, multi-GSD evaluation, and canopy analytics.</p>
-                </div>
-            </li>
-            <li>
-                <span>03</span>
-                <div>
-                    <strong>Strength Practice</strong>
-                    <p>Powerlifting as a repeatable system for pressure and recovery.</p>
-                </div>
-            </li>
-        </ol>
-    </aside>
-</section>
-{% endif %}
-
-<section class="project-band animate-enter" id="projects" style="animation-delay: 0.1s;" aria-label="Selected projects">
-    <p class="section-kicker">Selected Projects</p>
-    <div class="project-list">
-        <a href="{{ '/posts/b6-a-framework-for-flying-smarter.html' | relative_url }}">
-            <span>UAV Agriculture Analytics</span>
-            <small>Detection and canopy estimation across multi-GSD drone imagery.</small>
-        </a>
-        <a href="{{ '/posts/parameter-golf-baseline.html' | relative_url }}">
-            <span>Parameter Golf Baseline</span>
-            <small>Cloud GPU reproducibility notes for compact language model training.</small>
-        </a>
-        <a href="{{ '/powerlifting.html' | relative_url }}">
-            <span>Powerlifting Log</span>
-            <small>IPF raw 74kg meet data, lift progression, and training history.</small>
-        </a>
+  <section class="home-intro animate-enter">
+    <img src="{{ '/assets/images/sai-teja-portrait.jpg' | relative_url }}" alt="Sai Teja Vaidya" loading="eager">
+    <div>
+      <p class="eyebrow">Computer vision · Remote sensing · Practical AI</p>
+      <h1>Research notes for systems that see, measure, and ship.</h1>
+      <p>I'm Sai, an engineer in Thailand writing clear, technical essays about vision models, UAV imagery, research workflows, and building with AI.</p>
     </div>
-</section>
+  </section>
 
-{% if site.posts.size > 0 %}
-<section class="chronological-feed animate-enter" style="animation-delay: 0.15s;" aria-label="Chronological essay feed">
-    <div class="feed-header">
-        <p class="section-kicker">Essays</p>
-        <a href="{{ '/writing.html' | relative_url }}">View all</a>
-    </div>
-    <ul class="post-list" id="post-list">
+  <div class="home-grid">
+    <section class="essay-feed" aria-labelledby="latest-essays">
+      <div class="section-heading">
+        <div><p class="section-kicker">Latest</p><h2 id="latest-essays">Essays</h2></div>
+        <a href="{{ '/writing.html' | relative_url }}">Full archive →</a>
+      </div>
+      <div id="post-list">
         {% for post in site.posts %}
-        <li class="post-item" data-url="{{ post.url | relative_url }}">
-            <div class="post-item-main">
-                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
-                <a href="{{ post.url | relative_url }}" class="post-item-title">{{ post.title }}</a>
-                {% if post.description %}
-                <p class="post-item-description">{{ post.description }}</p>
-                {% endif %}
-            </div>
-            <figure class="feed-thumb" aria-hidden="true">
-                <span></span>
-                <span></span>
-                <span></span>
-            </figure>
-        </li>
+          {% include post-card.html post=post %}
         {% endfor %}
-    </ul>
-</section>
-{% endif %}
+      </div>
+      <p class="keyboard-hint" aria-hidden="true"><kbd>j</kbd>/<kbd>k</kbd> select · <kbd>Enter</kbd> open</p>
+    </section>
 
-<footer class="site-footer animate-enter" style="animation-delay: 0.2s;">
-    <div class="footer-links">
-        <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/Sai21112000" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://x.com/vaidyasaiteja" target="_blank" rel="noopener">Twitter</a>
-        <a href="https://www.youtube.com/@saitejavaidya/streams" target="_blank" rel="noopener">YouTube</a>
-    </div>
-    <div class="footer-secondary">
-        <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
-        <a href="{{ '/philosophy.html' | relative_url }}">Philosophy</a>
-    </div>
-</footer>
-
-</div><!-- /home-wrapper -->
+    <aside class="home-sidebar">
+      <section class="sidebar-card">
+        <p class="section-kicker">Now</p>
+        <h2>Current focus</h2>
+        <p>Computer vision research, reproducible AI experiments, and building sustainable training momentum.</p>
+        <a href="{{ '/now.html' | relative_url }}">What I'm doing now →</a>
+      </section>
+      <section class="sidebar-card sequence-card">
+        <p class="section-kicker">Featured sequence · 6 parts</p>
+        <h2>Teaching a Drone to See</h2>
+        <p>From multi-resolution UAV data to deployable oil-palm canopy analytics.</p>
+        <a href="{{ '/sequences/uav-thesis.html' | relative_url }}">Start the sequence →</a>
+      </section>
+      {% if page.featured_quote %}
+      <figure class="sidebar-quote">
+        <blockquote>“{{ page.featured_quote }}”</blockquote>
+        <figcaption>{{ page.featured_quote_source }}</figcaption>
+      </figure>
+      {% endif %}
+      <section class="sidebar-card call-card">
+        <p class="section-kicker">Research · Collaboration · Mentoring</p>
+        <h2>Have a useful conversation.</h2>
+        <a class="button" href="{{ '/book.html' | relative_url }}">Book a call →</a>
+      </section>
+    </aside>
+  </div>
+</div>
 
 <script>
-// Keyboard navigation: j/k to move, Enter to open
 (function() {
     var items = document.querySelectorAll('.post-item');
     if (!items.length) return;
     var current = -1;
 
     document.addEventListener('keydown', function(e) {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        if (/INPUT|TEXTAREA|SELECT/.test(e.target.tagName) || e.metaKey || e.ctrlKey || e.altKey) return;
 
         if (e.key === 'j') {
             e.preventDefault();
             if (current < items.length - 1) current++;
             else current = 0;
-            items.forEach(function(li) { li.classList.remove('kb-active'); });
+            items.forEach(function(item) { item.classList.remove('kb-active'); });
             items[current].classList.add('kb-active');
+            items[current].focus({ preventScroll: true });
             items[current].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
         } else if (e.key === 'k') {
             e.preventDefault();
             if (current > 0) current--;
             else current = items.length - 1;
-            items.forEach(function(li) { li.classList.remove('kb-active'); });
+            items.forEach(function(item) { item.classList.remove('kb-active'); });
             items[current].classList.add('kb-active');
+            items[current].focus({ preventScroll: true });
             items[current].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
         } else if (e.key === 'Enter' && current >= 0) {
             var url = items[current].getAttribute('data-url');

@@ -3,6 +3,8 @@ layout: post
 title: "Building the Dataset Nobody Had: Annotation, Corruption, and the Split That Kept Everything Honest"
 description: "How I built a multi-resolution oil palm segmentation dataset from scratch — including the 301 corrupted label files I had to fix before anything could run."
 tags: [dataset, annotation, computer-vision, deep-learning, precision-agriculture, research]
+series: uav-thesis
+series_order: 2
 date: 2025-11-28 08:00:00 +0700
 ---
 

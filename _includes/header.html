@@ -1,0 +1,21 @@
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="brand-mark" href="{{ '/' | relative_url }}" aria-label="{{ site.author }} home">SV</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+      <span class="sr-only">Open navigation</span>
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
+      <a href="{{ '/writing.html' | relative_url }}">Essays</a>
+      <a href="{{ '/portfolio.html' | relative_url }}">Portfolio</a>
+      <a href="{{ '/resume.html' | relative_url }}">Resume</a>
+      <a href="{{ '/philosophy.html' | relative_url }}">Philosophy</a>
+      <a href="{{ '/now.html' | relative_url }}">Now</a>
+      <a href="{{ '/about.html' | relative_url }}">About</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme">◐</button>
+      <a class="button button-small" href="{{ '/book.html' | relative_url }}">Book a call</a>
+    </div>
+  </div>
+</header>

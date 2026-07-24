@@ -1,0 +1,53 @@
+---
+layout: default
+---
+{% assign resume = site.data.resume %}
+<article class="resume-shell">
+  <header class="resume-header">
+    <div>
+      <p class="section-kicker">Curriculum vitae</p>
+      <h1>{{ resume.name }}</h1>
+      <p class="resume-title">{{ resume.title }}</p>
+    </div>
+    <div class="resume-contact">
+      <a href="mailto:{{ resume.email }}">{{ resume.email }}</a>
+      <a href="{{ resume.linkedin }}">LinkedIn</a>
+      <a href="{{ resume.github }}">GitHub</a>
+    </div>
+  </header>
+  <p class="resume-summary">{{ resume.summary }}</p>
+
+  <section class="resume-section">
+    <h2>Research focus</h2>
+    {% for item in resume.research %}
+    <article class="resume-item">
+      <div class="resume-item-heading"><h3>{{ item.title }}</h3>{% if item.context %}<span>{{ item.context }}</span>{% endif %}</div>
+      <p>{{ item.description }}</p>
+    </article>
+    {% endfor %}
+  </section>
+
+  <section class="resume-section">
+    <h2>Education</h2>
+    {% for item in resume.education %}
+    <article class="resume-item">
+      <div class="resume-item-heading"><h3>{{ item.degree }}</h3><span>{{ item.gpa }}</span></div>
+      <p>{{ item.institution }}</p>
+    </article>
+    {% endfor %}
+  </section>
+
+  <section class="resume-section">
+    <h2>Skills</h2>
+    <dl class="skill-list">
+      {% for group in resume.skills %}
+      <div><dt>{{ group.name }}</dt><dd>{{ group.items | join: " · " }}</dd></div>
+      {% endfor %}
+    </dl>
+  </section>
+
+  <section class="resume-section">
+    <h2>Community & interests</h2>
+    <p>{{ resume.community }}</p>
+  </section>
+</article>

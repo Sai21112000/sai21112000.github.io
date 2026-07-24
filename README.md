@@ -1,124 +1,67 @@
-# Sai's Blog
+# Sai Teja Vaidya
 
-A minimalist, zero-framework blog built on **Jekyll + GitHub Pages**. Pure HTML, CSS, and Markdown — no React, no Tailwind, no build step.
+Personal research site and long-form technical blog, built with Jekyll for GitHub Pages.
 
-> **Live at:** [sai21112000.github.io](https://sai21112000.github.io)
+**Live:** [sai21112000.github.io](https://sai21112000.github.io)
 
-## Features
+## Site features
 
-| Feature | Details |
-|---------|---------|
-| **100% Markdown** | Posts, philosophy quotes, SOPs, and the Now page — all `.md` files |
-| **Image Lightbox** | Click any image to zoom. Drag to pan. ESC or ✕ to close |
-| **Giscus Comments** | GitHub Discussions-powered comments (no backend needed) |
-| **Dark / Light Toggle** | Click ◑ in the top-right. Respects system preference |
-| **Sticky TOC** | Blog posts auto-generate a table of contents sidebar |
-| **Reading Time** | Each post shows estimated reading time on the homepage |
-| **Keyboard Navigation** | Press `j`/`k` to browse posts, `Enter` to open |
-| **RSS Feed** | Subscribe at `/feed.xml` |
-| **Open Graph Tags** | Rich previews when shared on social media |
-| **Reading Progress Bar** | Scroll progress indicator at the top |
-| **Custom 404** | Branded error page at `/404.html` |
+- Feed-first editorial homepage with real post images or tag-based visual fallbacks
+- Responsive navigation, persisted dark mode, reading progress, image lightbox, and `j`/`k` keyboard browsing
+- Long-form post layout with generated desktop TOC, author context, related essays, Giscus discussion, and sequence navigation
+- Filterable essay archive and a six-part UAV thesis sequence
+- Data-driven resume and portfolio pages
+- Philosophy, Now, Book a call, About, and Powerlifting pages in one shared site shell
+- RSS, canonical URLs, Open Graph/Twitter metadata, and a custom 404
+- Print-friendly resume styles
 
-## Pages
+## Content structure
 
-| Page | File | Description |
-|------|------|-------------|
-| Homepage | `index.md` | Featured quote, task checklist, post list, comments |
-| Writing | `writing.md` | Full post archive with tags and descriptions |
-| Philosophy | `philosophy.md` | Quotes and reflections |
-| SOPs | `sops.md` | Proposals, MVPs, and future ideas |
-| Now | `now.md` | What I'm currently focused on |
-
-## Project Structure
-
-```
-├── index.md                 ← Homepage (edit quote + tasks in YAML)
-├── writing.md               ← All posts archive
-├── philosophy.md            ← Quotes & notes
-├── sops.md                  ← Proposals / Ideas
-├── now.md                   ← /now page
-├── 404.md                   ← Custom 404
-├── feed.xml                 ← RSS feed
-├── _config.yml              ← Jekyll config
-├── _posts/                  ← Blog posts (YYYY-MM-DD-slug.md)
-├── _layouts/
-│   ├── default.html         ← Base layout (theme toggle, lightbox, progress bar)
-│   ├── home.html            ← Homepage layout (header, cards, comments)
-│   ├── post.html            ← Blog post layout (TOC, reading time, tags)
-│   ├── page.html            ← Generic page layout
-│   └── sops.html            ← SOPs page layout
-├── assets/
-│   ├── style.css            ← All styling (CSS variables, dark mode)
-│   ├── images/              ← Post images
-│   └── pdfs/                ← PDF attachments for SOPs
-├── OBSIDIAN-GUIDE.md        ← Cheat sheet for Obsidian → Jekyll workflow
-├── LICENSE                  ← MIT License
-└── README.md                ← This file
+```text
+_posts/                 Markdown essays (existing /posts/:title.html permalinks)
+_layouts/               Page, post, archive, resume, portfolio, and specialty layouts
+_includes/              Shared head, header, footer, cards, author, Giscus, and scripts
+_data/resume.yml        Confirmed resume facts
+_data/projects.yml      Portfolio and passion projects
+sequences/              Curated reading paths
+assets/style.css        Shared responsive design system
+assets/images/          Portrait, post, and powerlifting media
 ```
 
-## Quick Start
+## Write and publish
 
-### Fork & Deploy
+Create `_posts/YYYY-MM-DD-slug.md`:
 
-1. **Fork** this repo
-2. Go to **Settings → Pages → Source → Deploy from branch `main`**
-3. Your site is live at `https://<username>.github.io`
-
-### Customize
-
-Edit `_config.yml`:
-```yaml
-title: Your Blog Name
-description: Your description
-url: "https://<username>.github.io"
-```
-
-Edit `_layouts/home.html` to update:
-- Your name and social links
-- Giscus repo ID and category ID (get yours at [giscus.app](https://giscus.app))
-
-### Write a Post
-
-Create `_posts/YYYY-MM-DD-your-title.md`:
 ```yaml
 ---
 layout: post
-title: "Your Post Title"
-description: "A one-line summary."
-tags: [tag1, tag2]
+title: "Post title"
+description: "One-line summary."
+tags: [computer-vision, research]
+image: /assets/images/optional-cover.jpg
 ---
-
-Your Markdown content here.
 ```
 
-### Update the Homepage
+The existing Obsidian workflow remains supported. See [OBSIDIAN-GUIDE.md](OBSIDIAN-GUIDE.md) for frontmatter, image conversion, callouts, and publishing notes.
 
-Edit `index.md` YAML frontmatter:
+Sequence posts can add:
+
 ```yaml
-featured_quote: "Your quote"
-featured_quote_source: "— Source"
-tasks:
-  - text: "Your task"
-    done: false
+series: uav-thesis
+series_order: 1
 ```
 
-## Obsidian Workflow
+## Local preview
 
-See [OBSIDIAN-GUIDE.md](OBSIDIAN-GUIDE.md) for the full cheat sheet on copying notes from Obsidian to this blog, including:
-- Post templates and frontmatter
-- Image path conversion (`![[]]` → `![]()`)
-- Callout and footnote syntax
-- Common mistakes to avoid
+Install the locked Ruby dependencies and start Jekyll:
 
-## Tech Stack
+```sh
+bundle install
+bundle exec jekyll serve
+```
 
-- **Jekyll** — Static site generator (runs on GitHub Pages)
-- **Kramdown** — Markdown engine with footnotes support
-- **Vanilla CSS** — No framework, CSS variables for theming
-- **Giscus** — Comments via GitHub Discussions
-- **Zero JavaScript frameworks** — Only minimal vanilla JS for lightbox, theme toggle, and keyboard nav
+The site is available at `http://localhost:4000`. No unsupported plugins or JavaScript framework are required. GitHub Pages builds the site directly from the repository.
 
 ## License
 
-[MIT](LICENSE) — Fork it, customize it, make it yours.
+[MIT](LICENSE)

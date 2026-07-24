@@ -3,6 +3,8 @@ layout: post
 title: "A Framework for Flying Smarter: The Practical Deployment Guide"
 description: "After 8 GSD levels, 6 models, and 3,368 tile-label pairs, here's the condensed operational guide for deploying AI-based oil palm monitoring with a drone."
 tags: [deployment, precision-agriculture, uav, operational-guide, deep-learning, research]
+series: uav-thesis
+series_order: 6
 date: 2026-01-25 08:00:00 +0700
 ---
 

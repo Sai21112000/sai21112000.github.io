@@ -3,6 +3,8 @@ layout: post
 title: "The Drone That Couldn't See: Why Altitude Breaks Your AI Model"
 description: "A model trained at 3cm resolution failed at 6cm. Same drone. Same plantation. Different altitude. Here's the physics and math behind why — and what to do about it."
 tags: [computer-vision, uav, deep-learning, precision-agriculture, research]
+series: uav-thesis
+series_order: 1
 date: 2025-11-21 08:00:00 +0700
 ---
 

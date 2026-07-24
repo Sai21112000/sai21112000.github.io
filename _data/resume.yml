@@ -1,0 +1,35 @@
+name: Sai Teja Vaidya
+title: Computer Vision & Remote Sensing Engineer
+email: vaidyasaiteja143@gmail.com
+linkedin: https://www.linkedin.com/in/vaidyasai/
+github: https://github.com/Sai21112000
+summary: Computer vision and remote sensing engineer based in Thailand, focused on deep learning for UAV imagery, precision agriculture, and practical research systems.
+
+research:
+  - title: Oil-palm detection and canopy estimation
+    context: Master's thesis
+    description: Built an end-to-end research pipeline using YOLOv8, YOLOv11, SAM, and multi-GSD UAV imagery for instance segmentation and physical canopy measurement.
+  - title: Pixel-level and generative AI research interests
+    description: Interested in angular-temporal interaction, real-time object detection, federated learning for generative AI, adversarial defense, and multimodal alignment.
+
+education:
+  - degree: Master of Engineering, Information and Communications Technologies
+    institution: Asian Institute of Technology — RSGIS
+    gpa: GPA 3.0/4.0
+  - degree: Bachelor of Engineering, Computer Science
+    institution: Jawaharlal Nehru Technological University, Hyderabad
+    gpa: GPA 3.2/4.0
+
+skills:
+  - name: Computer vision
+    items: [YOLO, SAM, Mask R-CNN, instance segmentation, object detection]
+  - name: ML engineering
+    items: [Python, PyTorch, Ultralytics, OpenCV, Roboflow]
+  - name: Geospatial
+    items: [UAV imagery, GDAL, QGIS, ArcGIS, SNAP, multi-GSD analysis]
+  - name: AI systems
+    items: [LLM agents, prompt engineering, text-to-image, text-to-video]
+  - name: Web and publishing
+    items: [Jekyll, GitHub Pages, Obsidian, WordPress]
+
+community: IPF-registered competitive powerlifter under TAAP/IPF and Head of Events for powerlifting at the Asian Institute of Technology.

@@ -1,79 +1,75 @@
 ---
 layout: default
 ---
-
 <aside class="toc-sidebar" id="toc-sidebar" aria-label="Table of contents">
-    <div class="toc-header">Contents</div>
-    <nav class="toc-nav" id="toc-nav"></nav>
+  <p class="toc-header">In this essay</p>
+  <nav class="toc-nav" id="toc-nav"></nav>
 </aside>
 
 <div class="post-wrapper">
-    <nav class="post-nav animate-enter">
-        <a href="{{ '/writing.html' | relative_url }}" class="nav-back">← Essays</a>
-    </nav>
+  <nav class="post-nav"><a href="{{ '/writing.html' | relative_url }}">← All essays</a></nav>
+  <article class="post-article animate-enter">
+    <header class="post-header">
+      {% if page.series %}
+      <a class="sequence-label" href="{{ '/sequences/uav-thesis.html' | relative_url }}">Teaching a Drone to See · Part {{ page.series_order }} of 6</a>
+      {% endif %}
+      <h1>{{ page.title }}</h1>
+      {% if page.description %}<p class="post-deck">{{ page.description }}</p>{% endif %}
+      <div class="post-header-meta">
+        <span>{{ site.author }}</span><span>·</span>
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time><span>·</span>
+        <span>{{ content | number_of_words | divided_by: 200 | at_least: 1 }} min read</span>
+      </div>
+      <div class="tag-row">{% for tag in page.tags %}<span>{{ tag }}</span>{% endfor %}</div>
+    </header>
+    {% if page.image %}
+    <figure class="post-featured-image">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" loading="eager">
+      {% if page.image_caption %}<figcaption>{{ page.image_caption }}</figcaption>{% endif %}
+    </figure>
+    {% endif %}
+    {% include author-block.html %}
+    <div class="post-content" id="post-content">{{ content }}</div>
+  </article>
 
-    <article class="post-article animate-enter" style="animation-delay: 0.05s;">
-        <header class="post-header">
-            <h1 class="post-header-title">{{ page.title }}</h1>
-            
-            <div class="post-header-meta">
-                <span class="post-author">Sai Teja Vaidya</span>
-                <span class="post-separator">·</span>
-                <time class="post-date-full">{{ page.date | date: "%B %d, %Y" }}</time>
-                <span class="post-separator">·</span>
-                <span class="post-readtime">{{ content | number_of_words | divided_by: 200 | at_least: 1 }} min read</span>
-            </div>
-            
-            {% if page.tags.size > 0 %}
-            <div class="post-header-tags">
-                {% for tag in page.tags %}
-                <span class="post-tag">{{ tag }}</span>
-                {% endfor %}
-            </div>
-            {% endif %}
-        </header>
+  <footer class="post-footer">
+    {% if page.series %}
+      {% assign sequence_posts = site.posts | where: "series", page.series | sort: "series_order" %}
+      {% assign previous_order = page.series_order | minus: 1 %}
+      {% assign next_order = page.series_order | plus: 1 %}
+      <nav class="sequence-nav" aria-label="Sequence navigation">
+        {% for sequence_post in sequence_posts %}
+          {% if sequence_post.series_order == previous_order %}<a rel="prev" href="{{ sequence_post.url | relative_url }}">← Part {{ previous_order }}<strong>{{ sequence_post.title }}</strong></a>{% endif %}
+        {% endfor %}
+        {% for sequence_post in sequence_posts %}
+          {% if sequence_post.series_order == next_order %}<a rel="next" href="{{ sequence_post.url | relative_url }}">Part {{ next_order }} →<strong>{{ sequence_post.title }}</strong></a>{% endif %}
+        {% endfor %}
+      </nav>
+      <a class="sequence-all" href="{{ '/sequences/uav-thesis.html' | relative_url }}">View all six parts →</a>
+    {% endif %}
 
-        <div class="post-content" id="post-content">
-            {{ content }}
-        </div>
-    </article>
-
-    <footer class="post-footer animate-enter" style="animation-delay: 0.15s;">
-        <div class="post-footer-divider"></div>
-        
-        <div class="post-footer-content">
-            <p class="post-footer-note">Thanks for reading. <a href="{{ '/' | relative_url }}">Read more posts →</a></p>
-            
-            <div class="post-footer-links">
-                <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="https://github.com/Sai21112000" target="_blank" rel="noopener">GitHub</a>
-                <a href="https://x.com/vaidyasaiteja" target="_blank" rel="noopener">Twitter</a>
-            </div>
-        </div>
-        
-        <div class="post-comments">
-            <h3>Discussion</h3>
-            <script src="https://giscus.app/client.js"
-                data-repo="Sai21112000/sai21112000.github.io"
-                data-repo-id="R_kgDORdVO1A"
-                data-category="Announcements"
-                data-category-id="DIC_kwDORdVO1M4C4v9t"
-                data-mapping="pathname"
-                data-strict="0"
-                data-reactions-enabled="1"
-                data-emit-metadata="0"
-                data-input-position="bottom"
-                data-theme="preferred_color_scheme"
-                data-lang="en"
-                crossorigin="anonymous"
-                async>
-            </script>
-        </div>
-    </footer>
+    {% assign related_count = 0 %}
+    <section class="related-posts">
+      <p class="section-kicker">Continue reading</p>
+      <h2>Related essays</h2>
+      <div class="related-grid">
+      {% for post in site.posts %}
+        {% if post.url != page.url and related_count < 3 %}
+          {% assign matches = 0 %}
+          {% for tag in post.tags %}{% if page.tags contains tag %}{% assign matches = matches | plus: 1 %}{% endif %}{% endfor %}
+          {% if matches > 0 %}
+            <a href="{{ post.url | relative_url }}"><span>{{ post.date | date: "%Y" }}</span><strong>{{ post.title }}</strong></a>
+            {% assign related_count = related_count | plus: 1 %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      </div>
+    </section>
+    {% include giscus.html %}
+  </footer>
 </div>
 
 <script>
-// Auto-generate TOC from headings
 (function() {
     var content = document.getElementById('post-content');
     var tocNav = document.getElementById('toc-nav');
@@ -86,7 +82,7 @@ layout: default
     }
 
     headings.forEach(function(h, i) {
-        var id = 'section-' + i;
+        var id = h.id || 'section-' + i;
         h.id = id;
         var link = document.createElement('a');
         link.href = '#' + id;
@@ -96,10 +92,7 @@ layout: default
         tocNav.appendChild(link);
     });
 
-    // Smooth scroll and highlight active section
     var tocLinks = tocNav.querySelectorAll('a');
-    
-    // Click handler for smooth scroll
     tocLinks.forEach(function(link) {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -112,7 +105,6 @@ layout: default
         });
     });
 
-    // Highlight active section on scroll
     function updateActiveToc() {
         var scrollPos = window.scrollY + 100;
         var activeFound = false;
