@@ -3,6 +3,12 @@ layout: philosophy
 title: Philosophy
 description: Quotes, notes, and observations
 ---
+ > Don’t just admire the sentences—rebuild your schedule, choices, and ambitions around them.
+{: .animate-enter style="animation-delay: 0.2s;"}
+Seneca`s advice to this modern world
+{: .animate-enter style="animation-delay: 0.4s;"}
+
+
  > I will not let comfort be the gravestone that marks where my ambition once stood
 {: .animate-enter style="animation-delay: 0.2s;"}
 Nietzsche would say the tension you feel is not a problem to solve. It is the process.
