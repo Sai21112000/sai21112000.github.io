@@ -38,6 +38,15 @@ layout: default
         <p>From multi-resolution UAV data to deployable oil-palm canopy analytics.</p>
         <a href="{{ '/sequences/uav-thesis.html' | relative_url }}">Start the sequence →</a>
       </section>
+      {% assign medium_article = site.data.external_articles.first %}
+      {% if medium_article %}
+      <section class="sidebar-card medium-card">
+        <p class="section-kicker">On {{ medium_article.publication }} · {{ medium_article.read_time }} min read</p>
+        <h2>{{ medium_article.title }}</h2>
+        <p>{{ medium_article.description }}</p>
+        <a href="{{ medium_article.url }}" target="_blank" rel="noopener">Read on Medium ↗</a>
+      </section>
+      {% endif %}
       {% if page.featured_quote %}
       <figure class="sidebar-quote">
         <blockquote>“{{ page.featured_quote }}”</blockquote>

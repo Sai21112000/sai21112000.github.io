@@ -28,6 +28,28 @@ layout: default
       </article>
     {% endfor %}
   </div>
+
+  {% if site.data.external_articles.size > 0 %}
+  <section class="external-writing" aria-labelledby="external-writing-title">
+    <header>
+      <p class="section-kicker">Published elsewhere</p>
+      <h2 id="external-writing-title">Also on Medium</h2>
+    </header>
+    <div>
+      {% for article in site.data.external_articles %}
+      <article class="external-entry">
+        <div class="external-entry-meta">
+          <span>{{ article.publication }}</span>
+          <span>{{ article.read_time }} min read</span>
+        </div>
+        <h3><a href="{{ article.url }}" target="_blank" rel="noopener">{{ article.title }} ↗</a></h3>
+        <p>{{ article.description }}</p>
+        <div class="tag-row">{% for tag in article.tags %}<span>{{ tag }}</span>{% endfor %}</div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
 </div>
 <script>
 (function () {
