@@ -112,9 +112,6 @@ layout: default
 
 <script>
 (function() {
-    // #region agent log
-    fetch('http://127.0.0.1:7693/ingest/ac18232e-513b-4826-b845-0412d8bf3bc5',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'cae9bb'},body:JSON.stringify({sessionId:'cae9bb',runId:'post-fix',hypothesisId:'A',location:'_layouts/home.html:slider-probe',message:'Homepage runtime markers',data:{host:location.host,hasSlider:!!document.getElementById('essay-slider'),writingHeading:(document.getElementById('latest-essays')||{}).textContent||null,postCount:document.querySelectorAll('#post-list .post-item').length,hasNowLink:!!document.querySelector('a[href*="now"]'),hasProjects:!!document.querySelector('.home-projects'),firstTitle:((document.querySelector('#post-list h2 a')||{}).textContent||'').trim()},timestamp:Date.now()})}).catch(function(){});
-    // #endregion
     var items = document.querySelectorAll('#post-list .post-item');
     var current = -1;
 
