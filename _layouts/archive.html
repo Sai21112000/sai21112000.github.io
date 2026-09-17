@@ -8,7 +8,7 @@ layout: default
     <p>{{ page.description }}</p>
   </header>
 
-  {% assign all_writing = site.posts | concat: site.data.external_articles | sort: "date" | reverse %}
+  {% include collect-writing.html %}
   <div class="archive-list" id="archive-list">
     {% for post in all_writing %}
       {% assign is_external = false %}

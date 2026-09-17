@@ -1,0 +1,21 @@
+{% comment %}
+GitHub Pages uses Jekyll 3.10. Sorting concatenated posts (Time) with data-file
+articles (Date) raises "comparison of Array with Array failed". Sort ISO date
+strings instead, then rebuild the object list.
+{% endcomment %}
+{% capture writing_index %}{% for post in site.posts %}{{ post.date | date: "%Y-%m-%dT%H:%M:%S" }}::post::{{ post.url }}@@{% endfor %}{% for article in site.data.external_articles %}{{ article.date | date: "%Y-%m-%dT%H:%M:%S" }}::ext::{{ article.url }}@@{% endfor %}{% endcapture %}
+{% assign writing_keys = writing_index | split: "@@" | sort | reverse %}
+{% assign all_writing = site.posts | where: "url", "__none__" %}
+{% for key in writing_keys %}
+  {% if key != "" %}
+    {% assign key_parts = key | split: "::" %}
+    {% if key_parts[1] == "post" %}
+      {% assign writing_item = site.posts | where: "url", key_parts[2] | first %}
+    {% else %}
+      {% assign writing_item = site.data.external_articles | where: "url", key_parts[2] | first %}
+    {% endif %}
+    {% if writing_item %}
+      {% assign all_writing = all_writing | push: writing_item %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
