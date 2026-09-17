@@ -1,22 +1,27 @@
 {% assign card_post = include.post %}
-<article class="post-card post-item" data-url="{{ card_post.url | relative_url }}" tabindex="-1">
+{% assign is_external = false %}
+{% if card_post.publication %}{% assign is_external = true %}{% endif %}
+{% if is_external %}{% assign card_url = card_post.url %}{% else %}{% assign card_url = card_post.url | relative_url %}{% endif %}
+<article class="post-card post-item{% if is_external %} post-card-external{% endif %}" data-url="{{ card_url }}" data-external="{{ is_external }}" tabindex="-1">
   <div class="post-card-copy">
     <div class="post-card-meta">
       <time datetime="{{ card_post.date | date_to_xmlschema }}">{{ card_post.date | date: "%b %d, %Y" }}</time>
+      {% if is_external %}
+      <span>{{ card_post.read_time }} min read</span>
+      <span class="source-badge">{{ card_post.publication }} ↗</span>
+      {% else %}
       <span>{{ card_post.content | number_of_words | divided_by: 200 | at_least: 1 }} min read</span>
       {% if card_post.series %}<span>UAV thesis sequence</span>{% endif %}
+      {% endif %}
     </div>
-    <h2><a href="{{ card_post.url | relative_url }}">{{ card_post.title }}</a></h2>
+    <h2><a href="{{ card_url }}"{% if is_external %} target="_blank" rel="noopener"{% endif %}>{{ card_post.title }}{% if is_external %} <span class="external-arrow" aria-hidden="true">↗</span>{% endif %}</a></h2>
     {% if card_post.description %}<p>{{ card_post.description }}</p>{% endif %}
-    {% if card_post.tags.size > 0 %}
-    <div class="tag-row" aria-label="Tags">
-      {% for tag in card_post.tags limit: 3 %}<span>{{ tag }}</span>{% endfor %}
-    </div>
-    {% endif %}
   </div>
-  <a class="post-card-media fallback-{{ card_post.tags.first | default: 'essay' | slugify }}" href="{{ card_post.url | relative_url }}" tabindex="-1" aria-hidden="true">
+  <a class="post-card-media fallback-{{ card_post.tags.first | default: 'essay' | slugify }}" href="{{ card_url }}"{% if is_external %} target="_blank" rel="noopener"{% endif %} tabindex="-1" aria-hidden="true">
     {% if card_post.image %}
       <img src="{{ card_post.image | relative_url }}" alt="" loading="lazy">
+    {% elsif is_external %}
+      <span>Medium</span>
     {% else %}
       <span>{{ card_post.tags.first | default: "Essay" }}</span>
     {% endif %}

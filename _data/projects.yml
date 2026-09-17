@@ -1,14 +1,28 @@
 - title: Oil Palm Instance Segmentation
-  type: research
+  type: open-source
   description: A Geospatial AI and computer vision pipeline for oil-palm detection, instance segmentation, and canopy measurement across eight UAV image resolutions.
-  url: /sequences/uav-thesis.html
+  details_url: /sequences/uav-thesis.html
+  live_url: https://sai21112000.github.io/oil-palm-instance-segmentation/
+  source_url: https://github.com/Sai21112000/oil-palm-instance-segmentation
+  image: https://raw.githubusercontent.com/Sai21112000/oil-palm-instance-segmentation/main/rresults/standardized_results_v1/Figure_Qualitative_Grid.png
   tags: [computer vision, Geospatial AI, agent-in-the-loop]
 
 - title: AI Thesis Agent Kit
   type: open-source
   description: A nine-agent research writing system with immutable writing laws, layered orchestration, and a confidence gate designed to prevent unsupported drafting.
-  url: /posts/thesis-agent-kit.html
+  details_url: /posts/thesis-agent-kit.html
+  live_url: https://sai21112000.github.io/Thesis-Agent-Kit/
+  source_url: https://github.com/Sai21112000/Thesis-Agent-Kit
+  image: https://raw.githubusercontent.com/Sai21112000/Thesis-Agent-Kit/main/docs/hero-banner.png
   tags: [GenAI, multi-agent systems, LLM guardrails]
+
+- title: Dopamine.Diet
+  type: open-source
+  description: A local-first deep-work dashboard designed to turn progress bars, streaks, and timers into a system for finishing difficult projects.
+  details_url: /posts/dopamine-diet-local-first-productivity-system.html
+  live_url: https://sai21112000.github.io/Dopamine.Diet/
+  source_url: https://github.com/Sai21112000/Dopamine.Diet
+  tags: [productivity, local-first, React]
 
 - title: AI Sales Enablement Speech Coach
   type: research
@@ -28,23 +42,27 @@
 - title: Qualcomm AI Hub LPCVC 2026 — Track 1
   type: research
   description: A reproduced image-to-text retrieval baseline compiled and profiled for XR2 Gen 2, reaching Recall@10 of 0.7299 with measured encoder latency.
+  details_url: /posts/lpcvc-2026-baseline.html
+  source_url: https://github.com/Sai21112000/LPCVC-2026-track1
   tags: [edge AI, ONNX, model profiling]
 
 - title: Obsidian Jekyll Publisher
   type: open-source
   description: A publishing workflow that converts Obsidian wiki-links, embeds, and callouts into Jekyll-compatible Markdown.
-  url: /posts/obsidian-jekyll-plugin.html
+  details_url: /posts/obsidian-jekyll-plugin.html
+  source_url: https://github.com/Sai21112000/obsidian-jekyll-publisher
   tags: [Obsidian, Jekyll, publishing]
 
 - title: Parameter Golf Baseline
   type: research
   description: Reproducibility notes for running a compact language-model training baseline on a cloud H100.
-  url: /posts/parameter-golf-baseline.html
+  details_url: /posts/parameter-golf-baseline.html
+  source_url: https://github.com/Sai21112000/parameter-golf/tree/runs/runpod-baseline-repro/runs
   tags: [language models, reproducibility, cloud GPU]
 
 - title: Powerlifting Log
   type: passion
   description: Competition results, lift progression, meet photography, and the training history behind a 430 kg raw total.
-  url: /powerlifting.html
+  details_url: /powerlifting.html
   image: /assets/images/powerlifting/teja-strength-portrait.jpg
   tags: [powerlifting, data, training]

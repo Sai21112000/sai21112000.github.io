@@ -14,39 +14,51 @@ layout: default
   <div class="home-grid">
     <section class="essay-feed" aria-labelledby="latest-essays">
       <div class="section-heading">
-        <div><p class="section-kicker">Latest</p><h2 id="latest-essays">Essays</h2></div>
+        <div><p class="section-kicker">Latest</p><h2 id="latest-essays">Writing</h2></div>
         <a href="{{ '/writing.html' | relative_url }}">Full archive →</a>
       </div>
       <div id="post-list">
-        {% for post in site.posts %}
+        {% assign all_writing = site.posts | concat: site.data.external_articles | sort: "date" | reverse %}
+        {% for post in all_writing limit: 3 %}
           {% include post-card.html post=post %}
         {% endfor %}
       </div>
       <p class="keyboard-hint" aria-hidden="true"><kbd>j</kbd>/<kbd>k</kbd> select · <kbd>Enter</kbd> open</p>
+
+      <section class="essay-slider" id="essay-slider" aria-labelledby="essay-slider-title" aria-roledescription="carousel">
+        <div class="essay-slider-heading">
+          <div><p class="section-kicker">Archive in motion</p><h3 id="essay-slider-title">More from the notebook</h3></div>
+          <div class="essay-slider-controls">
+            <button type="button" class="slider-prev" aria-label="Show previous essay">←</button>
+            <button type="button" class="slider-next" aria-label="Show next essay">→</button>
+          </div>
+        </div>
+        <div class="essay-slider-track" aria-live="off">
+          {% for post in all_writing offset: 3 %}
+            {% assign is_external = false %}
+            {% if post.publication %}{% assign is_external = true %}{% endif %}
+            {% if is_external %}{% assign slide_url = post.url %}{% else %}{% assign slide_url = post.url | relative_url %}{% endif %}
+            <article class="essay-slide{% if forloop.first %} is-active{% endif %}" aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}">
+              <div class="essay-slide-meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+                {% if is_external %}<span class="source-badge">{{ post.publication }} ↗</span>{% endif %}
+              </div>
+              <h4><a href="{{ slide_url }}"{% if is_external %} target="_blank" rel="noopener"{% endif %}>{{ post.title }}{% if is_external %} <span class="external-arrow" aria-hidden="true">↗</span>{% endif %}</a></h4>
+              {% if post.description %}<p>{{ post.description }}</p>{% endif %}
+            </article>
+          {% endfor %}
+        </div>
+        <div class="essay-slider-dots" aria-label="Choose an essay"></div>
+      </section>
     </section>
 
     <aside class="home-sidebar">
-      <section class="sidebar-card">
-        <p class="section-kicker">Now</p>
-        <h2>Current focus</h2>
-        <p>Agentic AI systems, computer vision, edge deployment, and reproducible experiments that move from ambiguous requirements to working outcomes.</p>
-        <a href="{{ '/now.html' | relative_url }}">What I'm doing now →</a>
-      </section>
       <section class="sidebar-card sequence-card">
         <p class="section-kicker">Featured sequence · 6 parts</p>
         <h2>Teaching a Drone to See</h2>
         <p>From multi-resolution UAV data to deployable oil-palm canopy analytics.</p>
         <a href="{{ '/sequences/uav-thesis.html' | relative_url }}">Start the sequence →</a>
       </section>
-      {% assign medium_article = site.data.external_articles.first %}
-      {% if medium_article %}
-      <section class="sidebar-card medium-card">
-        <p class="section-kicker">On {{ medium_article.publication }} · {{ medium_article.read_time }} min read</p>
-        <h2>{{ medium_article.title }}</h2>
-        <p>{{ medium_article.description }}</p>
-        <a href="{{ medium_article.url }}" target="_blank" rel="noopener">Read on Medium ↗</a>
-      </section>
-      {% endif %}
       {% if page.featured_quote %}
       <figure class="sidebar-quote">
         <blockquote>“{{ page.featured_quote }}”</blockquote>
@@ -60,15 +72,50 @@ layout: default
       </section>
     </aside>
   </div>
+
+  <section class="home-projects" aria-labelledby="home-projects-title">
+    <div class="section-heading">
+      <div><p class="section-kicker">Recently shipped</p><h2 id="home-projects-title">Latest projects</h2></div>
+      <a href="{{ '/portfolio.html' | relative_url }}">View all projects →</a>
+    </div>
+    <div class="home-project-grid">
+      {% assign featured_project_count = 0 %}
+      {% for project in site.data.projects %}
+        {% if project.live_url and featured_project_count < 3 %}
+          {% assign featured_project_count = featured_project_count | plus: 1 %}
+          <article class="project-card">
+            <div class="project-card-visual project--{{ project.title | slugify }}">
+              {% if project.image %}
+              <img src="{% if project.image contains '://' %}{{ project.image }}{% else %}{{ project.image | relative_url }}{% endif %}" alt="{{ project.title }} project preview" loading="lazy">
+              {% else %}
+              <span class="project-index">0{{ featured_project_count }}</span>
+              <span class="project-visual-label">{{ project.tags.first }}</span>
+              <i aria-hidden="true"></i>
+              {% endif %}
+              {% if project.source_url %}<a class="project-visual-source" href="{{ project.source_url }}" target="_blank" rel="noopener">Source ↗</a>{% endif %}
+            </div>
+            <div class="project-card-body">
+              <p class="project-type">{{ project.type | replace: "-", " " }}</p>
+              <h3>{% if project.details_url %}<a href="{{ project.details_url | relative_url }}">{{ project.title }}</a>{% else %}{{ project.title }}{% endif %}</h3>
+              <p>{{ project.description }}</p>
+              <div class="project-actions">
+                <a class="project-action-live" href="{{ project.live_url }}" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a>
+                {% if project.source_url %}<a class="project-action-source" href="{{ project.source_url }}" target="_blank" rel="noopener">Source <span aria-hidden="true">↗</span></a>{% endif %}
+              </div>
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
 </div>
 
 <script>
 (function() {
-    var items = document.querySelectorAll('.post-item');
-    if (!items.length) return;
+    var items = document.querySelectorAll('#post-list .post-item');
     var current = -1;
 
-    document.addEventListener('keydown', function(e) {
+    if (items.length) document.addEventListener('keydown', function(e) {
         if (/INPUT|TEXTAREA|SELECT/.test(e.target.tagName) || e.metaKey || e.ctrlKey || e.altKey) return;
 
         if (e.key === 'j') {
@@ -89,8 +136,68 @@ layout: default
             items[current].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
         } else if (e.key === 'Enter' && current >= 0) {
             var url = items[current].getAttribute('data-url');
-            if (url) window.location.href = url;
+            if (url && items[current].dataset.external === 'true') window.open(url, '_blank', 'noopener');
+            else if (url) window.location.href = url;
         }
     });
+
+    var slider = document.getElementById('essay-slider');
+    if (!slider) return;
+    var track = slider.querySelector('.essay-slider-track');
+    var slides = Array.prototype.slice.call(track.querySelectorAll('.essay-slide'));
+    var dots = slider.querySelector('.essay-slider-dots');
+    var previous = slider.querySelector('.slider-prev');
+    var next = slider.querySelector('.slider-next');
+    var active = 0;
+    var timer;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    for (var i = slides.length - 1; i > 0; i--) {
+        var randomIndex = Math.floor(Math.random() * (i + 1));
+        var temporary = slides[i];
+        slides[i] = slides[randomIndex];
+        slides[randomIndex] = temporary;
+    }
+    slides.forEach(function(slide) { track.appendChild(slide); });
+
+    function showSlide(index) {
+        if (!slides.length) return;
+        active = (index + slides.length) % slides.length;
+        slides.forEach(function(slide, slideIndex) {
+            var selected = slideIndex === active;
+            slide.classList.toggle('is-active', selected);
+            slide.setAttribute('aria-hidden', String(!selected));
+        });
+        dots.querySelectorAll('button').forEach(function(dot, dotIndex) {
+            dot.classList.toggle('is-active', dotIndex === active);
+            if (dotIndex === active) dot.setAttribute('aria-current', 'true');
+            else dot.removeAttribute('aria-current');
+        });
+    }
+
+    slides.forEach(function(slide, index) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', 'Show essay ' + (index + 1));
+        dot.addEventListener('click', function() { showSlide(index); restart(); });
+        dots.appendChild(dot);
+    });
+
+    function stop() { if (timer) window.clearInterval(timer); }
+    function start() {
+        stop();
+        if (!reduceMotion && slides.length > 1) timer = window.setInterval(function() { showSlide(active + 1); }, 5500);
+    }
+    function restart() { stop(); start(); }
+
+    previous.addEventListener('click', function() { showSlide(active - 1); restart(); });
+    next.addEventListener('click', function() { showSlide(active + 1); restart(); });
+    slider.addEventListener('mouseenter', stop);
+    slider.addEventListener('mouseleave', start);
+    slider.addEventListener('focusin', stop);
+    slider.addEventListener('focusout', start);
+    document.addEventListener('visibilitychange', function() { document.hidden ? stop() : start(); });
+    showSlide(0);
+    start();
 })();
 </script>

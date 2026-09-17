@@ -4,38 +4,33 @@ title: About
 description: Who I am and what this blog is about
 ---
 
-I'm Sai — an Applied AI and GenAI engineer based in Thailand, working with a Forward Deployed Engineer mindset.
+I'm Sai, an Applied AI and GenAI engineer based in Thailand. I turn ambiguous operational problems into systems that can be tested, measured, and used.
 
-I completed a **Master's Degree in Information and Communications Technology** at the [Asian Institute of Technology](https://www.ait.ac.th/) (GPA 3.0/4) and hold a **Bachelor of Technology in Computer Science** from JNTUH College of Engineering, Hyderabad (GPA 8.8/10).
+My work sits where agentic AI, computer vision, edge deployment, and Geospatial AI meet real constraints.
 
-## Applied AI Work
+## How I work
 
-My thesis focused on **detection and canopy size estimation of oil palm trees** using deep learning–based instance segmentation (YOLOv8, YOLOv11, SAM) on multi-GSD UAV imagery. I deployed the best-performing model weights as an AI Teacher Agent, reducing manual annotation time by more than 80%.
+I approach projects with a Forward Deployed Engineer mindset: understand the actual workflow, build the smallest useful experiment, measure what changes, and keep the people operating the system in the loop.
 
-I also build agentic systems for operational triage, institutional memory, research workflows, and local-first speech coaching. My focus is taking ambiguous needs through experimentation, deployment, and measurable outcomes.
+That approach shaped my master's research at the [Asian Institute of Technology](https://www.ait.ac.th/), where I built an oil-palm detection and canopy-measurement pipeline across multiple UAV image resolutions. The resulting AI Teacher Agent reduced manual annotation time by more than 80%.
 
-## What I Work With
+## What I write about
 
-- **Applied AI, GenAI & Agents** — LangChain, LangGraph, RAG, multi-agent orchestration, prompt engineering, LLMOps
-- **Computer Vision** — YOLOv8/v11, SAM, Mask R-CNN, instance and semantic segmentation, OpenCV
-- **ML/DL Stack** — Python, PyTorch, HuggingFace, ONNX, Scikit-learn
-- **Cloud, MLOps & Edge AI** — AWS SageMaker and Bedrock, model deployment, quantization, edge inference
-- **Geospatial AI** — UAV imagery, spatial intelligence, geospatial data pipelines, multi-GSD analysis
-- **Languages & Tools** — TypeScript/JavaScript, Docker, Git/GitHub, Jupyter, LaTeX
+This blog is my public notebook for technical field reports, reproducible experiments, and lessons from building AI systems. I write about agents, model economics, computer vision, research workflows, edge AI, and the engineering gap between a promising demo and dependable infrastructure.
 
-## Beyond the Screen
+Some essays live here; others are published on Medium. Both are part of the same body of technical work and appear together in the [writing archive](/writing.html).
 
-I'm an **IPF-registered competitive powerlifter** under TAAP/IPF. In 2025, I competed in both NQ1 (March) and NQ3 (November) in the U74kg Men's Raw Open category — totaling **390 kg** and **430 kg** respectively, placing **3rd in both events**. I also serve as Head of Events for powerlifting at AIT.
+## Away from the screen
 
-I believe training the body is as important as training the mind.
+I'm also an IPF-registered competitive powerlifter. Training has taught me to value patient iteration, honest measurement, and showing up when progress is not immediately visible.
 
-## What This Blog Is About
+## Find me online
 
-This is where I write about things I'm learning, building, and thinking about — Applied AI, GenAI, agentic systems, computer vision, Geospatial AI, and the intersection of research and real-world engineering. No frameworks, no fluff. Just [pure HTML and CSS](/posts/first-post.html).
-
-## Find Me
-
-- [LinkedIn](https://www.linkedin.com/in/vaidyasai/)
-- [GitHub](https://github.com/Sai21112000)
-- [Twitter / X](https://x.com/vaidyasaiteja)
-- [YouTube](https://www.youtube.com/@saitejavaidya/streams)
+<nav class="social-link-grid" aria-label="Sai Teja Vaidya on social platforms">
+  <a href="https://www.linkedin.com/in/vaidyasai/" target="_blank" rel="me noopener"><strong>LinkedIn</strong><span>Work and professional updates ↗</span></a>
+  <a href="https://github.com/Sai21112000" target="_blank" rel="me noopener"><strong>GitHub</strong><span>Code and open experiments ↗</span></a>
+  <a href="https://medium.com/@vaidyasaiteja143" target="_blank" rel="me noopener"><strong>Medium</strong><span>Long-form technical writing ↗</span></a>
+  <a href="https://x.com/vaidyasaiteja" target="_blank" rel="me noopener"><strong>X</strong><span>Notes and conversations ↗</span></a>
+  <a href="https://www.youtube.com/@saitejavaidya/streams" target="_blank" rel="me noopener"><strong>YouTube</strong><span>Streams and walkthroughs ↗</span></a>
+  <a href="{{ '/book.html' | relative_url }}"><strong>Book a call</strong><span>Collaboration and mentoring →</span></a>
+</nav>
