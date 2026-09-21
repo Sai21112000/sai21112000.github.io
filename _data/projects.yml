@@ -1,3 +1,11 @@
+- title: CareerBot
+  type: open-source
+  description: A bounded Python and MCP toolkit for scoring job fit, preparing verified application artifacts, and tracking state with immutable snapshots — not unattended job-board automation.
+  live_url: https://sai21112000.github.io/CareerBot/
+  source_url: https://github.com/Sai21112000/CareerBot
+  image: https://raw.githubusercontent.com/Sai21112000/CareerBot/main/docs/assets/careerbot-hero.svg
+  tags: [MCP, Python, agentic systems]
+
 - title: Oil Palm Instance Segmentation
   type: open-source
   description: A Geospatial AI and computer vision pipeline for oil-palm detection, instance segmentation, and canopy measurement across eight UAV image resolutions.
