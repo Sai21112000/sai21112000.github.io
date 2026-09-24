@@ -1423,6 +1423,7 @@ kbd { padding: 2px 5px; background: var(--surface); border: 1px solid var(--line
     color: #fff;
     background: linear-gradient(135deg, #11172b, #27325b);
 }
+.project-card-visual.project--diamond { background: linear-gradient(135deg, #1a1208, #8a5a12); }
 .project-card-visual.project--careerbot { background: linear-gradient(135deg, #06141d, #1d5f73); }
 .project-card-visual.project--oil-palm-instance-segmentation { background: linear-gradient(135deg, #061713, #12634a); }
 .project-card-visual.project--ai-thesis-agent-kit { background: linear-gradient(135deg, #100d2c, #5541c7); }
