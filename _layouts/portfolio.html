@@ -39,10 +39,11 @@ layout: default
             </h3>
             <p>{{ project.description }}</p>
             <div class="project-tech" aria-label="Technologies">{% for tag in project.tags %}<span>{{ tag }}</span>{% endfor %}</div>
-            {% if project.details_url or project.live_url or project.source_url %}
+            {% if project.details_url or project.live_url or project.medium_url or project.source_url %}
             <div class="project-actions">
               {% if project.details_url %}<a class="project-action-details" href="{{ project.details_url | relative_url }}">View project <span aria-hidden="true">→</span></a>{% endif %}
               {% if project.live_url %}<a class="project-action-live" href="{{ project.live_url }}" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a>{% endif %}
+              {% if project.medium_url %}<a class="project-action-medium" href="{{ project.medium_url }}" target="_blank" rel="noopener">Medium <span aria-hidden="true">↗</span></a>{% endif %}
               {% if project.source_url %}<a class="project-action-source" href="{{ project.source_url }}" target="_blank" rel="noopener">Source <span aria-hidden="true">↗</span></a>{% endif %}
             </div>
             {% endif %}

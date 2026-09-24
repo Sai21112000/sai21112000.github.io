@@ -100,6 +100,7 @@ layout: default
               <p>{{ project.description }}</p>
               <div class="project-actions">
                 <a class="project-action-live" href="{{ project.live_url }}" target="_blank" rel="noopener">Live site <span aria-hidden="true">↗</span></a>
+                {% if project.medium_url %}<a class="project-action-medium" href="{{ project.medium_url }}" target="_blank" rel="noopener">Medium <span aria-hidden="true">↗</span></a>{% endif %}
                 {% if project.source_url %}<a class="project-action-source" href="{{ project.source_url }}" target="_blank" rel="noopener">Source <span aria-hidden="true">↗</span></a>{% endif %}
               </div>
             </div>
